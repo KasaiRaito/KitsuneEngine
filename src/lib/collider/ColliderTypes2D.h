@@ -1,19 +1,15 @@
-#ifndef KITSUNEENGINE_COLLIDER_TYPES_2D_H
-#define KITSUNEENGINE_COLLIDER_TYPES_2D_H
+#pragma once
 
-enum class ColliderShape2D {
-    None = 0,
+enum class ColliderType2D {
     Circle,
     Square,
 };
 
-struct CircleShape {
-    float radius = 0.0f;
+struct CircleColliderData {
+    float radius;
 };
 
-struct SquareShape {
-    float width  = 0.0f;
-    float height = 0.0f;
+struct AABBColliderData {
+    float halfWidth;
+    float halfHeight;
 };
-
-#endif

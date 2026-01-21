@@ -1,26 +1,15 @@
-#ifndef KITSUNEENGINE_COLLIDER_COMPONENT_2D_H
-#define KITSUNEENGINE_COLLIDER_COMPONENT_2D_H
+#pragma once
+#include "Component.h"
+#include "Collider2D.h"
 
-#include "ColliderTypes2D.h"
-#include "Transform2D.h"
+class ColliderComponent2D : public Component {
+public:
+    ColliderComponent2D(ColliderType2D type, void* shapeData);
 
-struct ColliderComponent2D {
-    ColliderShape2D shape = ColliderShape2D::None;
-    Transform2D* transform = nullptr;
+    Collider2D* GetCollider() { return &collider; }
 
-    CircleShape circle;
-    SquareShape square;
+    void OnAdded() override;
 
-    void SetCircle(float radius) {
-        shape = ColliderShape2D::Circle;
-        circle.radius = radius;
-    }
-
-    void SetSquare(float wth, float hth) {
-        shape = ColliderShape2D::Square;
-        square.width  = wth;
-        square.height = hth;
-    }
+private:
+    Collider2D collider;
 };
-
-#endif

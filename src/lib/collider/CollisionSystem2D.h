@@ -1,11 +1,19 @@
-#ifndef KITSUNEENGINE_COLLISION_SYSTEM_2D_H
-#define KITSUNEENGINE_COLLISION_SYSTEM_2D_H
+#pragma once
+#include "Collider2D.h"
+#include "CollisionManifold2D.h"
 
-#include "ColliderComponent2D.h"
+class CollisionSystem2D {
+public:
+    static CollisionManifold2D Test(const Collider2D& a, const Collider2D& b);
 
-bool CheckCollision2D(
-    const ColliderComponent2D& a,
-    const ColliderComponent2D& b
-);
+private:
+    static CollisionManifold2D CircleVsCircle(
+        const Collider2D& a,
+        const Collider2D& b
+    );
 
-#endif
+    static CollisionManifold2D SquareVsSquare(
+        const Collider2D& a,
+        const Collider2D& b
+    );
+};

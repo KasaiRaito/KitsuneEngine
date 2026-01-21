@@ -1,41 +1,32 @@
 #include "CollisionSystem2D.h"
-#include <cmath>
 
-// -------- Shape tests --------
-
-static bool CircleVsCircle(
-    const ColliderComponent2D& a,
-    const ColliderComponent2D& b
+CollisionManifold2D CollisionSystem2D::Test(
+const Collider2D& a,
+const Collider2D& b
 ) {
-    if (!a.transform || !b.transform)
-        return false;
-
-    Vector2D delta =
-        a.transform->location.value -
-        b.transform->location.value;
-
-    float r = a.circle.radius + b.circle.radius;
-    return delta.Dot(delta) <= r * r;
-}
-
-// -------- Dispatcher --------
-
-bool CheckCollision2D(
-    const ColliderComponent2D& a,
-    const ColliderComponent2D& b
-) {
-    if (a.shape == ColliderShape2D::None ||
-        b.shape == ColliderShape2D::None)
-        return false;
-
-    if (a.shape == ColliderShape2D::Circle &&
-        b.shape == ColliderShape2D::Circle) {
+    if (a.type == ColliderType2D::Circle &&
+        b.type == ColliderType2D::Circle) {
         return CircleVsCircle(a, b);
         }
 
-    // Future:
-    // Circle vs AABB
-    // AABB vs AABB
+    if (a.type == ColliderType2D::Square &&
+        b.type == ColliderType2D::Square) {
+        return SquareVsSquare(a, b);
+        }
 
-    return false;
+    // Mixed types later
+    return {};
+}
+CollisionManifold2D CollisionSystem2D::CircleVsCircle(
+    const Collider2D& a,
+    const Collider2D& b
+) {
+    return {};
+}
+
+CollisionManifold2D CollisionSystem2D::SquareVsSquare(
+    const Collider2D& a,
+    const Collider2D& b
+) {
+    return {};
 }

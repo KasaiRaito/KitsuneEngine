@@ -1,39 +1,48 @@
 #include "raylib.h"
-#include "Balls.h"
-#include "List.h"
+#include "Ball.h"
+#include "InputComponent.h"
+#include "CircleRenderComponent.h"
+#include "ColliderComponent2D.h"
+#include "Debug.h"
+#include "Scene.h"
 
-int main() {
-    Vector2D windowSize(800.0f, 450.0f);
+int main()
+{
+    Scene scene;
 
-    InitWindow(
-        static_cast<int>(windowSize.x),
-        static_cast<int>(windowSize.y),
-        "Kitsune Engine"
-    );
+    Debug::SetDebug(true);
 
+    InitWindow(800, 450, "Kitsune Engine");
     SetTargetFPS(60);
 
-    Ball ball = Ball(Vector2D(windowSize.x/2.0f,windowSize.y/2.0f),5.0f);
+    Ball* ball = new Ball();
+    ball->transform.location.value = {400, 225};
 
-    ball.transform.location.value = {
-        windowSize.x * 0.5f,
-        windowSize.y * 0.5f
-    };
+    auto* render = new CircleRenderComponent();
+    render->radius = 30.0f;
+    render->color = RED;
 
-    while (!WindowShouldClose()) {
+    auto* collider = new ColliderComponent2D(ColliderType2D::Circle, render);
+
+    ball->AddComponent(render);
+    ball->AddComponent(collider);
+
+    scene.AddObject(ball);
+
+    while (!WindowShouldClose())
+    {
         float dt = GetFrameTime();
 
-        ball.Update(dt);
+        scene.Update(dt);     // ✅ update via scene, not ball.Update(dt)
 
-        //Get All children from Object.h /cpp (Balls) and call their begin draw()
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        ball.Draw();
+        scene.Draw();
 
         EndDrawing();
     }
 
     CloseWindow();
-    return 0;
+    return 0; // ✅ Scene destructor will delete ball ONCE
 }

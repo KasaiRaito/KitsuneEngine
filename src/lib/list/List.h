@@ -1,31 +1,66 @@
 #ifndef KITSUNEENGINE_LIST_H
 #define KITSUNEENGINE_LIST_H
 
-#include <cstddef> // size_t
+#include <cstddef>
 
+template<typename T>
 class List {
 public:
-    List();
-    ~List();
+    List() : data(nullptr), count(0), capacity(0) {}
 
-    // Disable copy (engine containers usually shouldn’t copy)
-    List(const List&) = delete;
-    List& operator=(const List&) = delete;
+    ~List() {
+        delete[] data;
+    }
 
-    // Core operations
-    void Add(void* item);
-    void Remove(void* item);
-    void Clear();
+    void Add(T item) {
+        if (count >= capacity)
+            Grow();
+        data[count++] = item;
+    }
 
-    void* Get(size_t index) const;
-    size_t Size() const;
+    void RemoveAt(size_t index) {
+        if (index >= count) return;
+        for (size_t i = index; i + 1 < count; ++i)
+            data[i] = data[i + 1];
+        --count;
+    }
+
+    void Clear() {
+        for (size_t i = 0; i < count; ++i)
+            data[i] = nullptr;
+        count = 0;
+    }
+
+    // ✅ Correct indexing
+    T& operator[](size_t index) {
+        return data[index];
+    }
+
+    const T& operator[](size_t index) const {
+        return data[index];
+    }
+
+    size_t Size() const {
+        return count;
+    }
+
+    T Get(int x) {
+        return data[x];
+    }
 
 private:
-    void** data;        // raw pointer array
+    T* data;
     size_t count;
     size_t capacity;
 
-    void Grow();
+    void Grow() {
+        capacity = capacity == 0 ? 4 : capacity * 2;
+        T* newData = new T[capacity];
+        for (size_t i = 0; i < count; ++i)
+            newData[i] = data[i];
+        delete[] data;
+        data = newData;
+    }
 };
 
-#endif // KITSUNEENGINE_LIST_H
+#endif

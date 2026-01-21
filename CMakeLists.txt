@@ -5,45 +5,54 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-# Find raylib
+# -----------------------------
+# Dependencies
+# -----------------------------
 find_package(raylib CONFIG REQUIRED)
 
-# Collect all cpp files
+# -----------------------------
+# Sources
+# -----------------------------
 file(GLOB_RECURSE ENGINE_SOURCES
-        src/*.cpp)
-
-add_executable(KitsuneEngine ${ENGINE_SOURCES}
-        src/lib/Scene.cpp
-        src/lib/Scene.h
-        src/lib/vector/Vector2D.cpp
-        src/lib/vector/Vector2D.h
-        src/lib/vector/Vector3D.cpp
-        src/lib/vector/Vector3D.h
-        src/lib/transform/Transform2D.cpp
-        src/lib/transform/Transform2D.h
-        src/lib/collider/CollisionSystem2D.cpp
-        src/lib/collider/ColliderComponent2D.h
-        src/lib/collider/ColliderTypes2D.h
-        src/lib/collider/CollisionSystem2D.h
-        src/lib/list/List.cpp
-        src/lib/list/List.h
+        src/*.cpp
 )
 
+add_executable(KitsuneEngine
+        ${ENGINE_SOURCES}
+        src/lib/collider/CollisionSystem2D.cpp
+        src/lib/collider/CollisionSystem2D.h
+        src/lib/debug/Debug.cpp
+        src/lib/debug/Debug.h
+        src/lib/collider/CircleCollider2D.cpp
+        src/lib/collider/CircleCollider2D.h
+)
+
+# -----------------------------
 # Include directories
+# -----------------------------
 target_include_directories(KitsuneEngine PRIVATE
         src
         src/game
         src/lib
         src/lib/vector
-        src/lib/collider
         src/lib/transform
         src/lib/list
+        src/lib/component
+        src/lib/input
+        src/lib/render
+        src/lib/collider
+        src/lib/debug
+        src/lib/object
 )
 
-# Link raylib
+# -----------------------------
+# Link libraries
+# -----------------------------
 target_link_libraries(KitsuneEngine PRIVATE raylib)
 
-# macOS frameworks (raylib needs these)
+# -----------------------------
+# macOS frameworks (raylib)
+# -----------------------------
 if (APPLE)
     target_link_libraries(KitsuneEngine PRIVATE
             "-framework OpenGL"
