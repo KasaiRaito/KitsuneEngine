@@ -25,6 +25,12 @@ add_executable(KitsuneEngine
         src/lib/debug/Debug.h
         src/lib/collider/CircleCollider2D.cpp
         src/lib/collider/CircleCollider2D.h
+        src/lib/scene/SceneManager.cpp
+        src/lib/scene/SceneManager.h
+        src/game/scene/SceneMain.cpp
+        src/game/scene/SceneMain.h
+        src/game/scene/SceneGame.cpp
+        src/game/scene/SceneGame.h
 )
 
 # -----------------------------
@@ -32,7 +38,13 @@ add_executable(KitsuneEngine
 # -----------------------------
 target_include_directories(KitsuneEngine PRIVATE
         src
+
+        /* Game */
         src/game
+        src/game/scene
+
+
+        /* Engine */
         src/lib
         src/lib/vector
         src/lib/transform
@@ -43,6 +55,7 @@ target_include_directories(KitsuneEngine PRIVATE
         src/lib/collider
         src/lib/debug
         src/lib/object
+        src/lib/scene
 )
 
 # -----------------------------

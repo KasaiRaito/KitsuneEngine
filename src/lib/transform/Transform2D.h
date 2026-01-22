@@ -14,6 +14,14 @@ struct Location2D {
     void Translate(const Vector2D& dt) {
         value += dt;
     }
+
+    float x() {
+        return value.x;
+    }
+
+    float y() {
+        return value.y;
+    }
 };
 
 struct Rotation2D {

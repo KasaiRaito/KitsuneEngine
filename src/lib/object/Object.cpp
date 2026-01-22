@@ -1,4 +1,6 @@
 #include "Object.h"
+
+#include "ColliderComponent2D.h"
 #include "RenderComponent2D.h"
 
 Object::~Object() {
@@ -11,6 +13,13 @@ Object::~Object() {
 void Object::AddComponent(Component* component) {
     component->owner = this;
     components.Add(component);
+
+    if (auto temp = dynamic_cast<ColliderComponent2D *>(component))
+    {
+            collider = temp->GetCollider();
+    }
+
+    component->OnAdded();
 }
 
 void Object::Update(float dt) {
@@ -18,6 +27,9 @@ void Object::Update(float dt) {
     {
         transform.location.Translate(velocity * dt);
     }
+
+    if (components.Size() == 0)
+        return;
 
     for (int i = 0; i < components.Size(); i++) {
         components[i]->Update(dt);

@@ -12,4 +12,10 @@ public:
     virtual void OnRemoved() {}
 
     virtual void Update(float dt) {}
+
+    template<typename T>
+    bool IsType() const
+    {
+        return dynamic_cast<const T*>(this) != nullptr;
+    }
 };

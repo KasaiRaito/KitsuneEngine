@@ -1,15 +1,26 @@
 #include "ColliderComponent2D.h"
 #include "Object.h"
+#include "CircleRenderComponent.h" // so we can read render->radius
 
-ColliderComponent2D::ColliderComponent2D(ColliderType2D type, void* shapeData) {
+ColliderComponent2D::ColliderComponent2D(ColliderType2D type, void* shapeData)
+{
     collider.type = type;
-    collider.data = shapeData;
+
+    if (type == ColliderType2D::Circle)
+    {
+        // shapeData is expected to be a CircleRenderComponent*
+        auto* render = static_cast<CircleRenderComponent*>(shapeData);
+        circleData.radius = render ? render->radius : 0.0f;
+
+        collider.data = &circleData; // ✅ correct type for DebugDraw()
+    }
+    else
+    {
+        collider.data = nullptr;
+    }
 }
 
-void ColliderComponent2D::OnAdded() {
-    Component::OnAdded();
-
-    owner->collider = &collider;
-    collider.position = &owner->transform.location.value; // adjust to your actual Vector2D field
-
+void ColliderComponent2D::OnAdded()
+{
+    collider.transform = &owner->transform; // ✅ fix null
 }

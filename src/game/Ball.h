@@ -5,4 +5,7 @@ class Ball : public Object
 {
     public:
     void Update(float dt) override;
+
+    void Inputs();
+
 };

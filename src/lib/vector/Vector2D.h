@@ -5,8 +5,8 @@
 #include <cmath>
 
 struct Vector2D {
-    float x;
-    float y;
+    float x = 0.0f;
+    float y = 0.0f;
 
     // Constructors
     constexpr Vector2D() : x(0), y(0) {}
