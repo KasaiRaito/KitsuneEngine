@@ -31,6 +31,8 @@ void Object::Update(float dt) {
     if (components.Size() == 0)
         return;
 
+
+
     for (int i = 0; i < components.Size(); i++) {
         components[i]->Update(dt);
     }

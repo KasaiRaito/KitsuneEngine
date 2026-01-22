@@ -48,6 +48,10 @@ public:
         return data[x];
     }
 
+    const T& Get(int x) const {
+        return data[x];
+    }
+
 private:
     T* data;
     size_t count;

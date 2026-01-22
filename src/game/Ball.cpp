@@ -1,13 +1,22 @@
 #include "Ball.h"
+#include "InputComponent.h"
 
-#include <raylib.h>
-
-void Ball::Update(float dt) {
+void Ball::Update(float dt)
+{
+    // updates components (InputComponent computes axes/actions)
     Object::Update(dt);
 
-    velocity = Vector2D(20.0f, 20.0f);
-}
+    InputComponent* input = GetComponent<InputComponent>();
+    if (!input) return;
 
-void Ball::Inputs() {
+    Vector2D move = input->GetAxis2DNormalized("Move");
 
+    const float speed = 200.0f;
+    transform.location.value.x += move.x * speed * dt;
+    transform.location.value.y += move.y * speed * dt;
+
+    if (input->GetActionPressed("Interact"))
+    {
+        // do interact once
+    }
 }

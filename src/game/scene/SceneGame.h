@@ -19,8 +19,17 @@ public:
     void Update(float dt) override;
     void Draw() override;
 
+    void SetTime(int h, int m, int s, int ms);
+
 private:
     List<Object*> objects;
+
+    void UpdateClock(float dt);
+
+    int hours = 20;
+    int minutes = 15;
+    int seconds = 11;
+    int milliseconds = 0;
 };
 
 #endif //KITSUNEENGINE_SCENEGAME_H
