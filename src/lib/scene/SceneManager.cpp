@@ -26,13 +26,13 @@ int SceneManager::GetCurrentSceneIndex() const
 
 SceneInfo* SceneManager::GetNextScene()
 {
-    if (scenes.Size() == 0) return nullptr;
+    const int count = (int)scenes.Size();
+    if (count <= 0) return nullptr;
 
     int next = currentSceneIndex + 1;
-    if (next >= scenes.Size()) return nullptr;
+    if (next >= count) next = 0;
 
-    currentSceneIndex = next;
-    return &scenes[currentSceneIndex];
+    return &scenes[next];
 }
 
 void SceneManager::LoadScene(int index)

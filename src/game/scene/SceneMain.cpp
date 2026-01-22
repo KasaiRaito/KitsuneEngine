@@ -79,7 +79,7 @@ void SceneMain::Draw()
     // Debug overlay
     if (!Debug::GetDebug()) return;
 
-    DrawText("DEBUG COLLIDER OVERLAY ACTIVE", 20, 20, 20, RED);
+    DrawText("SceneMenu (SPACE to switch)", 20, 20, 20, RED);
 
     for (size_t i = 0; i < objects.Size(); i++)
     {
