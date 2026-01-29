@@ -8,4 +8,6 @@ class Ball : public Object
 
     void Inputs();
 
+    bool movement = true;
+
 };

@@ -1,4 +1,6 @@
 #include "InputComponent.h"
+#include "Events.h"
+#include "Object.h"
 #include <cmath>
 
 static float Len(float x, float y) { return std::sqrt(x*x + y*y); }
@@ -12,6 +14,25 @@ bool InputComponent::AnyKeyDown(const List<int>& keys)
         }
     }
     return false;
+}
+
+void InputComponent::OnMovementEnabledEvent(void *ctx, const MovementToggleEvent &e) {
+    Object* self = (Object*)ctx;
+
+    if (e.who == nullptr || e.who == self)
+    {
+        if (auto* input = self->GetComponent<InputComponent>())
+            input->movementEnabled = e.enabled;
+    }
+}
+
+void InputComponent::OnAdded() {
+    Component::OnAdded();
+
+    if (owner) {
+        owner->Subscribe(GEvents.OnMovementToggle, &InputComponent::OnMovementEnabledEvent);
+    }
+
 }
 
 InputComponent::Axis2D* InputComponent::AddAxis2D(const std::string& name)
@@ -81,7 +102,7 @@ void InputComponent::Update(float dt)
 {
     (void)dt;
 
-    // --- Update actions ---
+    // --- Update actions (keep working even when movement locked) ---
     for (size_t i = 0; i < actions.Size(); i++)
     {
         Action& a = actions[i];
@@ -96,6 +117,18 @@ void InputComponent::Update(float dt)
     }
 
     // --- Update axes ---
+    if (!movementEnabled)
+    {
+        // Force movement to zero
+        for (size_t i = 0; i < axes2D.Size(); i++)
+        {
+            axes2D[i].value = {0, 0};
+            axes2D[i].normalized = {0, 0};
+        }
+        return;
+    }
+
+    // (your existing axis computation below)
     for (size_t i = 0; i < axes2D.Size(); i++)
     {
         Axis2D& ax = axes2D[i];
@@ -112,12 +145,8 @@ void InputComponent::Update(float dt)
 
         float l = Len(x, y);
         if (l <= ax.deadzone || l == 0.0f)
-        {
             ax.normalized = {0, 0};
-        }
         else
-        {
             ax.normalized = {x / l, y / l};
-        }
     }
 }

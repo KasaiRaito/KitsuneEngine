@@ -24,12 +24,11 @@ public:
 private:
     List<Object*> objects;
 
-    void UpdateClock(float dt);
+    void UpdateClock(float dt, bool grow);
+    void GetClockParts(int& h, int& m, int& s, int& ms) const;
 
-    int hours = 20;
-    int minutes = 15;
-    int seconds = 11;
-    int milliseconds = 0;
+    int totalMs;
+    const int dayMs = 24 * 60 * 60 * 1000;
 };
 
 #endif //KITSUNEENGINE_SCENEGAME_H

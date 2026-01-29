@@ -2,11 +2,21 @@
 
 #include "ColliderComponent2D.h"
 #include "RenderComponent2D.h"
+#include "Events.h"
+
+Object::Object() {
+    
+}
 
 Object::~Object() {
     for (int i = 0; i < components.Size(); i++) {
         delete components[i];
     }
+
+    //GEvents.OnCollisionEnter.Unsubscribe(this, &OnAnyCollision);
+
+    UnsubscribeAll();
+
     components.Clear();
 }
 
@@ -23,6 +33,11 @@ void Object::AddComponent(Component* component) {
 }
 
 void Object::Update(float dt) {
+
+    for (int i = 0; i < components.Size(); i++) {
+        components[i]->Update(dt);
+    }
+
     if (velocity.Length() != 0)
     {
         transform.location.Translate(velocity * dt);
@@ -30,19 +45,25 @@ void Object::Update(float dt) {
 
     if (components.Size() == 0)
         return;
-
-
-
-    for (int i = 0; i < components.Size(); i++) {
-        components[i]->Update(dt);
-    }
 }
 
-void Object::Draw() {
+void Object::Draw()
+{
     for (int i = 0; i < components.Size(); i++) {
         if (auto renderer =
             dynamic_cast<RenderComponent2D*>(components[i])) {
             renderer->Draw();
             }
     }
+}
+
+void Object::OnCollisionEnter(Object *other) {
+
+}
+
+void Object::OnCollisionStay(Object *other) {
+    velocity = Vector2D::Zero();
+    other->velocity = Vector2D::Zero();
+    DrawText("Colliding", 400, 20, 20, RED);
+
 }

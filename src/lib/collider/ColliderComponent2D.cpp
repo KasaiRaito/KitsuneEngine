@@ -22,5 +22,14 @@ ColliderComponent2D::ColliderComponent2D(ColliderType2D type, void* shapeData)
 
 void ColliderComponent2D::OnAdded()
 {
-    collider.transform = &owner->transform; // ✅ fix null
+    collider.transform = &owner->transform;
+    owner->collider = &collider;
+}
+
+void ColliderComponent2D::OnCollisionEnter(Object *other) {
+    owner->OnCollisionEnter(other);
+}
+
+void ColliderComponent2D::OnCollisionStay(Object *other) {
+    owner->OnCollisionStay(other);
 }

@@ -4,6 +4,9 @@
 #include "vector/Vector2D.h"
 #include "raylib.h"
 #include <string>
+#include "Events.h"
+#include "Object.h"
+
 
 class InputComponent : public Component
 {
@@ -34,6 +37,8 @@ public:
     };
 
 public:
+    void OnAdded() override;
+
     // Setup
     Axis2D* AddAxis2D(const std::string& name);
     Action* AddAction(const std::string& name);
@@ -53,8 +58,11 @@ public:
     void Update(float dt) override;
 
 private:
+    bool movementEnabled = true;
+
     List<Axis2D> axes2D;
     List<Action> actions;
 
     static bool AnyKeyDown(const List<int>& keys);
+    static void OnMovementEnabledEvent(void* ctx, const MovementToggleEvent& e);
 };

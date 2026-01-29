@@ -5,6 +5,7 @@
 #include "List.h"
 #include "Collider2D.h"
 #include "Component.h"
+#include "Events.h"
 
 class Object {
 public:
@@ -12,11 +13,30 @@ public:
     Vector2D velocity;
     Collider2D* collider = nullptr;
     List<Component*> components;
+    List<Subscription> subscriptions;
 
-    Object() = default;
+    Object();
     virtual ~Object();
 
     void AddComponent(Component* component);
+
+    template <typename Payload>
+    void Subscribe(EventChannel<Payload>& channel, void (*fn)(void*, const Payload&))
+    {
+        subscriptions.Add(channel.SubscribeScoped(this, fn));
+    }
+
+    void UnsubscribeAll()
+    {
+        for (int i = 0; i < subscriptions.Size(); i++)
+        {
+            subscriptions[i].Unsubscribe();
+        }
+
+        subscriptions.ClearSubscriptions();
+    }
+
+
 
     virtual void Update(float dt);
 
@@ -31,4 +51,7 @@ public:
         }
         return nullptr;
     }
+
+    virtual void OnCollisionEnter(Object* other);
+    virtual void OnCollisionStay(Object* other);
 };

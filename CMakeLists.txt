@@ -31,6 +31,12 @@ add_executable(KitsuneEngine
         src/game/scene/SceneMain.h
         src/game/scene/SceneGame.cpp
         src/game/scene/SceneGame.h
+        src/lib/events/EventManager.cpp
+        src/lib/events/EventManager.h
+        src/lib/events/Events.cpp
+        src/lib/events/Events.h
+        src/lib/events/Subscription.cpp
+        src/lib/events/Subscription.h
 )
 
 # -----------------------------
@@ -56,6 +62,7 @@ target_include_directories(KitsuneEngine PRIVATE
         src/lib/debug
         src/lib/object
         src/lib/scene
+        src/lib/events
 )
 
 # -----------------------------

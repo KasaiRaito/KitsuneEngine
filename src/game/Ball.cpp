@@ -19,4 +19,13 @@ void Ball::Update(float dt)
     {
         // do interact once
     }
+
+    if (input->GetActionPressed("Toggle Movement")) {
+        movement = !movement;
+
+        MovementToggleEvent e;
+        e.who = nullptr;
+        e.enabled = movement;
+        GEvents.OnMovementToggle.Emit(e);
+    }
 }

@@ -31,6 +31,13 @@ public:
         count = 0;
     }
 
+    // Add specific for Events
+    void ClearSubscriptions() {
+        for (size_t i = 0; i < count; ++i)
+            data[i] = T{};
+        count = 0;
+    }
+
     // ✅ Correct indexing
     T& operator[](size_t index) {
         return data[index];
@@ -50,6 +57,13 @@ public:
 
     const T& Get(int x) const {
         return data[x];
+    }
+
+    void PopBack() { if (count > 0) --count; }
+
+    void Set(size_t index, const T& item) {
+        if (index >= count) return;
+        data[index] = item;
     }
 
 private:
