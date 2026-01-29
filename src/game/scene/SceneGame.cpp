@@ -48,7 +48,7 @@ SceneGame::SceneGame()
     ball->transform.location.value = { 300, 300 };
     auto* render2 = new CircleRenderComponent();
     render2->radius = 25.0f;
-    render2->color = BLUE;
+    render2->color = PINK;
 
     auto* collider2 = new ColliderComponent2D(ColliderType2D::Circle, render);
 
