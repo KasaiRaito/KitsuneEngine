@@ -3,7 +3,12 @@
 #include "SceneManager.h"
 #include "SceneMain.h"
 #include "SceneGame.h"
-#include "lib/resource_manager/ResourceManager.h"
+#include "ResourceManager.h"
+
+
+#include "raylib.h"
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
 
 int main()
 {
@@ -13,16 +18,13 @@ int main()
     Debug::SetDebug(true);
 
     SceneManager sceneManager;
-    sceneManager.AddScene(SceneInfo(new SceneMain(), "main", 0));
-    sceneManager.AddScene(SceneInfo(new SceneGame(), "game", 1));
+    sceneManager.AddScene(SceneInfo(new SceneMain(&sceneManager), "main", 0));
+    sceneManager.AddScene(SceneInfo(new SceneGame(&sceneManager), "game", 1));
     sceneManager.LoadScene(0);
 
     while (!WindowShouldClose())
     {
         float dt = GetFrameTime();
-
-        if (IsKeyPressed(KEY_SPACE))
-            sceneManager.NextScene();
 
         SceneInfo current = sceneManager.GetCurrentScene();
         if (!current.scene) break;

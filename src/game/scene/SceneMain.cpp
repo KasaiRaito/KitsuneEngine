@@ -5,10 +5,40 @@
 #include "CollisionSystem2D.h"
 #include "Debug.h"
 #include "InputSystem.h"
-#include "raylib.h"
+#include "SceneManager.h"
+#include "ResourceManager.h"
 
-SceneMain::SceneMain()
+#include "raylib.h"
+#include "raygui.h"
+
+static std::string ResolveAssetPath(const std::string& repoRelativePath)
 {
+    // Try common working directories (project root and build folders).
+    const std::string candidates[] = {
+        repoRelativePath,
+        "../" + repoRelativePath,
+        "../../" + repoRelativePath,
+        "../../../" + repoRelativePath
+    };
+
+    for (const std::string& candidate : candidates)
+    {
+        if (FileExists(candidate.c_str()))
+            return candidate;
+    }
+
+    // Return original path as fallback so warning logs still show intended file.
+    return repoRelativePath;
+}
+
+SceneMain::SceneMain(SceneManager* manager)
+    : sceneManager(manager)
+{
+    auto& resources = ResourceManager::Instance();
+    const std::string fontPath = ResolveAssetPath("src/game/assets/fonts/DKKitsuneTail.ttf");
+
+    uiFont = resources.GetOrLoadFont(fontPath);
+
     Ball* ball = new Ball();
     ball->transform.location.value = {400, 225};
 
@@ -68,6 +98,9 @@ void SceneMain::Draw()
     // If SceneBase::Draw() is abstract/empty, you can remove this call.
     SceneBase::Draw();
 
+    if (GuiButton({ 620, 20, 160, 32 }, "Go to SceneGame") && sceneManager)
+        sceneManager->LoadScene(1);
+
     // Draw objects
     for (size_t i = 0; i < objects.Size(); i++)
     {
@@ -76,10 +109,13 @@ void SceneMain::Draw()
         obj->Draw();
     }
 
+    if (uiFont)
+        DrawTextEx(uiFont->value, "KitsuneEngine", {20.0f, 20.0f}, 24.0f, 1.0f, BLACK);
+    else
+        DrawText("KitsuneEngine", 20, 20, 20, RED);
+
     // Debug overlay
     if (!Debug::GetDebug()) return;
-
-    DrawText("SceneMenu (SPACE to switch)", 20, 20, 20, RED);
 
     for (size_t i = 0; i < objects.Size(); i++)
     {

@@ -19,6 +19,21 @@ public:
     virtual ~Object();
 
     void AddComponent(Component* component);
+    void RemoveComponent(Component* component);
+
+    template<typename T>
+    bool RemoveComponent()
+    {
+        for (size_t i = 0; i < components.Size(); i++)
+        {
+            if (dynamic_cast<T*>(components[i]) != nullptr)
+            {
+                RemoveComponent(components[i]);
+                return true;
+            }
+        }
+        return false;
+    }
 
     template <typename Payload>
     void Subscribe(EventChannel<Payload>& channel, void (*fn)(void*, const Payload&))

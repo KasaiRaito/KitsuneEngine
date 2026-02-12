@@ -2,12 +2,16 @@
 
 #include "Ball.h"
 #include "CircleRenderComponent.h"
+#include "SquareCollider2D.h"
 #include "ColliderComponent2D.h"
 #include "CollisionSystem2D.h"
 #include "InputComponent.h"
 #include "Debug.h"
+#include "SceneManager.h"
+#include "physics_system/PhysicsComponent.h"
+#include "ResourceManager.h"
 #include "raylib.h"
-#include "resource_manager/ResourceManager.h"
+#include "raygui.h"
 
 #include <sstream>
 #include <iomanip>
@@ -34,12 +38,37 @@ static std::string ResolveAssetPath(const std::string& repoRelativePath)
     return repoRelativePath;
 }
 
-SceneGame::SceneGame()
+static void ExchangeCollisionImpulse(Object* a, Object* b, const Vector2D& normal, float restitution = 0.65f)
+{
+    if (!a || !b) return;
+
+    auto* pa = a->GetComponent<PhysicsComponent>();
+    auto* pb = b->GetComponent<PhysicsComponent>();
+    if (!pa && !pb) return;
+
+    const float invMassA = pa ? pa->GetInvMass() : 0.0f;
+    const float invMassB = pb ? pb->GetInvMass() : 0.0f;
+    const float invMassSum = invMassA + invMassB;
+    if (invMassSum <= 0.0f) return;
+
+    const Vector2D relativeVelocity = b->velocity - a->velocity;
+    const float velocityAlongNormal = relativeVelocity.Dot(normal);
+    if (velocityAlongNormal > 0.0f) return;
+
+    const float impulseMagnitude = -(1.0f + restitution) * velocityAlongNormal / invMassSum;
+    const Vector2D impulse = normal * impulseMagnitude;
+
+    if (pa) a->velocity -= impulse * invMassA;
+    if (pb) b->velocity += impulse * invMassB;
+}
+
+SceneGame::SceneGame(SceneManager* manager)
+    : sceneManager(manager)
 {
     // Load shared resources once; ResourceManager will return cached entries
     // if another scene/object asked for the same file previously.
     auto& resources = ResourceManager::Instance();
-    const std::string fontPath = ResolveAssetPath("src/game/assets/fonts/ui.ttf");
+    const std::string fontPath = ResolveAssetPath("src/game/assets/fonts/DKKitsuneTail.ttf");
     const std::string collisionPath = ResolveAssetPath("src/game/assets/audio/collision.mp3");
     const std::string bgmPath = ResolveAssetPath("src/game/assets/audio/bgm.ogg");
     const std::string backgroundPath = ResolveAssetPath("src/game/assets/textures/BackGround.jpg");
@@ -75,6 +104,12 @@ SceneGame::SceneGame()
     auto* input = new InputComponent();
     Player->AddComponent(input);
 
+    auto* playerPhysics = new PhysicsComponent();
+    playerPhysics->SetMass(1.0f);
+    playerPhysics->linearDamping = 8.0f;
+    playerPhysics->maxSpeed = 260.0f;
+    Player->AddComponent(playerPhysics);
+
     // Move axis
     auto* move = input->AddAxis2D("Move");
     move->up.Add(KEY_W);
@@ -102,7 +137,35 @@ SceneGame::SceneGame()
     ball->AddComponent(render2);
     ball->AddComponent(collider2);
 
+    auto* ballPhysics = new PhysicsComponent();
+    ballPhysics->SetMass(1.0f);
+    ballPhysics->useGravity = true;
+    ballPhysics->gravityScale = 1.0f;
+    ballPhysics->linearDamping = 2.0f;
+    ball->AddComponent(ballPhysics);
+
     objects.Add(ball);
+
+    // Static screen borders (AABB colliders) to keep dynamic circles in-bounds.
+    const float screenW = (float)GetScreenWidth();
+    const float screenH = (float)GetScreenHeight();
+    const float thickness = 20.0f;
+
+    auto AddBorder = [this](float x, float y, float halfW, float halfH)
+    {
+        Object* border = new Object();
+        border->transform.location.value = { x, y };
+        SquareCollider2D boxCollider(&border->transform.location.value, halfW, halfH);
+        auto* borderCollider = new ColliderComponent2D(ColliderType2D::Square, &boxCollider);
+        border->AddComponent(borderCollider);
+        objects.Add(border);
+    };
+
+    // Top, bottom, left, right
+    AddBorder(screenW * 0.5f, -thickness * 0.5f, screenW * 0.5f, thickness * 0.5f);
+    AddBorder(screenW * 0.5f, screenH + thickness * 0.5f, screenW * 0.5f, thickness * 0.5f);
+    AddBorder(-thickness * 0.5f, screenH * 0.5f, thickness * 0.5f, screenH * 0.5f);
+    AddBorder(screenW + thickness * 0.5f, screenH * 0.5f, thickness * 0.5f, screenH * 0.5f);
 
     SetTime(00,00,03,00);
 }
@@ -186,13 +249,6 @@ void SceneGame::Update(float dt)
                         b->transform.location.Translate(m.normal * halfPen); // CHANGED
                     } // CHANGED
 
-                    const float vaN = a->velocity.Dot(m.normal); // CHANGED
-                    if (vaN > 0.0f) // CHANGED
-                        a->velocity -= m.normal * vaN; // CHANGED
-
-                    const float vbN = b->velocity.Dot(m.normal); // CHANGED
-                    if (vbN < 0.0f) // CHANGED
-                        b->velocity -= m.normal * vbN; // CHANGED
                 } // CHANGED
 
                 if (!wasColliding) // CHANGED
@@ -203,6 +259,9 @@ void SceneGame::Update(float dt)
                     // Real audio usage example: play one-shot SFX on collision enter.
                     if (!isTriggerPair && collisionSfx)
                         PlaySound(collisionSfx->value);
+
+                    if (!isTriggerPair)
+                        ExchangeCollisionImpulse(a, b, m.normal);
 
                     if (isTriggerPair) // CHANGED
                     { // CHANGED
@@ -255,7 +314,7 @@ void SceneGame::Update(float dt)
 
 void SceneGame::Draw()
 {
-    // Draw the scene background first so every other draw call appears above it.
+/** Textures **/
     if (backgroundImage && backgroundImage->value.id != 0)
     {
         Texture2D& bg = backgroundImage->value;
@@ -272,6 +331,7 @@ void SceneGame::Draw()
     int h, m, s, ms;
     GetClockParts(h, m, s, ms);
 
+/** TEXTS **/
     std::ostringstream clockTXT;
     clockTXT << std::setfill('0')
              << std::setw(2) << h << ":"
@@ -280,13 +340,14 @@ void SceneGame::Draw()
              << std::setw(3) << ms;
 
     DrawText(clockTXT.str().c_str(), 20, 100, 20, DARKBLUE);
-
-    // Real font usage example:
-    // use loaded font if available, otherwise fallback to default DrawText.
     if (uiFont)
-        DrawTextEx(uiFont->value, "SceneGame (SPACE to switch)", {20.0f, 20.0f}, 24.0f, 1.0f, DARKBLUE);
+        DrawTextEx(uiFont->value, "KitsuneEngine", {20.0f, 20.0f}, 24.0f, 1.0f, WHITE);
     else
-        DrawText("SceneGame (SPACE to switch)", 20, 20, 20, DARKBLUE);
+        DrawText("KitsuneEngine", 20, 20, 20, RED);
+
+/** Buttons **/
+    if (GuiButton({ 620, 20, 160, 32 }, "Exit to Main") && sceneManager)
+        sceneManager->LoadScene(0);
 
     for (size_t i = 0; i < objects.Size(); i++)
     {

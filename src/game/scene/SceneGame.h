@@ -9,13 +9,15 @@
 #include "SceneBase.h"
 #include "List.h"
 #include "Object.h"
-#include "resource_manager/ResourceManager.h"
+#include "ResourceManager.h"
 #include <memory>
+
+class SceneManager;
 
 class SceneGame : public SceneBase
 {
 public:
-    SceneGame();
+    explicit SceneGame(SceneManager* manager);
     ~SceneGame() override;
 
     void Update(float dt) override;
@@ -24,6 +26,7 @@ public:
     void SetTime(int h, int m, int s, int ms);
 
 private:
+    SceneManager* sceneManager = nullptr;
     List<Object*> objects;
 
     // Cached resources loaded once through ResourceManager.

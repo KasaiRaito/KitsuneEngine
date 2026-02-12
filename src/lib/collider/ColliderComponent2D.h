@@ -33,4 +33,5 @@ public:
 private:
     Collider2D collider;
     CircleColliderData circleData{};
+    AABBColliderData aabbData{};
 };
