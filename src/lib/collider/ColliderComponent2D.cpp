@@ -33,3 +33,19 @@ void ColliderComponent2D::OnCollisionEnter(Object *other) {
 void ColliderComponent2D::OnCollisionStay(Object *other) {
     owner->OnCollisionStay(other);
 }
+
+void ColliderComponent2D::OnCollisionExit(Object *other) { // CHANGED
+    owner->OnCollisionExit(other); // CHANGED
+} // CHANGED
+
+void ColliderComponent2D::OnTriggerEnter(Object *other) { // CHANGED
+    owner->OnTriggerEnter(other); // CHANGED
+} // CHANGED
+
+void ColliderComponent2D::OnTriggerStay(Object *other) { // CHANGED
+    owner->OnTriggerStay(other); // CHANGED
+} // CHANGED
+
+void ColliderComponent2D::OnTriggerExit(Object *other) { // CHANGED
+    owner->OnTriggerExit(other); // CHANGED
+} // CHANGED

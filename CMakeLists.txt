@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Dependencies
 # -----------------------------
 find_package(raylib CONFIG REQUIRED)
+find_package(box2d CONFIG REQUIRED)
 
 # -----------------------------
 # Sources
@@ -37,6 +38,8 @@ add_executable(KitsuneEngine
         src/lib/events/Events.h
         src/lib/events/Subscription.cpp
         src/lib/events/Subscription.h
+        src/lib/resource_manager/ResourceManager.cpp
+        src/lib/resource_manager/ResourceManager.h
 )
 
 # -----------------------------
@@ -63,12 +66,15 @@ target_include_directories(KitsuneEngine PRIVATE
         src/lib/object
         src/lib/scene
         src/lib/events
+        src/lib/resource_manager
 )
 
 # -----------------------------
 # Link libraries
 # -----------------------------
 target_link_libraries(KitsuneEngine PRIVATE raylib)
+target_link_libraries(KitsuneEngine PRIVATE box2d::box2d)
+
 
 # -----------------------------
 # macOS frameworks (raylib)

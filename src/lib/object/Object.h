@@ -54,4 +54,9 @@ public:
 
     virtual void OnCollisionEnter(Object* other);
     virtual void OnCollisionStay(Object* other);
+    virtual void OnCollisionExit(Object* other); // CHANGED
+
+    virtual void OnTriggerEnter(Object* other); // CHANGED
+    virtual void OnTriggerStay(Object* other); // CHANGED
+    virtual void OnTriggerExit(Object* other); // CHANGED
 };

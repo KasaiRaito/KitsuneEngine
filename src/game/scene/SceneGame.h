@@ -9,6 +9,8 @@
 #include "SceneBase.h"
 #include "List.h"
 #include "Object.h"
+#include "resource_manager/ResourceManager.h"
+#include <memory>
 
 class SceneGame : public SceneBase
 {
@@ -23,6 +25,12 @@ public:
 
 private:
     List<Object*> objects;
+
+    // Cached resources loaded once through ResourceManager.
+    std::shared_ptr<ResourceManager::FontResource> uiFont;
+    std::shared_ptr<ResourceManager::SoundResource> collisionSfx;
+    std::shared_ptr<ResourceManager::MusicResource> bgm;
+    std::shared_ptr<ResourceManager::TextureResource> backgroundImage;
 
     void UpdateClock(float dt, bool grow);
     void GetClockParts(int& h, int& m, int& s, int& ms) const;

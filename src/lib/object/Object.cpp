@@ -67,3 +67,19 @@ void Object::OnCollisionStay(Object *other) {
     DrawText("Colliding", 400, 20, 20, RED);
 
 }
+
+void Object::OnCollisionExit(Object *other) { // CHANGED
+    (void)other; // CHANGED
+} // CHANGED
+
+void Object::OnTriggerEnter(Object *other) { // CHANGED
+    (void)other; // CHANGED
+} // CHANGED
+
+void Object::OnTriggerStay(Object *other) { // CHANGED
+    (void)other; // CHANGED
+} // CHANGED
+
+void Object::OnTriggerExit(Object *other) { // CHANGED
+    (void)other; // CHANGED
+} // CHANGED

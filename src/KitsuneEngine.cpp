@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "SceneMain.h"
 #include "SceneGame.h"
+#include "lib/resource_manager/ResourceManager.h"
 
 int main()
 {
@@ -36,6 +37,8 @@ int main()
         EndDrawing();
     }
 
+    // Free all cached resources before closing the render/audio systems.
+    ResourceManager::Instance().Clear();
     CloseWindow();
     return 0;
 }
