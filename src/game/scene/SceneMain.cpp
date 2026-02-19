@@ -109,6 +109,23 @@ static bool IsVideoFile(const std::filesystem::path& path)
         || extension == ".webm";
 }
 
+static std::string ResolveFfmpegExecutable()
+{
+    const std::filesystem::path candidates[] = {
+        "/opt/homebrew/bin/ffmpeg",
+        "/usr/local/bin/ffmpeg"
+    };
+
+    std::error_code ec;
+    for (const auto& candidate : candidates)
+    {
+        if (std::filesystem::exists(candidate, ec))
+            return candidate.string();
+    }
+
+    return "ffmpeg";
+}
+
 static std::string EscapeShellArg(const std::string& value)
 {
     std::string escaped = "'";
@@ -172,7 +189,7 @@ static bool ExtractFramesFromVideo(const std::filesystem::path& videoPath,
     const std::string filter = "fps=" + std::to_string(targetFps);
     const std::string outputPattern = (outputDirectory / "frame_%05d.png").string();
 
-    std::string command = "ffmpeg -y -loglevel error -i "
+    std::string command = EscapeShellArg(ResolveFfmpegExecutable()) + " -y -loglevel error -i "
         + EscapeShellArg(videoPath.string())
         + " -vf " + EscapeShellArg(filter)
         + " " + EscapeShellArg(outputPattern)
@@ -418,9 +435,9 @@ void SceneMain::Draw()
     }
 
     if (uiFont)
-        DrawTextEx(uiFont->value, "KitsuneEngine", {20.0f, 20.0f}, 24.0f, 1.0f, BLACK);
+        DrawTextEx(uiFont->value, "KitsuneEngine", {20.0f, 20.0f}, 50.0f, 1.0f, BLACK);
     else
-        DrawText("KitsuneEngine", 20, 20, 20, RED);
+        DrawText("KitsuneEngine", 20, 20, 50, RED);
 
     // Debug overlay
     if (!Debug::GetDebug()) return;
