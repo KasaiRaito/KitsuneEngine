@@ -30,8 +30,8 @@ add_executable(KitsuneEngine
         src/lib/scene/SceneManager.h
         src/game/scene/SceneMain.cpp
         src/game/scene/SceneMain.h
-        src/game/scene/SceneGame.cpp
-        src/game/scene/SceneGame.h
+        src/game/scene/AngryBalls.cpp
+        src/game/scene/AngryBalls.h
         src/lib/events/EventManager.cpp
         src/lib/events/EventManager.h
         src/lib/events/Events.cpp
@@ -40,6 +40,10 @@ add_executable(KitsuneEngine
         src/lib/events/Subscription.h
         src/lib/resource_manager/ResourceManager.cpp
         src/lib/resource_manager/ResourceManager.h
+        src/game/save_data/SaveData.cpp
+        src/game/save_data/SaveData.h
+        src/game/scene/DinoJump.cpp
+        src/game/scene/DinoJump.h
 )
 
 # -----------------------------

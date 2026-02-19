@@ -7,7 +7,7 @@ This folder stores runtime assets loaded by `ResourceManager`.
 - `assets/audio/`
 - `assets/textures/`
 
-## Current expected files from `SceneGame`
+## Current expected files from `AngryBalls`
 - `assets/fonts/ui.ttf`
 - `assets/audio/collision.wav`
 - `assets/audio/bgm.ogg`

@@ -37,6 +37,17 @@ void PhysicsSystem::Simulate(Object& object, PhysicsComponent& physics, float dt
     if (physics.useGravity)
         acceleration += (g_gravity * physics.gravityScale);
 
+    // Exact ballistic step for pure projectile motion (no damping/speed cap).
+    if (physics.linearDamping <= 0.0f && physics.maxSpeed <= 0.0f)
+    {
+        object.transform.location.Translate(
+            object.velocity * dt + acceleration * (0.5f * dt * dt)
+        );
+        object.velocity += acceleration * dt;
+        physics.ClearForces();
+        return;
+    }
+
     object.velocity += acceleration * dt;
 
     if (physics.linearDamping > 0.0f)

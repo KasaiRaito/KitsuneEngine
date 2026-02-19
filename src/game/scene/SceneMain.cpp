@@ -1,7 +1,4 @@
 #include "SceneMain.h"
-#include "Ball.h"
-#include "CircleRenderComponent.h"
-#include "ColliderComponent2D.h"
 #include "CollisionSystem2D.h"
 #include "Debug.h"
 #include "InputSystem.h"
@@ -10,6 +7,14 @@
 
 #include "raylib.h"
 #include "raygui.h"
+
+#include <algorithm>
+#include <array>
+#include <cctype>
+#include <cstdlib>
+#include <filesystem>
+#include <string>
+#include <vector>
 
 static std::string ResolveAssetPath(const std::string& repoRelativePath)
 {
@@ -31,6 +36,156 @@ static std::string ResolveAssetPath(const std::string& repoRelativePath)
     return repoRelativePath;
 }
 
+static std::filesystem::path ResolveDirectoryPath(const std::string& repoRelativeDirectory)
+{
+    const std::string candidates[] = {
+        repoRelativeDirectory,
+        "../" + repoRelativeDirectory,
+        "../../" + repoRelativeDirectory,
+        "../../../" + repoRelativeDirectory
+    };
+
+    for (const std::string& candidate : candidates)
+    {
+        std::error_code ec;
+        if (std::filesystem::is_directory(candidate, ec))
+            return candidate;
+    }
+
+    return repoRelativeDirectory;
+}
+
+static std::filesystem::path ResolveRepoRoot()
+{
+    const std::filesystem::path candidates[] = {
+        std::filesystem::path("."),
+        std::filesystem::path(".."),
+        std::filesystem::path("../.."),
+        std::filesystem::path("../../..")
+    };
+
+    for (const auto& candidate : candidates)
+    {
+        std::error_code ec;
+        if (std::filesystem::exists(candidate / "src", ec)
+            && std::filesystem::exists(candidate / "CMakeLists.txt", ec))
+        {
+            return std::filesystem::absolute(candidate);
+        }
+    }
+
+    return std::filesystem::absolute(".");
+}
+
+static bool IsImageFile(const std::filesystem::path& path)
+{
+    if (!path.has_extension())
+        return false;
+
+    std::string extension = path.extension().string();
+    std::transform(extension.begin(), extension.end(), extension.begin(),
+                   [](unsigned char c) { return (char)std::tolower(c); });
+
+    return extension == ".png"
+        || extension == ".jpg"
+        || extension == ".jpeg"
+        || extension == ".bmp"
+        || extension == ".tga"
+        || extension == ".webp";
+}
+
+static bool IsVideoFile(const std::filesystem::path& path)
+{
+    if (!path.has_extension())
+        return false;
+
+    std::string extension = path.extension().string();
+    std::transform(extension.begin(), extension.end(), extension.begin(),
+                   [](unsigned char c) { return (char)std::tolower(c); });
+
+    return extension == ".mp4"
+        || extension == ".mov"
+        || extension == ".m4v"
+        || extension == ".webm";
+}
+
+static std::string EscapeShellArg(const std::string& value)
+{
+    std::string escaped = "'";
+    for (char c : value)
+    {
+        if (c == '\'')
+            escaped += "'\\''";
+        else
+            escaped += c;
+    }
+    escaped += "'";
+    return escaped;
+}
+
+static std::vector<std::filesystem::path> CollectSortedImagePaths(const std::filesystem::path& directoryPath)
+{
+    std::vector<std::filesystem::path> framePaths;
+
+    std::error_code ec;
+    if (!std::filesystem::is_directory(directoryPath, ec))
+        return framePaths;
+
+    for (const auto& entry : std::filesystem::directory_iterator(directoryPath, ec))
+    {
+        if (!entry.is_regular_file())
+            continue;
+
+        if (!IsImageFile(entry.path()))
+            continue;
+
+        framePaths.push_back(entry.path());
+    }
+
+    std::sort(framePaths.begin(), framePaths.end());
+    return framePaths;
+}
+
+static bool ExtractFramesFromVideo(const std::filesystem::path& videoPath,
+                                   const std::filesystem::path& outputDirectory,
+                                   float fps)
+{
+    std::error_code ec;
+    std::filesystem::create_directories(outputDirectory, ec);
+
+    auto cachedFrames = CollectSortedImagePaths(outputDirectory);
+    if (!cachedFrames.empty())
+    {
+        const auto videoWriteTime = std::filesystem::last_write_time(videoPath, ec);
+        if (!ec)
+        {
+            const auto cachedWriteTime = std::filesystem::last_write_time(cachedFrames.back(), ec);
+            if (!ec && cachedWriteTime >= videoWriteTime)
+                return true;
+        }
+    }
+
+    for (const auto& cached : cachedFrames)
+        std::filesystem::remove(cached, ec);
+
+    const int targetFps = std::max(1, (int)fps);
+    const std::string filter = "fps=" + std::to_string(targetFps);
+    const std::string outputPattern = (outputDirectory / "frame_%05d.png").string();
+
+    std::string command = "ffmpeg -y -loglevel error -i "
+        + EscapeShellArg(videoPath.string())
+        + " -vf " + EscapeShellArg(filter)
+        + " " + EscapeShellArg(outputPattern)
+        + " > /dev/null 2>&1";
+
+    const int result = std::system(command.c_str());
+    if (result != 0)
+        return false;
+
+    cachedFrames = CollectSortedImagePaths(outputDirectory);
+    return !cachedFrames.empty();
+}
+
 SceneMain::SceneMain(SceneManager* manager)
     : sceneManager(manager)
 {
@@ -39,19 +194,8 @@ SceneMain::SceneMain(SceneManager* manager)
 
     uiFont = resources.GetOrLoadFont(fontPath);
 
-    Ball* ball = new Ball();
-    ball->transform.location.value = {400, 225};
-
-    auto* render = new CircleRenderComponent();
-    render->radius = 30.0f;
-    render->color = RED;
-
-    auto* collider = new ColliderComponent2D(ColliderType2D::Circle, render);
-
-    ball->AddComponent(render);
-    ball->AddComponent(collider);
-
-    objects.Add(ball); // objects should be List<Object*>
+    angryPreviewFrames = LoadPreviewFrames("src/game/assets/previews/angryballs");
+    dinoPreviewFrames = LoadPreviewFrames("src/game/assets/previews/dinojump");
 }
 
 SceneMain::~SceneMain()
@@ -93,13 +237,177 @@ void SceneMain::Update(float dt)
     }
 }
 
+std::vector<std::shared_ptr<ResourceManager::TextureResource>> SceneMain::LoadPreviewFrames(const std::string& repoRelativeDirectory)
+{
+    std::vector<std::shared_ptr<ResourceManager::TextureResource>> frames;
+
+    const std::filesystem::path directoryPath = ResolveDirectoryPath(repoRelativeDirectory);
+    std::error_code ec;
+    if (!std::filesystem::is_directory(directoryPath, ec))
+        return frames;
+
+    std::vector<std::filesystem::path> framePaths = CollectSortedImagePaths(directoryPath);
+
+    if (framePaths.empty())
+    {
+        std::vector<std::filesystem::path> videoPaths;
+        for (const auto& entry : std::filesystem::directory_iterator(directoryPath, ec))
+        {
+            if (!entry.is_regular_file())
+                continue;
+
+            if (!IsVideoFile(entry.path()))
+                continue;
+
+            videoPaths.push_back(entry.path());
+        }
+
+        std::sort(videoPaths.begin(), videoPaths.end());
+
+        if (!videoPaths.empty())
+        {
+            const std::filesystem::path repoRoot = ResolveRepoRoot();
+            const std::string folderKey = directoryPath.filename().string().empty()
+                ? "preview"
+                : directoryPath.filename().string();
+            const std::filesystem::path cacheDirectory = repoRoot / "save_data" / "preview_cache" / folderKey;
+
+            if (ExtractFramesFromVideo(videoPaths.front(), cacheDirectory, previewFps))
+                framePaths = CollectSortedImagePaths(cacheDirectory);
+        }
+    }
+
+    auto& resources = ResourceManager::Instance();
+    for (const auto& framePath : framePaths)
+    {
+        auto texture = resources.GetOrLoadTexture(framePath.string());
+        if (texture && texture->value.id != 0)
+            frames.push_back(texture);
+    }
+
+    return frames;
+}
+
+void SceneMain::DrawPreviewPanel(const Rectangle& panelRect,
+                                 const std::vector<std::shared_ptr<ResourceManager::TextureResource>>& frames,
+                                 const char* title,
+                                 const char* emptyHint) const
+{
+    DrawRectangleRounded(panelRect, 0.08f, 8, Fade(BLACK, 0.70f));
+    DrawRectangleRoundedLinesEx(panelRect, 0.08f, 8, 2.0f, Fade(WHITE, 0.75f));
+
+    DrawText(title, (int)panelRect.x + 14, (int)panelRect.y + 10, 20, WHITE);
+
+    Rectangle content = panelRect;
+    content.x += 10.0f;
+    content.y += 38.0f;
+    content.width -= 20.0f;
+    content.height -= 48.0f;
+
+    if (frames.empty())
+    {
+        DrawRectangleRec(content, Fade(BLACK, 0.35f));
+        DrawRectangleLinesEx(content, 1.0f, Fade(WHITE, 0.35f));
+        DrawText(emptyHint, (int)content.x + 10, (int)(content.y + content.height * 0.5f) - 10, 18, LIGHTGRAY);
+        return;
+    }
+
+    const int frameIndex = ((int)(GetTime() * previewFps)) % (int)frames.size();
+    const Texture2D& texture = frames[(size_t)frameIndex]->value;
+
+    Rectangle src = { 0.0f, 0.0f, (float)texture.width, (float)texture.height };
+    Rectangle dst = content;
+
+    const float textureAspect = (float)texture.width / (float)texture.height;
+    const float panelAspect = content.width / content.height;
+
+    if (textureAspect > panelAspect)
+    {
+        const float fittedHeight = content.width / textureAspect;
+        dst.y += (content.height - fittedHeight) * 0.5f;
+        dst.height = fittedHeight;
+    }
+    else
+    {
+        const float fittedWidth = content.height * textureAspect;
+        dst.x += (content.width - fittedWidth) * 0.5f;
+        dst.width = fittedWidth;
+    }
+
+    DrawRectangleRec(content, Fade(BLACK, 0.20f));
+    DrawTexturePro(texture, src, dst, { 0.0f, 0.0f }, 0.0f, WHITE);
+}
+
 void SceneMain::Draw()
 {
     // If SceneBase::Draw() is abstract/empty, you can remove this call.
     SceneBase::Draw();
 
-    if (GuiButton({ 620, 20, 160, 32 }, "Go to SceneGame") && sceneManager)
-        sceneManager->LoadScene(1);
+    const float buttonWidth = 260.0f;
+    const float buttonHeight = 44.0f;
+    const float buttonHeightHovered = 62.0f;
+    const float buttonSpacing = 16.0f;
+    const float buttonRightMargin = 52.0f;
+    const float buttonX = (float)GetScreenWidth() - buttonWidth - buttonRightMargin;
+    const Vector2 mouse = GetMousePosition();
+
+    const std::array<const char*, 2> labels = { "Play Angry Balls", "Play Dino Jump" };
+    const std::array<int, 2> sceneIndexes = { 1, 2 };
+
+    std::array<Rectangle, 2> probeRects{};
+    {
+        const float baseTotalHeight = (buttonHeight * 2.0f) + buttonSpacing;
+        float y = ((float)GetScreenHeight() - baseTotalHeight) * 0.5f;
+        for (size_t i = 0; i < probeRects.size(); ++i)
+        {
+            probeRects[i] = { buttonX, y, buttonWidth, buttonHeight };
+            y += buttonHeight + buttonSpacing;
+        }
+    }
+
+    int hoveredButton = -1;
+    for (size_t i = 0; i < probeRects.size(); ++i)
+    {
+        if (CheckCollisionPointRec(mouse, probeRects[i]))
+        {
+            hoveredButton = (int)i;
+            break;
+        }
+    }
+
+    const float totalStackHeight =
+        ((hoveredButton == 0) ? buttonHeightHovered : buttonHeight) +
+        ((hoveredButton == 1) ? buttonHeightHovered : buttonHeight) +
+        buttonSpacing;
+    const float startY = ((float)GetScreenHeight() - totalStackHeight) * 0.5f;
+
+    std::array<Rectangle, 2> buttonRects{};
+    {
+        float y = startY;
+        for (size_t i = 0; i < buttonRects.size(); ++i)
+        {
+            const float h = ((int)i == hoveredButton) ? buttonHeightHovered : buttonHeight;
+            buttonRects[i] = { buttonX, y, buttonWidth, h };
+            y += h + buttonSpacing;
+        }
+    }
+
+    if (hoveredButton == 0)
+    {
+        const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
+        DrawPreviewPanel(panel, angryPreviewFrames, "Angry Balls", "Add frames or mp4: assets/previews/angryballs");
+    }
+    else if (hoveredButton == 1)
+    {
+        const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
+        DrawPreviewPanel(panel, dinoPreviewFrames, "Dino Jump", "Add frames or mp4: assets/previews/dinojump");
+    }
+
+    for (size_t i = 0; i < buttonRects.size(); ++i)
+    {
+        if (GuiButton(buttonRects[i], labels[i]) && sceneManager)
+            sceneManager->LoadScene(sceneIndexes[i]);
+    }
 
     // Draw objects
     for (size_t i = 0; i < objects.Size(); i++)

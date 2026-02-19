@@ -89,10 +89,7 @@ void Object::OnCollisionEnter(Object *other) {
 }
 
 void Object::OnCollisionStay(Object *other) {
-    velocity = Vector2D::Zero();
-    other->velocity = Vector2D::Zero();
-    DrawText("Colliding", 400, 20, 20, RED);
-
+    (void)other;
 }
 
 void Object::OnCollisionExit(Object *other) { // CHANGED

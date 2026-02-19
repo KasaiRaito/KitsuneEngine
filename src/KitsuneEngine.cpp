@@ -2,7 +2,8 @@
 #include "Debug.h"
 #include "SceneManager.h"
 #include "SceneMain.h"
-#include "SceneGame.h"
+#include "AngryBalls.h"
+#include "DinoJump.h"
 #include "ResourceManager.h"
 
 
@@ -13,13 +14,14 @@
 int main()
 {
     InitWindow(800, 450, "Kitsune Engine");
-    SetTargetFPS(60);
+    SetTargetFPS(120);
 
     Debug::SetDebug(true);
 
     SceneManager sceneManager;
     sceneManager.AddScene(SceneInfo(new SceneMain(&sceneManager), "main", 0));
-    sceneManager.AddScene(SceneInfo(new SceneGame(&sceneManager), "game", 1));
+    sceneManager.AddScene(SceneInfo(new AngryBalls(&sceneManager), "angryballs", 1));
+    sceneManager.AddScene(SceneInfo(new DinoJump(&sceneManager), "dinojump", 2));
     sceneManager.LoadScene(0);
 
     while (!WindowShouldClose())
