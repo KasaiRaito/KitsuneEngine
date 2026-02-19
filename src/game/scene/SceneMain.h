@@ -7,17 +7,36 @@
 
 #pragma once
 #include "SceneBase.h"
+#include "ResourceManager.h"
+#include <vector>
+#include <string>
+
+class SceneManager;
 
 class SceneMain : public SceneBase
 {
 public:
-    SceneMain();
+    explicit SceneMain(SceneManager* manager);
     ~SceneMain() override;
 
     void Update(float dt) override;
     void Draw() override;
 
     List<Object*> objects;
+
+private:
+    SceneManager* sceneManager = nullptr;
+    std::shared_ptr<ResourceManager::FontResource> uiFont;
+
+    std::vector<std::shared_ptr<ResourceManager::TextureResource>> angryPreviewFrames;
+    std::vector<std::shared_ptr<ResourceManager::TextureResource>> dinoPreviewFrames;
+    float previewFps = 14.0f;
+
+    std::vector<std::shared_ptr<ResourceManager::TextureResource>> LoadPreviewFrames(const std::string& repoRelativeDirectory);
+    void DrawPreviewPanel(const Rectangle& panelRect,
+                          const std::vector<std::shared_ptr<ResourceManager::TextureResource>>& frames,
+                          const char* title,
+                          const char* emptyHint) const;
 };
 
 

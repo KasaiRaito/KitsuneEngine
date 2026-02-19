@@ -12,6 +12,16 @@ private:
         const Collider2D& b
     );
 
+    static CollisionManifold2D CircleVsSquare(
+        const Collider2D& circle,
+        const Collider2D& square
+    );
+
+    static CollisionManifold2D SquareVsCircle(
+        const Collider2D& square,
+        const Collider2D& circle
+    );
+
     static CollisionManifold2D SquareVsSquare(
         const Collider2D& a,
         const Collider2D& b

@@ -1,0 +1,177 @@
+#include "SaveData.h"
+
+#include <algorithm>
+#include <cctype>
+#include <fstream>
+#include <string>
+
+namespace
+{
+    static std::string Trim(const std::string& value)
+    {
+        size_t begin = 0;
+        while (begin < value.size() && std::isspace((unsigned char)value[begin]))
+            ++begin;
+
+        size_t end = value.size();
+        while (end > begin && std::isspace((unsigned char)value[end - 1]))
+            --end;
+
+        return value.substr(begin, end - begin);
+    }
+
+    static int ParseIntOrDefault(const std::string& value, int fallback)
+    {
+        try
+        {
+            size_t used = 0;
+            const int parsed = std::stoi(value, &used);
+            if (used != value.size())
+                return fallback;
+
+            return parsed;
+        }
+        catch (...)
+        {
+            return fallback;
+        }
+    }
+}
+
+SaveData& SaveData::Instance()
+{
+    static SaveData saveData;
+    return saveData;
+}
+
+SaveData::SaveData()
+    : saveDirectory(ResolveSaveDirectory())
+    , saveFile(saveDirectory / "scores.txt")
+{
+}
+
+int SaveData::GetDinoBestScore()
+{
+    EnsureLoaded();
+    return dinoBestScore;
+}
+
+int SaveData::GetAngryBestScore()
+{
+    EnsureLoaded();
+    return angryBestScore;
+}
+
+void SaveData::SetDinoBestScore(int score)
+{
+    EnsureLoaded();
+
+    if (score <= dinoBestScore)
+        return;
+
+    dinoBestScore = score;
+    SaveToDisk();
+}
+
+void SaveData::SetAngryBestScore(int score)
+{
+    EnsureLoaded();
+
+    if (score <= angryBestScore)
+        return;
+
+    angryBestScore = score;
+    SaveToDisk();
+}
+
+const std::filesystem::path& SaveData::GetSaveDirectoryPath()
+{
+    EnsureLoaded();
+    return saveDirectory;
+}
+
+const std::filesystem::path& SaveData::GetSaveFilePath()
+{
+    EnsureLoaded();
+    return saveFile;
+}
+
+void SaveData::EnsureLoaded()
+{
+    if (loaded)
+        return;
+
+    loaded = true;
+
+    std::error_code ec;
+    std::filesystem::create_directories(saveDirectory, ec);
+
+    if (!LoadFromDisk())
+        SaveToDisk();
+}
+
+bool SaveData::LoadFromDisk()
+{
+    std::ifstream input(saveFile);
+    if (!input.is_open())
+        return false;
+
+    std::string line;
+    while (std::getline(input, line))
+    {
+        const std::string trimmed = Trim(line);
+        if (trimmed.empty() || trimmed[0] == '#')
+            continue;
+
+        const size_t separator = trimmed.find('=');
+        if (separator == std::string::npos)
+            continue;
+
+        const std::string key = Trim(trimmed.substr(0, separator));
+        const std::string value = Trim(trimmed.substr(separator + 1));
+
+        if (key == "dino_best")
+        {
+            dinoBestScore = std::max(0, ParseIntOrDefault(value, dinoBestScore));
+        }
+        else if (key == "angry_best")
+        {
+            angryBestScore = std::max(0, ParseIntOrDefault(value, angryBestScore));
+        }
+    }
+
+    return true;
+}
+
+bool SaveData::SaveToDisk() const
+{
+    std::error_code ec;
+    std::filesystem::create_directories(saveDirectory, ec);
+
+    std::ofstream output(saveFile, std::ios::trunc);
+    if (!output.is_open())
+        return false;
+
+    output << "dino_best=" << dinoBestScore << "\n";
+    output << "angry_best=" << angryBestScore << "\n";
+
+    return true;
+}
+
+std::filesystem::path SaveData::ResolveSaveDirectory()
+{
+    const std::filesystem::path roots[] = {
+        std::filesystem::path("."),
+        std::filesystem::path(".."),
+        std::filesystem::path("../.."),
+        std::filesystem::path("../../..")
+    };
+
+    for (const std::filesystem::path& root : roots)
+    {
+        if (std::filesystem::exists(root / "src") && std::filesystem::exists(root / "CMakeLists.txt"))
+            return std::filesystem::absolute(root / "save_data");
+    }
+
+    return std::filesystem::absolute("save_data");
+}
