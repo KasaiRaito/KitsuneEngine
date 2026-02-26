@@ -46,7 +46,8 @@ SaveData& SaveData::Instance()
 
 SaveData::SaveData()
     : saveDirectory(ResolveSaveDirectory())
-    , saveFile(saveDirectory / "scores.txt")
+    , saveFile(saveDirectory / "score.txt")
+    , legacySaveFile(saveDirectory / "scores.txt")
 {
 }
 
@@ -60,6 +61,18 @@ int SaveData::GetAngryBestScore()
 {
     EnsureLoaded();
     return angryBestScore;
+}
+
+int SaveData::GetAngryUnlockedLevelCount()
+{
+    EnsureLoaded();
+    return angryUnlockedLevelCount;
+}
+
+int SaveData::GetAngryCurrentScene()
+{
+    EnsureLoaded();
+    return angryCurrentScene;
 }
 
 void SaveData::SetDinoBestScore(int score)
@@ -81,6 +94,30 @@ void SaveData::SetAngryBestScore(int score)
         return;
 
     angryBestScore = score;
+    SaveToDisk();
+}
+
+void SaveData::SetAngryUnlockedLevelCount(int unlockedLevelCount)
+{
+    EnsureLoaded();
+
+    const int clamped = std::clamp(unlockedLevelCount, 1, 2);
+    if (clamped <= angryUnlockedLevelCount)
+        return;
+
+    angryUnlockedLevelCount = clamped;
+    SaveToDisk();
+}
+
+void SaveData::SetAngryCurrentScene(int sceneId)
+{
+    EnsureLoaded();
+
+    const int clamped = std::clamp(sceneId, 0, 2);
+    if (clamped == angryCurrentScene)
+        return;
+
+    angryCurrentScene = clamped;
     SaveToDisk();
 }
 
@@ -107,12 +144,22 @@ void SaveData::EnsureLoaded()
     std::filesystem::create_directories(saveDirectory, ec);
 
     if (!LoadFromDisk())
+    {
+        SaveToDisk();
+        return;
+    }
+
+    std::error_code ec2;
+    if (!std::filesystem::exists(saveFile, ec2))
         SaveToDisk();
 }
 
 bool SaveData::LoadFromDisk()
 {
     std::ifstream input(saveFile);
+    if (!input.is_open())
+        input.open(legacySaveFile);
+
     if (!input.is_open())
         return false;
 
@@ -138,7 +185,18 @@ bool SaveData::LoadFromDisk()
         {
             angryBestScore = std::max(0, ParseIntOrDefault(value, angryBestScore));
         }
+        else if (key == "angry_unlocked_levels")
+        {
+            angryUnlockedLevelCount = std::clamp(ParseIntOrDefault(value, angryUnlockedLevelCount), 1, 2);
+        }
+        else if (key == "angry_current_scene")
+        {
+            angryCurrentScene = std::clamp(ParseIntOrDefault(value, angryCurrentScene), 0, 2);
+        }
     }
+
+    angryUnlockedLevelCount = std::clamp(angryUnlockedLevelCount, 1, 2);
+    angryCurrentScene = std::clamp(angryCurrentScene, 0, 2);
 
     return true;
 }
@@ -154,6 +212,8 @@ bool SaveData::SaveToDisk() const
 
     output << "dino_best=" << dinoBestScore << "\n";
     output << "angry_best=" << angryBestScore << "\n";
+    output << "angry_unlocked_levels=" << angryUnlockedLevelCount << "\n";
+    output << "angry_current_scene=" << angryCurrentScene << "\n";
 
     return true;
 }

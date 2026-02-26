@@ -1,0 +1,4 @@
+dino_best=0
+angry_best=19500
+angry_unlocked_levels=2
+angry_current_scene=0

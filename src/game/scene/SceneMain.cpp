@@ -7,6 +7,7 @@
 
 #include "raylib.h"
 #include "raygui.h"
+#include "nlohmann/json.hpp"
 
 #include <algorithm>
 #include <array>
