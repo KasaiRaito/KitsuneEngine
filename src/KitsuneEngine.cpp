@@ -2,8 +2,8 @@
 #include "Debug.h"
 #include "SceneManager.h"
 #include "SceneMain.h"
-#include "AngryBalls.h"
-#include "DinoJump.h"
+#include "game/scene/AngryBalls/AngryBalls.h"
+#include "game/scene/DinoJump/DinoJump.h"
 #include "ResourceManager.h"
 
 

@@ -2,7 +2,7 @@
 // Created by Eduardo Huerta on 19/02/26.
 //
 
-#include "DinoJump.h"
+#include "DinoJump/DinoJump.h"
 
 #include "SceneManager.h"
 #include "save_data/SaveData.h"
