@@ -837,8 +837,8 @@ void AngryBallsLevelBase::DrawUI()
 
     if (!IsStartLockActive())
     {
-        DrawText("Click and drag the bird, then release to launch.", 20, 188, 19, BLACK);
-        DrawText("Eliminate all pigs. Press R to reset. ESC opens level menu.", 20, 212, 19, BLACK);
+        DrawText("Click and drag the bird, then release to launch.", 20, 230, 19, BLUE);
+        DrawText("Eliminate all pigs. Press R to reset. ESC opens level menu.", 20, 212, 19, BLUE);
     }
 
     if (levelWon)

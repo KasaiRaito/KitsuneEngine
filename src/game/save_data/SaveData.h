@@ -31,7 +31,8 @@ private:
 
     std::filesystem::path saveDirectory;
     std::filesystem::path saveFile;
-    std::filesystem::path legacySaveFile;
+    std::filesystem::path legacyScoreFile;
+    std::filesystem::path legacyScoresFile;
 
     int dinoBestScore = 0;
     int angryBestScore = 0;

@@ -165,5 +165,5 @@ void AngryBalls::Draw()
     if (GuiButton({ 20, (float)GetScreenHeight() - 52, 190, 34 }, "Back To Project Menu") && sceneManager)
         sceneManager->LoadScene(kProjectMainMenuSceneIndex);
 
-    DrawText("Level2 unlocks after Level1 is cleared. Progress is stored in score.txt", 20, GetScreenHeight() - 82, 18, WHITE);
+    DrawText("Level2 unlocks after Level1 is cleared. Progress is stored in score.json", 20, GetScreenHeight() - 82, 18, WHITE);
 }

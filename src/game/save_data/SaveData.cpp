@@ -1,5 +1,7 @@
 #include "SaveData.h"
 
+#include "nlohmann/json.hpp"
+
 #include <algorithm>
 #include <cctype>
 #include <fstream>
@@ -46,8 +48,9 @@ SaveData& SaveData::Instance()
 
 SaveData::SaveData()
     : saveDirectory(ResolveSaveDirectory())
-    , saveFile(saveDirectory / "score.txt")
-    , legacySaveFile(saveDirectory / "scores.txt")
+    , saveFile(saveDirectory / "score.json")
+    , legacyScoreFile(saveDirectory / "score.txt")
+    , legacyScoresFile(saveDirectory / "scores.txt")
 {
 }
 
@@ -156,44 +159,73 @@ void SaveData::EnsureLoaded()
 
 bool SaveData::LoadFromDisk()
 {
-    std::ifstream input(saveFile);
-    if (!input.is_open())
-        input.open(legacySaveFile);
-
-    if (!input.is_open())
-        return false;
-
-    std::string line;
-    while (std::getline(input, line))
+    // Preferred format: JSON score file.
     {
-        const std::string trimmed = Trim(line);
-        if (trimmed.empty() || trimmed[0] == '#')
-            continue;
+        std::ifstream input(saveFile);
+        if (input.is_open())
+        {
+            try
+            {
+                nlohmann::json json;
+                input >> json;
 
-        const size_t separator = trimmed.find('=');
-        if (separator == std::string::npos)
-            continue;
+                dinoBestScore = std::max(0, json.value("dino_best", dinoBestScore));
+                angryBestScore = std::max(0, json.value("angry_best", angryBestScore));
+                angryUnlockedLevelCount = std::clamp(json.value("angry_unlocked_levels", angryUnlockedLevelCount), 1, 2);
+                angryCurrentScene = std::clamp(json.value("angry_current_scene", angryCurrentScene), 0, 2);
 
-        const std::string key = Trim(trimmed.substr(0, separator));
-        const std::string value = Trim(trimmed.substr(separator + 1));
-
-        if (key == "dino_best")
-        {
-            dinoBestScore = std::max(0, ParseIntOrDefault(value, dinoBestScore));
-        }
-        else if (key == "angry_best")
-        {
-            angryBestScore = std::max(0, ParseIntOrDefault(value, angryBestScore));
-        }
-        else if (key == "angry_unlocked_levels")
-        {
-            angryUnlockedLevelCount = std::clamp(ParseIntOrDefault(value, angryUnlockedLevelCount), 1, 2);
-        }
-        else if (key == "angry_current_scene")
-        {
-            angryCurrentScene = std::clamp(ParseIntOrDefault(value, angryCurrentScene), 0, 2);
+                return true;
+            }
+            catch (...)
+            {
+                // Fall through to legacy key-value readers.
+            }
         }
     }
+
+    auto loadLegacyKeyValue = [this](const std::filesystem::path& path) -> bool
+    {
+        std::ifstream input(path);
+        if (!input.is_open())
+            return false;
+
+        std::string line;
+        while (std::getline(input, line))
+        {
+            const std::string trimmed = Trim(line);
+            if (trimmed.empty() || trimmed[0] == '#')
+                continue;
+
+            const size_t separator = trimmed.find('=');
+            if (separator == std::string::npos)
+                continue;
+
+            const std::string key = Trim(trimmed.substr(0, separator));
+            const std::string value = Trim(trimmed.substr(separator + 1));
+
+            if (key == "dino_best")
+            {
+                dinoBestScore = std::max(0, ParseIntOrDefault(value, dinoBestScore));
+            }
+            else if (key == "angry_best")
+            {
+                angryBestScore = std::max(0, ParseIntOrDefault(value, angryBestScore));
+            }
+            else if (key == "angry_unlocked_levels")
+            {
+                angryUnlockedLevelCount = std::clamp(ParseIntOrDefault(value, angryUnlockedLevelCount), 1, 2);
+            }
+            else if (key == "angry_current_scene")
+            {
+                angryCurrentScene = std::clamp(ParseIntOrDefault(value, angryCurrentScene), 0, 2);
+            }
+        }
+
+        return true;
+    };
+
+    if (!loadLegacyKeyValue(legacyScoreFile) && !loadLegacyKeyValue(legacyScoresFile))
+        return false;
 
     angryUnlockedLevelCount = std::clamp(angryUnlockedLevelCount, 1, 2);
     angryCurrentScene = std::clamp(angryCurrentScene, 0, 2);
@@ -210,10 +242,13 @@ bool SaveData::SaveToDisk() const
     if (!output.is_open())
         return false;
 
-    output << "dino_best=" << dinoBestScore << "\n";
-    output << "angry_best=" << angryBestScore << "\n";
-    output << "angry_unlocked_levels=" << angryUnlockedLevelCount << "\n";
-    output << "angry_current_scene=" << angryCurrentScene << "\n";
+    nlohmann::json json;
+    json["dino_best"] = dinoBestScore;
+    json["angry_best"] = angryBestScore;
+    json["angry_unlocked_levels"] = angryUnlockedLevelCount;
+    json["angry_current_scene"] = angryCurrentScene;
+
+    output << json.dump(4) << "\n";
 
     return true;
 }
