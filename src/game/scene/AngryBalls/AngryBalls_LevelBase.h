@@ -64,6 +64,7 @@ private:
 
     Object* activeBird = nullptr;
     bool activeBirdLaunched = false;
+    bool activeBirdFollowingPreview = false;
     bool isDraggingBird = false;
     float launchedBirdIdleSeconds = 0.0f;
 
@@ -89,6 +90,9 @@ private:
     float startLockDurationSeconds = 1.0f;
     float goTextDurationSeconds = 0.85f;
     float roundElapsedSeconds = 0.0f;
+    float birdPostCollisionLinearDamping = 0.32f;
+    float birdPostCollisionAngularDamping = 1.35f;
+    float birdPostCollisionMaxAngularSpeed = 5.5f;
 
     void BuildLevel();
     void ClearSceneObjects();
@@ -98,6 +102,8 @@ private:
 
     void SpawnNextBird();
     void HandleBirdDragAndLaunch();
+    void ConfigureBirdForPreviewFlight(Object* bird);
+    void ConfigureBirdForPostCollision(Object* bird);
     void ResolveCollisionsAndDamage();
     void ApplyBlockDamage(Object* block, EntityKind otherKind, float impactSpeed, std::vector<Object*>& removeList);
     void UpdateRoundState(float dt);

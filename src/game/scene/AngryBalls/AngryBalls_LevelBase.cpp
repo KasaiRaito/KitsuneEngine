@@ -21,6 +21,26 @@
 
 namespace
 {
+    static float Cross2D(const Vector2D& a, const Vector2D& b)
+    {
+        return (a.x * b.y) - (a.y * b.x);
+    }
+
+    static Vector2D VelocityAtContactPoint(Object* obj, PhysicsComponent* physics, const Vector2D& contactPoint)
+    {
+        if (!obj)
+            return Vector2D::Zero();
+
+        Vector2D velocity = obj->velocity;
+        if (!physics || !physics->allowRotation)
+            return velocity;
+
+        const Vector2D radius = contactPoint - obj->transform.location.value;
+        const float angularVelocity = physics->GetAngularVelocity();
+        velocity += Vector2D{ -angularVelocity * radius.y, angularVelocity * radius.x };
+        return velocity;
+    }
+
     static Vector2 ToRayVector(const Vector2D& value)
     {
         return { value.x, value.y };
@@ -70,7 +90,18 @@ namespace
         DrawText(text, x, y, fontSize, fill);
     }
 
-    static void ExchangeCollisionImpulse(Object* a, Object* b, const Vector2D& normal, float restitution = 0.28f)
+    static constexpr float kRestitutionVelocityThreshold = 45.0f;
+    static constexpr float kPenetrationSlop = 0.35f;
+    static constexpr float kPenetrationCorrectionPercent = 0.78f;
+    static constexpr int kCollisionSolverIterations = 3;
+
+    static void ExchangeCollisionImpulse(Object* a,
+                                         Object* b,
+                                         const Vector2D& normal,
+                                         const Vector2D& contactPoint,
+                                         float restitution = 0.28f,
+                                         float friction = 0.16f,
+                                         bool frictionAffectsAngular = true)
     {
         if (!a || !b) return;
 
@@ -80,18 +111,76 @@ namespace
 
         const float invMassA = pa ? pa->GetInvMass() : 0.0f;
         const float invMassB = pb ? pb->GetInvMass() : 0.0f;
-        const float invMassSum = invMassA + invMassB;
-        if (invMassSum <= 0.0f) return;
+        const float invInertiaA = pa ? pa->GetInvInertia() : 0.0f;
+        const float invInertiaB = pb ? pb->GetInvInertia() : 0.0f;
+        if (invMassA + invMassB <= 0.0f) return;
 
-        const Vector2D relativeVelocity = b->velocity - a->velocity;
+        const Vector2D radiusA = contactPoint - a->transform.location.value;
+        const Vector2D radiusB = contactPoint - b->transform.location.value;
+
+        Vector2D relativeVelocity = VelocityAtContactPoint(b, pb, contactPoint)
+            - VelocityAtContactPoint(a, pa, contactPoint);
         const float velocityAlongNormal = relativeVelocity.Dot(normal);
         if (velocityAlongNormal > 0.0f) return;
 
-        const float impulseMagnitude = -(1.0f + restitution) * velocityAlongNormal / invMassSum;
+        const float raCrossN = Cross2D(radiusA, normal);
+        const float rbCrossN = Cross2D(radiusB, normal);
+        const float normalDenominator = invMassA
+            + invMassB
+            + (raCrossN * raCrossN * invInertiaA)
+            + (rbCrossN * rbCrossN * invInertiaB);
+        if (normalDenominator <= 0.00001f)
+            return;
+
+        const float closingSpeed = -velocityAlongNormal;
+        const float effectiveRestitution = (closingSpeed > kRestitutionVelocityThreshold) ? restitution : 0.0f;
+        const float impulseMagnitude = -(1.0f + effectiveRestitution) * velocityAlongNormal / normalDenominator;
         const Vector2D impulse = normal * impulseMagnitude;
 
-        if (pa) a->velocity -= impulse * invMassA;
-        if (pb) b->velocity += impulse * invMassB;
+        if (pa) pa->AddImpulseAtPoint(impulse * -1.0f, contactPoint);
+        if (pb) pb->AddImpulseAtPoint(impulse, contactPoint);
+
+        if (friction <= 0.0f)
+            return;
+
+        relativeVelocity = VelocityAtContactPoint(b, pb, contactPoint)
+            - VelocityAtContactPoint(a, pa, contactPoint);
+
+        Vector2D tangent = relativeVelocity - normal * relativeVelocity.Dot(normal);
+        const float tangentLength = tangent.Length();
+        if (tangentLength <= 0.00001f)
+            return;
+
+        tangent = tangent * (1.0f / tangentLength);
+
+        const float raCrossT = Cross2D(radiusA, tangent);
+        const float rbCrossT = Cross2D(radiusB, tangent);
+        const float tangentDenominator = invMassA
+            + invMassB
+            + (raCrossT * raCrossT * invInertiaA)
+            + (rbCrossT * rbCrossT * invInertiaB);
+        if (tangentDenominator <= 0.00001f)
+            return;
+
+        float frictionImpulseMagnitude = -relativeVelocity.Dot(tangent) / tangentDenominator;
+        const float maxFrictionImpulse = impulseMagnitude * friction;
+        frictionImpulseMagnitude = std::clamp(
+            frictionImpulseMagnitude,
+            -maxFrictionImpulse,
+            maxFrictionImpulse
+        );
+
+        const Vector2D frictionImpulse = tangent * frictionImpulseMagnitude;
+        if (frictionAffectsAngular)
+        {
+            if (pa) pa->AddImpulseAtPoint(frictionImpulse * -1.0f, contactPoint);
+            if (pb) pb->AddImpulseAtPoint(frictionImpulse, contactPoint);
+        }
+        else
+        {
+            if (pa) pa->AddImpulse(frictionImpulse * -1.0f);
+            if (pb) pb->AddImpulse(frictionImpulse);
+        }
     }
 }
 
@@ -239,6 +328,7 @@ void AngryBallsLevelBase::ClearSceneObjects()
 
     activeBird = nullptr;
     activeBirdLaunched = false;
+    activeBirdFollowingPreview = false;
     isDraggingBird = false;
     launchedBirdIdleSeconds = 0.0f;
 }
@@ -256,10 +346,17 @@ Object* AngryBallsLevelBase::CreateBird(const Vector2D& position, Color color)
 
     auto* physics = new PhysicsComponent();
     physics->SetMass(1.0f);
+    physics->SetMomentOfInertiaFromCircle(render->radius);
     physics->useGravity = false;
     physics->kinematic = true;
-    physics->linearDamping = 0.0f;
+    physics->linearDamping = birdPostCollisionLinearDamping;
     physics->maxSpeed = -1.0f;
+    physics->angularDamping = birdPostCollisionAngularDamping;
+    physics->maxAngularSpeed = birdPostCollisionMaxAngularSpeed;
+    physics->angularImpulseScale = 0.38f;
+    physics->minAngularImpulse = 0.07f;
+    physics->angularSleepThreshold = 0.05f;
+    physics->angularSleepAccelerationThreshold = 0.40f;
 
     bird->AddComponent(render);
     bird->AddComponent(collider);
@@ -284,9 +381,16 @@ Object* AngryBallsLevelBase::CreatePig(const Vector2D& position)
 
     auto* physics = new PhysicsComponent();
     physics->SetMass(1.0f);
+    physics->SetMomentOfInertiaFromCircle(render->radius);
     physics->useGravity = true;
-    physics->linearDamping = 1.8f;
+    physics->linearDamping = 2.4f;
     physics->maxSpeed = 760.0f;
+    physics->angularDamping = 2.1f;
+    physics->maxAngularSpeed = 4.5f;
+    physics->angularImpulseScale = 0.34f;
+    physics->minAngularImpulse = 0.08f;
+    physics->angularSleepThreshold = 0.05f;
+    physics->angularSleepAccelerationThreshold = 0.34f;
 
     pig->AddComponent(render);
     pig->AddComponent(collider);
@@ -309,9 +413,17 @@ Object* AngryBallsLevelBase::CreateBlock(const Vector2D& position, float halfWid
 
     auto* physics = new PhysicsComponent();
     physics->SetMass(mass);
+    physics->SetMomentOfInertiaFromRectangle(halfWidth, halfHeight);
+    physics->SetMomentOfInertia(physics->GetMomentOfInertia() * 2.6f);
     physics->useGravity = true;
     physics->linearDamping = 1.6f;
     physics->maxSpeed = 720.0f;
+    physics->angularDamping = 2.1f;
+    physics->maxAngularSpeed = 3.4f;
+    physics->angularImpulseScale = 0.62f;
+    physics->minAngularImpulse = 0.035f;
+    physics->angularSleepThreshold = 0.03f;
+    physics->angularSleepAccelerationThreshold = 0.30f;
 
     block->AddComponent(collider);
     block->AddComponent(physics);
@@ -334,6 +446,7 @@ Object* AngryBallsLevelBase::CreateBoundary(const Vector2D& position, float half
     auto* physics = new PhysicsComponent();
     physics->kinematic = true;
     physics->useGravity = false;
+    physics->allowRotation = false;
     physics->linearDamping = 0.0f;
 
     boundary->AddComponent(collider);
@@ -361,9 +474,43 @@ void AngryBallsLevelBase::SpawnNextBird()
     activeBird = CreateBird(slingAnchor, birdPalette[paletteIndex % birdPalette.size()]);
 
     activeBirdLaunched = false;
+    activeBirdFollowingPreview = false;
     isDraggingBird = false;
     launchedBirdIdleSeconds = 0.0f;
     birdsLeftToSpawn--;
+}
+
+void AngryBallsLevelBase::ConfigureBirdForPreviewFlight(Object* bird)
+{
+    if (!bird)
+        return;
+
+    auto* physics = bird->GetComponent<PhysicsComponent>();
+    if (!physics)
+        return;
+
+    physics->allowRotation = false;
+    physics->linearDamping = 0.0f;
+    physics->maxSpeed = -1.0f;
+    physics->angularDamping = 0.0f;
+    physics->maxAngularSpeed = -1.0f;
+    physics->SetAngularVelocity(0.0f);
+}
+
+void AngryBallsLevelBase::ConfigureBirdForPostCollision(Object* bird)
+{
+    if (!bird)
+        return;
+
+    auto* physics = bird->GetComponent<PhysicsComponent>();
+    if (!physics)
+        return;
+
+    physics->allowRotation = true;
+    physics->linearDamping = birdPostCollisionLinearDamping;
+    physics->maxSpeed = -1.0f;
+    physics->angularDamping = birdPostCollisionAngularDamping;
+    physics->maxAngularSpeed = birdPostCollisionMaxAngularSpeed;
 }
 
 void AngryBallsLevelBase::HandleBirdDragAndLaunch()
@@ -379,6 +526,7 @@ void AngryBallsLevelBase::HandleBirdDragAndLaunch()
     {
         activeBird->transform.location.value = slingAnchor;
         activeBird->velocity = Vector2D::Zero();
+        activeBirdFollowingPreview = false;
     }
 
     if (IsStartLockActive())
@@ -386,6 +534,7 @@ void AngryBallsLevelBase::HandleBirdDragAndLaunch()
         isDraggingBird = false;
         activeBird->transform.location.value = slingAnchor;
         activeBird->velocity = Vector2D::Zero();
+        activeBirdFollowingPreview = false;
         return;
     }
 
@@ -421,6 +570,7 @@ void AngryBallsLevelBase::HandleBirdDragAndLaunch()
     if (launchVector.Length() < 8.0f)
     {
         activeBird->transform.location.value = slingAnchor;
+        activeBirdFollowingPreview = false;
         return;
     }
 
@@ -428,7 +578,9 @@ void AngryBallsLevelBase::HandleBirdDragAndLaunch()
     physics->useGravity = true;
 
     activeBird->velocity = launchVector * launchPower;
+    ConfigureBirdForPreviewFlight(activeBird);
     activeBirdLaunched = true;
+    activeBirdFollowingPreview = true;
 }
 
 void AngryBallsLevelBase::MarkObjectForRemoval(Object* obj, std::vector<Object*>& removeList)
@@ -457,6 +609,7 @@ void AngryBallsLevelBase::RemoveObject(Object* obj)
     {
         activeBird = nullptr;
         activeBirdLaunched = false;
+        activeBirdFollowingPreview = false;
         isDraggingBird = false;
         launchedBirdIdleSeconds = 0.0f;
     }
@@ -581,63 +734,94 @@ void AngryBallsLevelBase::ResolveCollisionsAndDamage()
     std::vector<Object*> removeList;
     const bool startLockActive = IsStartLockActive();
 
-    for (size_t i = 0; i < objects.Size(); ++i)
+    for (int solverPass = 0; solverPass < kCollisionSolverIterations; ++solverPass)
     {
-        Object* a = objects.Get((int)i);
-        if (!a || !a->collider)
-            continue;
+        const bool applyGameplayEffects = (solverPass == 0);
 
-        for (size_t j = i + 1; j < objects.Size(); ++j)
+        for (size_t i = 0; i < objects.Size(); ++i)
         {
-            Object* b = objects.Get((int)j);
-            if (!b || !b->collider)
+            Object* a = objects.Get((int)i);
+            if (!a || !a->collider)
                 continue;
 
-            CollisionManifold2D manifold = CollisionSystem2D::Test(*a->collider, *b->collider);
-            if (!manifold.colliding)
-                continue;
-
-            const float impactSpeed = (b->velocity - a->velocity).Length();
-
-            const bool dynamicA = IsDynamic(a);
-            const bool dynamicB = IsDynamic(b);
-
-            if (dynamicA && dynamicB)
+            for (size_t j = i + 1; j < objects.Size(); ++j)
             {
-                const Vector2D correction = manifold.normal * (manifold.penetration * 0.5f);
-                a->transform.location.Translate(correction * -1.0f);
-                b->transform.location.Translate(correction);
+                Object* b = objects.Get((int)j);
+                if (!b || !b->collider)
+                    continue;
+
+                CollisionManifold2D manifold = CollisionSystem2D::Test(*a->collider, *b->collider);
+                if (!manifold.colliding)
+                    continue;
+
+                auto* physicsA = a->GetComponent<PhysicsComponent>();
+                auto* physicsB = b->GetComponent<PhysicsComponent>();
+                const float invMassA = physicsA ? physicsA->GetInvMass() : 0.0f;
+                const float invMassB = physicsB ? physicsB->GetInvMass() : 0.0f;
+                const float totalInvMass = invMassA + invMassB;
+
+                if (totalInvMass > 0.0f)
+                {
+                    const float correctionMagnitude =
+                        std::max(0.0f, manifold.penetration - kPenetrationSlop) * kPenetrationCorrectionPercent;
+
+                    if (correctionMagnitude > 0.0f)
+                    {
+                        const Vector2D correction = manifold.normal * correctionMagnitude;
+
+                        if (invMassA > 0.0f)
+                            a->transform.location.Translate(correction * (-invMassA / totalInvMass));
+
+                        if (invMassB > 0.0f)
+                            b->transform.location.Translate(correction * (invMassB / totalInvMass));
+                    }
+                }
+
+                const Vector2D contactPoint = manifold.hasContactPoint
+                    ? manifold.contactPoint
+                    : (a->transform.location.value + b->transform.location.value) * 0.5f;
+
+                if (activeBirdFollowingPreview
+                    && activeBirdLaunched
+                    && (a == activeBird || b == activeBird))
+                {
+                    ConfigureBirdForPostCollision(activeBird);
+                    activeBirdFollowingPreview = false;
+                }
+
+                auto itA = visuals.find(a);
+                auto itB = visuals.find(b);
+                if (itA == visuals.end() || itB == visuals.end())
+                    continue;
+
+                const EntityKind kindA = itA->second.kind;
+                const EntityKind kindB = itB->second.kind;
+                const bool hasBoundary = (kindA == EntityKind::Boundary || kindB == EntityKind::Boundary);
+                const bool hasCircleEntity = (kindA == EntityKind::Bird
+                    || kindA == EntityKind::Pig
+                    || kindB == EntityKind::Bird
+                    || kindB == EntityKind::Pig);
+                const bool frictionAffectsAngular = (!hasBoundary && !hasCircleEntity);
+                const float friction = hasCircleEntity ? 0.09f : 0.16f;
+                ExchangeCollisionImpulse(a, b, manifold.normal, contactPoint, 0.30f, friction, frictionAffectsAngular);
+
+                if (!applyGameplayEffects)
+                    continue;
+
+                const float impactSpeed = (b->velocity - a->velocity).Length();
+
+                if (!startLockActive && kindA == EntityKind::Pig && impactSpeed > pigImpactThreshold)
+                    MarkObjectForRemoval(a, removeList);
+
+                if (!startLockActive && kindB == EntityKind::Pig && impactSpeed > pigImpactThreshold)
+                    MarkObjectForRemoval(b, removeList);
+
+                if (!startLockActive && kindA == EntityKind::Block)
+                    ApplyBlockDamage(a, kindB, impactSpeed, removeList);
+
+                if (!startLockActive && kindB == EntityKind::Block)
+                    ApplyBlockDamage(b, kindA, impactSpeed, removeList);
             }
-            else if (dynamicA && !dynamicB)
-            {
-                a->transform.location.Translate(manifold.normal * (-manifold.penetration));
-            }
-            else if (!dynamicA && dynamicB)
-            {
-                b->transform.location.Translate(manifold.normal * manifold.penetration);
-            }
-
-            ExchangeCollisionImpulse(a, b, manifold.normal, 0.30f);
-
-            auto itA = visuals.find(a);
-            auto itB = visuals.find(b);
-            if (itA == visuals.end() || itB == visuals.end())
-                continue;
-
-            const EntityKind kindA = itA->second.kind;
-            const EntityKind kindB = itB->second.kind;
-
-            if (!startLockActive && kindA == EntityKind::Pig && impactSpeed > pigImpactThreshold)
-                MarkObjectForRemoval(a, removeList);
-
-            if (!startLockActive && kindB == EntityKind::Pig && impactSpeed > pigImpactThreshold)
-                MarkObjectForRemoval(b, removeList);
-
-            if (!startLockActive && kindA == EntityKind::Block)
-                ApplyBlockDamage(a, kindB, impactSpeed, removeList);
-
-            if (!startLockActive && kindB == EntityKind::Block)
-                ApplyBlockDamage(b, kindA, impactSpeed, removeList);
         }
     }
 
@@ -768,7 +952,7 @@ void AngryBallsLevelBase::DrawTrajectoryPreview() const
     {
         const float t = (float)i * 0.07f;
         const Vector2D point = start + velocity * t + gravity * (0.5f * t * t);
-        const float alpha = std::max(0.15f, 0.95f - ((float)i * 0.04f));
+        const float alpha = std::max(0.80f, 1.0f - ((float)i * 0.02f));
 
         DrawCircleV(ToRayVector(point), 3.0f, ColorAlpha(WHITE, alpha));
     }
@@ -803,7 +987,7 @@ void AngryBallsLevelBase::DrawWorld()
         DrawRectanglePro(
             { position.x, position.y, visual.halfWidth * 2.0f, visual.halfHeight * 2.0f },
             { visual.halfWidth, visual.halfHeight },
-            0.0f,
+            obj->transform.rotation.angle * RAD2DEG,
             visual.color
         );
     }
