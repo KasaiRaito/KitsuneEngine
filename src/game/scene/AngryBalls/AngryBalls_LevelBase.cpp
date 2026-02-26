@@ -12,8 +12,11 @@
 #include "raylib.h"
 #include "save_data/SaveData.h"
 
+#include "nlohmann/json.hpp"
+
 #include <algorithm>
 #include <array>
+#include <fstream>
 #include <string>
 
 namespace
@@ -136,7 +139,8 @@ void AngryBallsLevelBase::BuildLevel()
     score = 0;
     roundElapsedSeconds = 0.0f;
     pigsRemaining = 0;
-    birdsLeftToSpawn = std::max(1, GetBirdCount());
+    layoutBirdCount = std::max(1, GetBirdCount());
+    birdsLeftToSpawn = layoutBirdCount;
     birdsTotalForRound = birdsLeftToSpawn;
     levelWon = false;
     levelLost = false;
@@ -153,8 +157,66 @@ void AngryBallsLevelBase::BuildLevel()
     CreateBoundary({ screenW * 0.5f, -wallThickness * 0.5f }, screenW * 0.5f, wallThickness * 0.5f);
 
     BuildLevelLayout();
+    birdsLeftToSpawn = std::max(1, layoutBirdCount);
+    birdsTotalForRound = birdsLeftToSpawn;
     SpawnNextBird();
     levelBuilt = true;
+}
+
+bool AngryBallsLevelBase::LoadLevelLayoutFromJson(const std::string& repoRelativePath)
+{
+    const std::string resolvedPath = ResolveAssetPath(repoRelativePath);
+
+    std::ifstream input(resolvedPath);
+    if (!input.is_open())
+    {
+        TraceLog(
+            LOG_WARNING,
+            "Fail to load AngryBalls level layout JSON: path not found (%s)",
+            resolvedPath.c_str()
+        );
+        return false;
+    }
+
+    nlohmann::json data;
+    try
+    {
+        input >> data;
+    }
+    catch (...)
+    {
+        return false;
+    }
+
+    if (data.contains("birds") && data["birds"].is_number_integer())
+        layoutBirdCount = std::max(1, data["birds"].get<int>());
+
+    if (!data.contains("objects") || !data["objects"].is_array())
+        return false;
+
+    for (const auto& objectData : data["objects"])
+    {
+        if (!objectData.is_object())
+            continue;
+
+        const std::string type = objectData.value("type", std::string());
+        const float x = objectData.value("x", 0.0f);
+        const float y = objectData.value("y", 0.0f);
+
+        if (type == "pig")
+        {
+            CreatePig({ x, y });
+        }
+        else if (type == "block")
+        {
+            const float halfWidth = std::max(1.0f, objectData.value("half_width", 16.0f));
+            const float halfHeight = std::max(1.0f, objectData.value("half_height", 16.0f));
+            const float mass = std::max(0.1f, objectData.value("mass", 1.0f));
+            CreateBlock({ x, y }, halfWidth, halfHeight, mass);
+        }
+    }
+
+    return true;
 }
 
 void AngryBallsLevelBase::ClearSceneObjects()

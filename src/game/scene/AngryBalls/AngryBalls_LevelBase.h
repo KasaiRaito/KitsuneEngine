@@ -27,6 +27,8 @@ protected:
     virtual const char* GetLevelTitle() const = 0;
     virtual int GetNextLevelSceneIndex() const = 0;
 
+    bool LoadLevelLayoutFromJson(const std::string& repoRelativePath);
+
     Object* CreatePig(const Vector2D& position);
     Object* CreateBlock(const Vector2D& position, float halfWidth, float halfHeight, float mass);
 
@@ -73,6 +75,7 @@ private:
     bool restartRequested = false;
     bool completionPersisted = false;
     bool levelBuilt = false;
+    int layoutBirdCount = 0;
 
     Vector2D slingAnchor = { 140.0f, 320.0f };
     float slingMaxStretch = 90.0f;
