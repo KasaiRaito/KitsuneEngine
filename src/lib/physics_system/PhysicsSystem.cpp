@@ -3,6 +3,9 @@
 #include "Object.h"
 #include "PhysicsComponent.h"
 
+#include <algorithm>
+#include <cmath>
+
 namespace
 {
     Vector2D g_gravity = { 0.0f, 600.0f };
@@ -33,17 +36,33 @@ void PhysicsSystem::Simulate(Object& object, PhysicsComponent& physics, float dt
     }
 
     Vector2D acceleration = physics.GetAccumulatedForce() * physics.GetInvMass();
+    const float angularAcceleration = physics.GetAccumulatedTorque() * physics.GetInvInertia();
 
     if (physics.useGravity)
         acceleration += (g_gravity * physics.gravityScale);
 
+    float angularVelocity = physics.GetAngularVelocity();
+    if (!physics.allowRotation)
+        angularVelocity = 0.0f;
+
     // Exact ballistic step for pure projectile motion (no damping/speed cap).
-    if (physics.linearDamping <= 0.0f && physics.maxSpeed <= 0.0f)
+    if (physics.linearDamping <= 0.0f
+        && physics.maxSpeed <= 0.0f
+        && physics.angularDamping <= 0.0f
+        && physics.maxAngularSpeed <= 0.0f)
     {
         object.transform.location.Translate(
             object.velocity * dt + acceleration * (0.5f * dt * dt)
         );
         object.velocity += acceleration * dt;
+
+        object.transform.rotation.Rotate(angularVelocity * dt + angularAcceleration * (0.5f * dt * dt));
+        angularVelocity += angularAcceleration * dt;
+        if (std::fabs(angularVelocity) < physics.angularSleepThreshold
+            && std::fabs(angularAcceleration) < physics.angularSleepAccelerationThreshold)
+            angularVelocity = 0.0f;
+        physics.SetAngularVelocity(angularVelocity);
+
         physics.ClearForces();
         return;
     }
@@ -64,6 +83,24 @@ void PhysicsSystem::Simulate(Object& object, PhysicsComponent& physics, float dt
             object.velocity = object.velocity.Normalize() * physics.maxSpeed;
     }
 
+    angularVelocity += angularAcceleration * dt;
+
+    if (physics.angularDamping > 0.0f)
+    {
+        float dampingFactor = 1.0f - (physics.angularDamping * dt);
+        if (dampingFactor < 0.0f) dampingFactor = 0.0f;
+        angularVelocity *= dampingFactor;
+    }
+
+    if (physics.maxAngularSpeed > 0.0f)
+        angularVelocity = std::clamp(angularVelocity, -physics.maxAngularSpeed, physics.maxAngularSpeed);
+
+    if (std::fabs(angularVelocity) < physics.angularSleepThreshold
+        && std::fabs(angularAcceleration) < physics.angularSleepAccelerationThreshold)
+        angularVelocity = 0.0f;
+
     object.transform.location.Translate(object.velocity * dt);
+    object.transform.rotation.Rotate(angularVelocity * dt);
+    physics.SetAngularVelocity(angularVelocity);
     physics.ClearForces();
 }

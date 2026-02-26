@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # -----------------------------
 find_package(raylib CONFIG REQUIRED)
 find_package(box2d CONFIG REQUIRED)
+find_package(nlohmann_json CONFIG REQUIRED)
 
 # -----------------------------
 # Sources
@@ -30,8 +31,10 @@ add_executable(KitsuneEngine
         src/lib/scene/SceneManager.h
         src/game/scene/SceneMain.cpp
         src/game/scene/SceneMain.h
-        src/game/scene/AngryBalls.cpp
-        src/game/scene/AngryBalls.h
+        src/game/scene/AngryBalls/AngryBalls.cpp
+        src/game/scene/AngryBalls/AngryBalls.h
+        src/game/scene/AngryBalls/AngryBalls_LevelBase.cpp
+        src/game/scene/AngryBalls/AngryBalls_LevelBase.h
         src/lib/events/EventManager.cpp
         src/lib/events/EventManager.h
         src/lib/events/Events.cpp
@@ -42,8 +45,16 @@ add_executable(KitsuneEngine
         src/lib/resource_manager/ResourceManager.h
         src/game/save_data/SaveData.cpp
         src/game/save_data/SaveData.h
-        src/game/scene/DinoJump.cpp
-        src/game/scene/DinoJump.h
+        src/game/scene/DinoJump/DinoJump.cpp
+        src/game/scene/DinoJump/DinoJump.h
+        src/game/scene/AngryBalls/AngryBalls_Level1.cpp
+        src/game/scene/AngryBalls/AngryBalls_Level1.h
+        src/game/scene/AngryBalls/AngryBalls_Level2.cpp
+        src/game/scene/AngryBalls/AngryBalls_Level2.h
+        src/game/scene/AngryBalls/AngryBalls_Level3.cpp
+        src/game/scene/AngryBalls/AngryBalls_Level3.h
+        src/game/scene/AngryBalls/AngryBalls_Level4.cpp
+        src/game/scene/AngryBalls/AngryBalls_Level4.h
 )
 
 # -----------------------------
@@ -78,7 +89,7 @@ target_include_directories(KitsuneEngine PRIVATE
 # -----------------------------
 target_link_libraries(KitsuneEngine PRIVATE raylib)
 target_link_libraries(KitsuneEngine PRIVATE box2d::box2d)
-
+target_link_libraries(KitsuneEngine PRIVATE nlohmann_json::nlohmann_json)
 
 # -----------------------------
 # macOS frameworks (raylib)

@@ -1,0 +1,84 @@
+{
+  "birds": 5,
+  "objects": [
+    {
+      "type": "block",
+      "x": 545.0,
+      "y": 338.0,
+      "half_width": 16.0,
+      "half_height": 52.0,
+      "mass": 1.2
+    },
+    {
+      "type": "block",
+      "x": 595.0,
+      "y": 338.0,
+      "half_width": 16.0,
+      "half_height": 52.0,
+      "mass": 1.2
+    },
+    {
+      "type": "block",
+      "x": 570.0,
+      "y": 280.0,
+      "half_width": 60.0,
+      "half_height": 14.0,
+      "mass": 1.1
+    },
+    {
+      "type": "block",
+      "x": 570.0,
+      "y": 236.0,
+      "half_width": 16.0,
+      "half_height": 38.0,
+      "mass": 1.0
+    },
+    {
+      "type": "pig",
+      "x": 570.0,
+      "y": 252.0
+    },
+    {
+      "type": "pig",
+      "x": 570.0,
+      "y": 370.0
+    },
+    {
+      "type": "block",
+      "x": 690.0,
+      "y": 338.0,
+      "half_width": 16.0,
+      "half_height": 52.0,
+      "mass": 1.2
+    },
+    {
+      "type": "block",
+      "x": 740.0,
+      "y": 338.0,
+      "half_width": 16.0,
+      "half_height": 52.0,
+      "mass": 1.2
+    },
+    {
+      "type": "block",
+      "x": 715.0,
+      "y": 280.0,
+      "half_width": 60.0,
+      "half_height": 14.0,
+      "mass": 1.1
+    },
+    {
+      "type": "block",
+      "x": 715.0,
+      "y": 236.0,
+      "half_width": 16.0,
+      "half_height": 38.0,
+      "mass": 1.0
+    },
+    {
+      "type": "pig",
+      "x": 715.0,
+      "y": 252.0
+    }
+  ]
+}

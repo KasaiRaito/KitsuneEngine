@@ -1,5 +1,5 @@
 #pragma once
-#include "../lib/object/Object.h"
+#include "../../../lib/object/Object.h"
 
 class Ball : public Object
 {

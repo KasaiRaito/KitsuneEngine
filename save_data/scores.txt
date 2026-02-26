@@ -1,2 +1,0 @@
-dino_best=3847
-angry_best=19500

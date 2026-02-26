@@ -1,40 +1,44 @@
-#include "AngryBalls.h"
+#include "AngryBalls_LevelBase.h"
 
 #include "CircleRenderComponent.h"
-#include "SquareCollider2D.h"
 #include "ColliderComponent2D.h"
 #include "CollisionSystem2D.h"
 #include "Debug.h"
 #include "SceneManager.h"
-#include "save_data/SaveData.h"
+#include "SquareCollider2D.h"
 #include "physics_system/PhysicsComponent.h"
 #include "physics_system/PhysicsSystem.h"
-#include "raylib.h"
 #include "raygui.h"
+#include "raylib.h"
+#include "save_data/SaveData.h"
+
+#include "nlohmann/json.hpp"
 
 #include <algorithm>
 #include <array>
+#include <fstream>
 #include <string>
-#include <vector>
 
 namespace
 {
-    static std::string ResolveAssetPath(const std::string& repoRelativePath)
+    static float Cross2D(const Vector2D& a, const Vector2D& b)
     {
-        const std::string candidates[] = {
-            repoRelativePath,
-            "../" + repoRelativePath,
-            "../../" + repoRelativePath,
-            "../../../" + repoRelativePath
-        };
+        return (a.x * b.y) - (a.y * b.x);
+    }
 
-        for (const std::string& candidate : candidates)
-        {
-            if (FileExists(candidate.c_str()))
-                return candidate;
-        }
+    static Vector2D VelocityAtContactPoint(Object* obj, PhysicsComponent* physics, const Vector2D& contactPoint)
+    {
+        if (!obj)
+            return Vector2D::Zero();
 
-        return repoRelativePath;
+        Vector2D velocity = obj->velocity;
+        if (!physics || !physics->allowRotation)
+            return velocity;
+
+        const Vector2D radius = contactPoint - obj->transform.location.value;
+        const float angularVelocity = physics->GetAngularVelocity();
+        velocity += Vector2D{ -angularVelocity * radius.y, angularVelocity * radius.x };
+        return velocity;
     }
 
     static Vector2 ToRayVector(const Vector2D& value)
@@ -86,7 +90,18 @@ namespace
         DrawText(text, x, y, fontSize, fill);
     }
 
-    static void ExchangeCollisionImpulse(Object* a, Object* b, const Vector2D& normal, float restitution = 0.28f)
+    static constexpr float kRestitutionVelocityThreshold = 45.0f;
+    static constexpr float kPenetrationSlop = 0.35f;
+    static constexpr float kPenetrationCorrectionPercent = 0.78f;
+    static constexpr int kCollisionSolverIterations = 3;
+
+    static void ExchangeCollisionImpulse(Object* a,
+                                         Object* b,
+                                         const Vector2D& normal,
+                                         const Vector2D& contactPoint,
+                                         float restitution = 0.28f,
+                                         float friction = 0.16f,
+                                         bool frictionAffectsAngular = true)
     {
         if (!a || !b) return;
 
@@ -96,22 +111,100 @@ namespace
 
         const float invMassA = pa ? pa->GetInvMass() : 0.0f;
         const float invMassB = pb ? pb->GetInvMass() : 0.0f;
-        const float invMassSum = invMassA + invMassB;
-        if (invMassSum <= 0.0f) return;
+        const float invInertiaA = pa ? pa->GetInvInertia() : 0.0f;
+        const float invInertiaB = pb ? pb->GetInvInertia() : 0.0f;
+        if (invMassA + invMassB <= 0.0f) return;
 
-        const Vector2D relativeVelocity = b->velocity - a->velocity;
+        const Vector2D radiusA = contactPoint - a->transform.location.value;
+        const Vector2D radiusB = contactPoint - b->transform.location.value;
+
+        Vector2D relativeVelocity = VelocityAtContactPoint(b, pb, contactPoint)
+            - VelocityAtContactPoint(a, pa, contactPoint);
         const float velocityAlongNormal = relativeVelocity.Dot(normal);
         if (velocityAlongNormal > 0.0f) return;
 
-        const float impulseMagnitude = -(1.0f + restitution) * velocityAlongNormal / invMassSum;
+        const float raCrossN = Cross2D(radiusA, normal);
+        const float rbCrossN = Cross2D(radiusB, normal);
+        const float normalDenominator = invMassA
+            + invMassB
+            + (raCrossN * raCrossN * invInertiaA)
+            + (rbCrossN * rbCrossN * invInertiaB);
+        if (normalDenominator <= 0.00001f)
+            return;
+
+        const float closingSpeed = -velocityAlongNormal;
+        const float effectiveRestitution = (closingSpeed > kRestitutionVelocityThreshold) ? restitution : 0.0f;
+        const float impulseMagnitude = -(1.0f + effectiveRestitution) * velocityAlongNormal / normalDenominator;
         const Vector2D impulse = normal * impulseMagnitude;
 
-        if (pa) a->velocity -= impulse * invMassA;
-        if (pb) b->velocity += impulse * invMassB;
+        if (pa) pa->AddImpulseAtPoint(impulse * -1.0f, contactPoint);
+        if (pb) pb->AddImpulseAtPoint(impulse, contactPoint);
+
+        if (friction <= 0.0f)
+            return;
+
+        relativeVelocity = VelocityAtContactPoint(b, pb, contactPoint)
+            - VelocityAtContactPoint(a, pa, contactPoint);
+
+        Vector2D tangent = relativeVelocity - normal * relativeVelocity.Dot(normal);
+        const float tangentLength = tangent.Length();
+        if (tangentLength <= 0.00001f)
+            return;
+
+        tangent = tangent * (1.0f / tangentLength);
+
+        const float raCrossT = Cross2D(radiusA, tangent);
+        const float rbCrossT = Cross2D(radiusB, tangent);
+        const float tangentDenominator = invMassA
+            + invMassB
+            + (raCrossT * raCrossT * invInertiaA)
+            + (rbCrossT * rbCrossT * invInertiaB);
+        if (tangentDenominator <= 0.00001f)
+            return;
+
+        float frictionImpulseMagnitude = -relativeVelocity.Dot(tangent) / tangentDenominator;
+        const float maxFrictionImpulse = impulseMagnitude * friction;
+        frictionImpulseMagnitude = std::clamp(
+            frictionImpulseMagnitude,
+            -maxFrictionImpulse,
+            maxFrictionImpulse
+        );
+
+        const Vector2D frictionImpulse = tangent * frictionImpulseMagnitude;
+        if (frictionAffectsAngular)
+        {
+            if (pa) pa->AddImpulseAtPoint(frictionImpulse * -1.0f, contactPoint);
+            if (pb) pb->AddImpulseAtPoint(frictionImpulse, contactPoint);
+        }
+        else
+        {
+            if (pa) pa->AddImpulse(frictionImpulse * -1.0f);
+            if (pb) pb->AddImpulse(frictionImpulse);
+        }
     }
 }
 
-AngryBalls::AngryBalls(SceneManager* manager)
+int AngryBallsLevelBase::pendingResetLevelNumber = -1;
+
+std::string AngryBallsLevelBase::ResolveAssetPath(const std::string& repoRelativePath)
+{
+    const std::string candidates[] = {
+        repoRelativePath,
+        "../" + repoRelativePath,
+        "../../" + repoRelativePath,
+        "../../../" + repoRelativePath
+    };
+
+    for (const std::string& candidate : candidates)
+    {
+        if (FileExists(candidate.c_str()))
+            return candidate;
+    }
+
+    return repoRelativePath;
+}
+
+AngryBallsLevelBase::AngryBallsLevelBase(SceneManager* manager)
     : sceneManager(manager)
 {
     auto& resources = ResourceManager::Instance();
@@ -120,27 +213,35 @@ AngryBalls::AngryBalls(SceneManager* manager)
 
     uiFont = resources.GetOrLoadFont(fontPath);
     backgroundImage = resources.GetOrLoadTexture(backgroundPath);
-    bestScore = SaveData::Instance().GetAngryBestScore();
-
-    BuildLevel();
 }
 
-AngryBalls::~AngryBalls()
+AngryBallsLevelBase::~AngryBallsLevelBase()
 {
     ClearSceneObjects();
 }
 
-void AngryBalls::BuildLevel()
+void AngryBallsLevelBase::RequestResetForLevel(int levelNumber)
+{
+    pendingResetLevelNumber = levelNumber;
+}
+
+void AngryBallsLevelBase::BuildLevel()
 {
     ClearSceneObjects();
+
+    SaveData::Instance().SetAngryCurrentScene(GetLevelNumber());
+    bestScore = SaveData::Instance().GetAngryBestScore(GetLevelNumber());
 
     score = 0;
     roundElapsedSeconds = 0.0f;
     pigsRemaining = 0;
-    birdsLeftToSpawn = 4;
+    layoutBirdCount = std::max(1, GetBirdCount());
+    birdsLeftToSpawn = layoutBirdCount;
+    birdsTotalForRound = birdsLeftToSpawn;
     levelWon = false;
     levelLost = false;
     restartRequested = false;
+    completionPersisted = false;
 
     const float screenW = (float)GetScreenWidth();
     const float screenH = (float)GetScreenHeight();
@@ -151,22 +252,70 @@ void AngryBalls::BuildLevel()
     CreateBoundary({ screenW + wallThickness * 0.5f, screenH * 0.5f }, wallThickness * 0.5f, screenH * 0.5f);
     CreateBoundary({ screenW * 0.5f, -wallThickness * 0.5f }, screenW * 0.5f, wallThickness * 0.5f);
 
-    CreateBlock({ 560.0f, 330.0f }, 18.0f, 58.0f, 1.2f);
-    CreateBlock({ 620.0f, 330.0f }, 18.0f, 58.0f, 1.2f);
-    CreateBlock({ 590.0f, 265.0f }, 70.0f, 15.0f, 1.0f);
-    CreatePig({ 590.0f, 225.0f });
-
-    CreateBlock({ 700.0f, 340.0f }, 24.0f, 48.0f, 1.3f);
-    CreateBlock({ 740.0f, 340.0f }, 24.0f, 48.0f, 1.3f);
-    CreateBlock({ 720.0f, 282.0f }, 55.0f, 14.0f, 1.0f);
-    CreatePig({ 720.0f, 245.0f });
-
-    CreatePig({ 660.0f, 370.0f });
-
+    BuildLevelLayout();
+    birdsLeftToSpawn = std::max(1, layoutBirdCount);
+    birdsTotalForRound = birdsLeftToSpawn;
     SpawnNextBird();
+    levelBuilt = true;
 }
 
-void AngryBalls::ClearSceneObjects()
+bool AngryBallsLevelBase::LoadLevelLayoutFromJson(const std::string& repoRelativePath)
+{
+    const std::string resolvedPath = ResolveAssetPath(repoRelativePath);
+
+    std::ifstream input(resolvedPath);
+    if (!input.is_open())
+    {
+        TraceLog(
+            LOG_WARNING,
+            "Fail to load AngryBalls level layout JSON: path not found (%s)",
+            resolvedPath.c_str()
+        );
+        return false;
+    }
+
+    nlohmann::json data;
+    try
+    {
+        input >> data;
+    }
+    catch (...)
+    {
+        return false;
+    }
+
+    if (data.contains("birds") && data["birds"].is_number_integer())
+        layoutBirdCount = std::max(1, data["birds"].get<int>());
+
+    if (!data.contains("objects") || !data["objects"].is_array())
+        return false;
+
+    for (const auto& objectData : data["objects"])
+    {
+        if (!objectData.is_object())
+            continue;
+
+        const std::string type = objectData.value("type", std::string());
+        const float x = objectData.value("x", 0.0f);
+        const float y = objectData.value("y", 0.0f);
+
+        if (type == "pig")
+        {
+            CreatePig({ x, y });
+        }
+        else if (type == "block")
+        {
+            const float halfWidth = std::max(1.0f, objectData.value("half_width", 16.0f));
+            const float halfHeight = std::max(1.0f, objectData.value("half_height", 16.0f));
+            const float mass = std::max(0.1f, objectData.value("mass", 1.0f));
+            CreateBlock({ x, y }, halfWidth, halfHeight, mass);
+        }
+    }
+
+    return true;
+}
+
+void AngryBallsLevelBase::ClearSceneObjects()
 {
     for (size_t i = 0; i < objects.Size(); ++i)
     {
@@ -179,11 +328,12 @@ void AngryBalls::ClearSceneObjects()
 
     activeBird = nullptr;
     activeBirdLaunched = false;
+    activeBirdFollowingPreview = false;
     isDraggingBird = false;
     launchedBirdIdleSeconds = 0.0f;
 }
 
-Object* AngryBalls::CreateBird(const Vector2D& position, Color color)
+Object* AngryBallsLevelBase::CreateBird(const Vector2D& position, Color color)
 {
     Object* bird = new Object();
     bird->transform.location.value = position;
@@ -196,10 +346,17 @@ Object* AngryBalls::CreateBird(const Vector2D& position, Color color)
 
     auto* physics = new PhysicsComponent();
     physics->SetMass(1.0f);
+    physics->SetMomentOfInertiaFromCircle(render->radius);
     physics->useGravity = false;
     physics->kinematic = true;
-    physics->linearDamping = 0.0f;
+    physics->linearDamping = birdPostCollisionLinearDamping;
     physics->maxSpeed = -1.0f;
+    physics->angularDamping = birdPostCollisionAngularDamping;
+    physics->maxAngularSpeed = birdPostCollisionMaxAngularSpeed;
+    physics->angularImpulseScale = 0.38f;
+    physics->minAngularImpulse = 0.07f;
+    physics->angularSleepThreshold = 0.05f;
+    physics->angularSleepAccelerationThreshold = 0.40f;
 
     bird->AddComponent(render);
     bird->AddComponent(collider);
@@ -211,7 +368,7 @@ Object* AngryBalls::CreateBird(const Vector2D& position, Color color)
     return bird;
 }
 
-Object* AngryBalls::CreatePig(const Vector2D& position)
+Object* AngryBallsLevelBase::CreatePig(const Vector2D& position)
 {
     Object* pig = new Object();
     pig->transform.location.value = position;
@@ -224,9 +381,16 @@ Object* AngryBalls::CreatePig(const Vector2D& position)
 
     auto* physics = new PhysicsComponent();
     physics->SetMass(1.0f);
+    physics->SetMomentOfInertiaFromCircle(render->radius);
     physics->useGravity = true;
-    physics->linearDamping = 1.8f;
+    physics->linearDamping = 2.4f;
     physics->maxSpeed = 760.0f;
+    physics->angularDamping = 2.1f;
+    physics->maxAngularSpeed = 4.5f;
+    physics->angularImpulseScale = 0.34f;
+    physics->minAngularImpulse = 0.08f;
+    physics->angularSleepThreshold = 0.05f;
+    physics->angularSleepAccelerationThreshold = 0.34f;
 
     pig->AddComponent(render);
     pig->AddComponent(collider);
@@ -239,7 +403,7 @@ Object* AngryBalls::CreatePig(const Vector2D& position)
     return pig;
 }
 
-Object* AngryBalls::CreateBlock(const Vector2D& position, float halfWidth, float halfHeight, float mass)
+Object* AngryBallsLevelBase::CreateBlock(const Vector2D& position, float halfWidth, float halfHeight, float mass)
 {
     Object* block = new Object();
     block->transform.location.value = position;
@@ -249,9 +413,17 @@ Object* AngryBalls::CreateBlock(const Vector2D& position, float halfWidth, float
 
     auto* physics = new PhysicsComponent();
     physics->SetMass(mass);
+    physics->SetMomentOfInertiaFromRectangle(halfWidth, halfHeight);
+    physics->SetMomentOfInertia(physics->GetMomentOfInertia() * 2.6f);
     physics->useGravity = true;
     physics->linearDamping = 1.6f;
     physics->maxSpeed = 720.0f;
+    physics->angularDamping = 2.1f;
+    physics->maxAngularSpeed = 3.4f;
+    physics->angularImpulseScale = 0.62f;
+    physics->minAngularImpulse = 0.035f;
+    physics->angularSleepThreshold = 0.03f;
+    physics->angularSleepAccelerationThreshold = 0.30f;
 
     block->AddComponent(collider);
     block->AddComponent(physics);
@@ -263,7 +435,7 @@ Object* AngryBalls::CreateBlock(const Vector2D& position, float halfWidth, float
     return block;
 }
 
-Object* AngryBalls::CreateBoundary(const Vector2D& position, float halfWidth, float halfHeight)
+Object* AngryBallsLevelBase::CreateBoundary(const Vector2D& position, float halfWidth, float halfHeight)
 {
     Object* boundary = new Object();
     boundary->transform.location.value = position;
@@ -274,6 +446,7 @@ Object* AngryBalls::CreateBoundary(const Vector2D& position, float halfWidth, fl
     auto* physics = new PhysicsComponent();
     physics->kinematic = true;
     physics->useGravity = false;
+    physics->allowRotation = false;
     physics->linearDamping = 0.0f;
 
     boundary->AddComponent(collider);
@@ -285,7 +458,7 @@ Object* AngryBalls::CreateBoundary(const Vector2D& position, float halfWidth, fl
     return boundary;
 }
 
-void AngryBalls::SpawnNextBird()
+void AngryBallsLevelBase::SpawnNextBird()
 {
     if (activeBird || birdsLeftToSpawn <= 0 || levelWon || levelLost)
         return;
@@ -297,16 +470,50 @@ void AngryBalls::SpawnNextBird()
         Color{ 250, 128, 98, 255 }
     };
 
-    const int paletteIndex = 4 - birdsLeftToSpawn;
+    const int paletteIndex = birdsTotalForRound - birdsLeftToSpawn;
     activeBird = CreateBird(slingAnchor, birdPalette[paletteIndex % birdPalette.size()]);
 
     activeBirdLaunched = false;
+    activeBirdFollowingPreview = false;
     isDraggingBird = false;
     launchedBirdIdleSeconds = 0.0f;
     birdsLeftToSpawn--;
 }
 
-void AngryBalls::HandleBirdDragAndLaunch()
+void AngryBallsLevelBase::ConfigureBirdForPreviewFlight(Object* bird)
+{
+    if (!bird)
+        return;
+
+    auto* physics = bird->GetComponent<PhysicsComponent>();
+    if (!physics)
+        return;
+
+    physics->allowRotation = false;
+    physics->linearDamping = 0.0f;
+    physics->maxSpeed = -1.0f;
+    physics->angularDamping = 0.0f;
+    physics->maxAngularSpeed = -1.0f;
+    physics->SetAngularVelocity(0.0f);
+}
+
+void AngryBallsLevelBase::ConfigureBirdForPostCollision(Object* bird)
+{
+    if (!bird)
+        return;
+
+    auto* physics = bird->GetComponent<PhysicsComponent>();
+    if (!physics)
+        return;
+
+    physics->allowRotation = true;
+    physics->linearDamping = birdPostCollisionLinearDamping;
+    physics->maxSpeed = -1.0f;
+    physics->angularDamping = birdPostCollisionAngularDamping;
+    physics->maxAngularSpeed = birdPostCollisionMaxAngularSpeed;
+}
+
+void AngryBallsLevelBase::HandleBirdDragAndLaunch()
 {
     if (!activeBird || activeBirdLaunched || levelWon || levelLost)
         return;
@@ -319,6 +526,7 @@ void AngryBalls::HandleBirdDragAndLaunch()
     {
         activeBird->transform.location.value = slingAnchor;
         activeBird->velocity = Vector2D::Zero();
+        activeBirdFollowingPreview = false;
     }
 
     if (IsStartLockActive())
@@ -326,6 +534,7 @@ void AngryBalls::HandleBirdDragAndLaunch()
         isDraggingBird = false;
         activeBird->transform.location.value = slingAnchor;
         activeBird->velocity = Vector2D::Zero();
+        activeBirdFollowingPreview = false;
         return;
     }
 
@@ -337,9 +546,7 @@ void AngryBalls::HandleBirdDragAndLaunch()
     const float distanceToBird = (mouse - activeBird->transform.location.value).Length();
 
     if (IsMouseButtonDown(MOUSE_LEFT_BUTTON) && distanceToBird <= pickupRadius)
-    {
         isDraggingBird = true;
-    }
 
     if (!isDraggingBird)
         return;
@@ -363,6 +570,7 @@ void AngryBalls::HandleBirdDragAndLaunch()
     if (launchVector.Length() < 8.0f)
     {
         activeBird->transform.location.value = slingAnchor;
+        activeBirdFollowingPreview = false;
         return;
     }
 
@@ -370,10 +578,12 @@ void AngryBalls::HandleBirdDragAndLaunch()
     physics->useGravity = true;
 
     activeBird->velocity = launchVector * launchPower;
+    ConfigureBirdForPreviewFlight(activeBird);
     activeBirdLaunched = true;
+    activeBirdFollowingPreview = true;
 }
 
-void AngryBalls::MarkObjectForRemoval(Object* obj, std::vector<Object*>& removeList)
+void AngryBallsLevelBase::MarkObjectForRemoval(Object* obj, std::vector<Object*>& removeList)
 {
     if (!obj)
         return;
@@ -384,15 +594,13 @@ void AngryBalls::MarkObjectForRemoval(Object* obj, std::vector<Object*>& removeL
     removeList.push_back(obj);
 }
 
-void AngryBalls::RemoveObjects(const std::vector<Object*>& removeList)
+void AngryBallsLevelBase::RemoveObjects(const std::vector<Object*>& removeList)
 {
     for (Object* obj : removeList)
-    {
         RemoveObject(obj);
-    }
 }
 
-void AngryBalls::RemoveObject(Object* obj)
+void AngryBallsLevelBase::RemoveObject(Object* obj)
 {
     if (!obj)
         return;
@@ -401,6 +609,7 @@ void AngryBalls::RemoveObject(Object* obj)
     {
         activeBird = nullptr;
         activeBirdLaunched = false;
+        activeBirdFollowingPreview = false;
         isDraggingBird = false;
         launchedBirdIdleSeconds = 0.0f;
     }
@@ -420,7 +629,7 @@ void AngryBalls::RemoveObject(Object* obj)
         if (score > bestScore)
         {
             bestScore = score;
-            SaveData::Instance().SetAngryBestScore(bestScore);
+            SaveData::Instance().SetAngryBestScore(GetLevelNumber(), bestScore);
         }
 
         visuals.erase(it);
@@ -440,7 +649,7 @@ void AngryBalls::RemoveObject(Object* obj)
     delete obj;
 }
 
-void AngryBalls::ApplyBlockDamage(Object* block, EntityKind otherKind, float impactSpeed, std::vector<Object*>& removeList)
+void AngryBallsLevelBase::ApplyBlockDamage(Object* block, EntityKind otherKind, float impactSpeed, std::vector<Object*>& removeList)
 {
     auto hpIt = blockHealth.find(block);
     if (hpIt == blockHealth.end())
@@ -472,7 +681,7 @@ void AngryBalls::ApplyBlockDamage(Object* block, EntityKind otherKind, float imp
         MarkObjectForRemoval(block, removeList);
 }
 
-bool AngryBalls::IsDynamic(Object* obj) const
+bool AngryBallsLevelBase::IsDynamic(Object* obj) const
 {
     if (!obj)
         return false;
@@ -484,7 +693,7 @@ bool AngryBalls::IsDynamic(Object* obj) const
     return physics->enabled && !physics->kinematic;
 }
 
-bool AngryBalls::IsInBounds(Object* obj) const
+bool AngryBallsLevelBase::IsInBounds(Object* obj) const
 {
     if (!obj)
         return false;
@@ -498,7 +707,7 @@ bool AngryBalls::IsInBounds(Object* obj) const
         && position.y <= (float)GetScreenHeight() + margin;
 }
 
-bool AngryBalls::IsBirdReadyToRetire(Object* bird, float dt)
+bool AngryBallsLevelBase::IsBirdReadyToRetire(Object* bird, float dt)
 {
     if (!bird)
         return false;
@@ -515,73 +724,104 @@ bool AngryBalls::IsBirdReadyToRetire(Object* bird, float dt)
     return launchedBirdIdleSeconds > 1.5f;
 }
 
-bool AngryBalls::IsStartLockActive() const
+bool AngryBallsLevelBase::IsStartLockActive() const
 {
     return roundElapsedSeconds < startLockDurationSeconds;
 }
 
-void AngryBalls::ResolveCollisionsAndDamage()
+void AngryBallsLevelBase::ResolveCollisionsAndDamage()
 {
     std::vector<Object*> removeList;
     const bool startLockActive = IsStartLockActive();
 
-    for (size_t i = 0; i < objects.Size(); ++i)
+    for (int solverPass = 0; solverPass < kCollisionSolverIterations; ++solverPass)
     {
-        Object* a = objects.Get((int)i);
-        if (!a || !a->collider)
-            continue;
+        const bool applyGameplayEffects = (solverPass == 0);
 
-        for (size_t j = i + 1; j < objects.Size(); ++j)
+        for (size_t i = 0; i < objects.Size(); ++i)
         {
-            Object* b = objects.Get((int)j);
-            if (!b || !b->collider)
+            Object* a = objects.Get((int)i);
+            if (!a || !a->collider)
                 continue;
 
-            CollisionManifold2D manifold = CollisionSystem2D::Test(*a->collider, *b->collider);
-            if (!manifold.colliding)
-                continue;
-
-            const float impactSpeed = (b->velocity - a->velocity).Length();
-
-            const bool dynamicA = IsDynamic(a);
-            const bool dynamicB = IsDynamic(b);
-
-            if (dynamicA && dynamicB)
+            for (size_t j = i + 1; j < objects.Size(); ++j)
             {
-                const Vector2D correction = manifold.normal * (manifold.penetration * 0.5f);
-                a->transform.location.Translate(correction * -1.0f);
-                b->transform.location.Translate(correction);
+                Object* b = objects.Get((int)j);
+                if (!b || !b->collider)
+                    continue;
+
+                CollisionManifold2D manifold = CollisionSystem2D::Test(*a->collider, *b->collider);
+                if (!manifold.colliding)
+                    continue;
+
+                auto* physicsA = a->GetComponent<PhysicsComponent>();
+                auto* physicsB = b->GetComponent<PhysicsComponent>();
+                const float invMassA = physicsA ? physicsA->GetInvMass() : 0.0f;
+                const float invMassB = physicsB ? physicsB->GetInvMass() : 0.0f;
+                const float totalInvMass = invMassA + invMassB;
+
+                if (totalInvMass > 0.0f)
+                {
+                    const float correctionMagnitude =
+                        std::max(0.0f, manifold.penetration - kPenetrationSlop) * kPenetrationCorrectionPercent;
+
+                    if (correctionMagnitude > 0.0f)
+                    {
+                        const Vector2D correction = manifold.normal * correctionMagnitude;
+
+                        if (invMassA > 0.0f)
+                            a->transform.location.Translate(correction * (-invMassA / totalInvMass));
+
+                        if (invMassB > 0.0f)
+                            b->transform.location.Translate(correction * (invMassB / totalInvMass));
+                    }
+                }
+
+                const Vector2D contactPoint = manifold.hasContactPoint
+                    ? manifold.contactPoint
+                    : (a->transform.location.value + b->transform.location.value) * 0.5f;
+
+                if (activeBirdFollowingPreview
+                    && activeBirdLaunched
+                    && (a == activeBird || b == activeBird))
+                {
+                    ConfigureBirdForPostCollision(activeBird);
+                    activeBirdFollowingPreview = false;
+                }
+
+                auto itA = visuals.find(a);
+                auto itB = visuals.find(b);
+                if (itA == visuals.end() || itB == visuals.end())
+                    continue;
+
+                const EntityKind kindA = itA->second.kind;
+                const EntityKind kindB = itB->second.kind;
+                const bool hasBoundary = (kindA == EntityKind::Boundary || kindB == EntityKind::Boundary);
+                const bool hasCircleEntity = (kindA == EntityKind::Bird
+                    || kindA == EntityKind::Pig
+                    || kindB == EntityKind::Bird
+                    || kindB == EntityKind::Pig);
+                const bool frictionAffectsAngular = (!hasBoundary && !hasCircleEntity);
+                const float friction = hasCircleEntity ? 0.09f : 0.16f;
+                ExchangeCollisionImpulse(a, b, manifold.normal, contactPoint, 0.30f, friction, frictionAffectsAngular);
+
+                if (!applyGameplayEffects)
+                    continue;
+
+                const float impactSpeed = (b->velocity - a->velocity).Length();
+
+                if (!startLockActive && kindA == EntityKind::Pig && impactSpeed > pigImpactThreshold)
+                    MarkObjectForRemoval(a, removeList);
+
+                if (!startLockActive && kindB == EntityKind::Pig && impactSpeed > pigImpactThreshold)
+                    MarkObjectForRemoval(b, removeList);
+
+                if (!startLockActive && kindA == EntityKind::Block)
+                    ApplyBlockDamage(a, kindB, impactSpeed, removeList);
+
+                if (!startLockActive && kindB == EntityKind::Block)
+                    ApplyBlockDamage(b, kindA, impactSpeed, removeList);
             }
-            else if (dynamicA && !dynamicB)
-            {
-                a->transform.location.Translate(manifold.normal * (-manifold.penetration));
-            }
-            else if (!dynamicA && dynamicB)
-            {
-                b->transform.location.Translate(manifold.normal * manifold.penetration);
-            }
-
-            ExchangeCollisionImpulse(a, b, manifold.normal, 0.30f);
-
-            auto itA = visuals.find(a);
-            auto itB = visuals.find(b);
-            if (itA == visuals.end() || itB == visuals.end())
-                continue;
-
-            const EntityKind kindA = itA->second.kind;
-            const EntityKind kindB = itB->second.kind;
-
-            if (!startLockActive && kindA == EntityKind::Pig && impactSpeed > pigImpactThreshold)
-                MarkObjectForRemoval(a, removeList);
-
-            if (!startLockActive && kindB == EntityKind::Pig && impactSpeed > pigImpactThreshold)
-                MarkObjectForRemoval(b, removeList);
-
-            if (!startLockActive && kindA == EntityKind::Block)
-                ApplyBlockDamage(a, kindB, impactSpeed, removeList);
-
-            if (!startLockActive && kindB == EntityKind::Block)
-                ApplyBlockDamage(b, kindA, impactSpeed, removeList);
         }
     }
 
@@ -609,12 +849,23 @@ void AngryBalls::ResolveCollisionsAndDamage()
     RemoveObjects(removeList);
 }
 
-void AngryBalls::UpdateRoundState(float dt)
+void AngryBallsLevelBase::PersistLevelCompletion()
+{
+    if (completionPersisted)
+        return;
+
+    completionPersisted = true;
+    const int unlockCount = std::clamp(GetLevelNumber() + 1, 1, 4);
+    SaveData::Instance().SetAngryUnlockedLevelCount(unlockCount);
+}
+
+void AngryBallsLevelBase::UpdateRoundState(float dt)
 {
     if (pigsRemaining <= 0)
     {
         levelWon = true;
         levelLost = false;
+        PersistLevelCompletion();
         return;
     }
 
@@ -631,16 +882,30 @@ void AngryBalls::UpdateRoundState(float dt)
         levelLost = true;
 }
 
-void AngryBalls::Update(float dt)
+void AngryBallsLevelBase::Update(float dt)
 {
-    if (IsKeyPressed(KEY_R))
+    if (pendingResetLevelNumber == GetLevelNumber())
+    {
+        pendingResetLevelNumber = -1;
         restartRequested = true;
+    }
 
-    if (restartRequested)
+    if (!levelBuilt || restartRequested)
     {
         BuildLevel();
         return;
     }
+
+    if (IsKeyPressed(KEY_ESCAPE))
+    {
+        SaveData::Instance().SetAngryCurrentScene(0);
+        if (sceneManager)
+            sceneManager->LoadScene(kAngryMenuSceneIndex);
+        return;
+    }
+
+    if (IsKeyPressed(KEY_R))
+        restartRequested = true;
 
     roundElapsedSeconds += dt;
 
@@ -659,7 +924,7 @@ void AngryBalls::Update(float dt)
     UpdateRoundState(dt);
 }
 
-void AngryBalls::DrawSlingshot() const
+void AngryBallsLevelBase::DrawSlingshot() const
 {
     const Vector2 base = ToRayVector(slingAnchor);
 
@@ -674,7 +939,7 @@ void AngryBalls::DrawSlingshot() const
     DrawLineEx({ base.x + 10.0f, base.y - 26.0f }, bandTarget, 3.0f, Color{ 87, 44, 18, 255 });
 }
 
-void AngryBalls::DrawTrajectoryPreview() const
+void AngryBallsLevelBase::DrawTrajectoryPreview() const
 {
     if (!activeBird || activeBirdLaunched || !isDraggingBird)
         return;
@@ -687,13 +952,13 @@ void AngryBalls::DrawTrajectoryPreview() const
     {
         const float t = (float)i * 0.07f;
         const Vector2D point = start + velocity * t + gravity * (0.5f * t * t);
-        const float alpha = std::max(0.15f, 0.95f - ((float)i * 0.04f));
+        const float alpha = std::max(0.80f, 1.0f - ((float)i * 0.02f));
 
         DrawCircleV(ToRayVector(point), 3.0f, ColorAlpha(WHITE, alpha));
     }
 }
 
-void AngryBalls::DrawWorld()
+void AngryBallsLevelBase::DrawWorld()
 {
     if (backgroundImage && backgroundImage->value.id != 0)
     {
@@ -722,7 +987,7 @@ void AngryBalls::DrawWorld()
         DrawRectanglePro(
             { position.x, position.y, visual.halfWidth * 2.0f, visual.halfHeight * 2.0f },
             { visual.halfWidth, visual.halfHeight },
-            0.0f,
+            obj->transform.rotation.angle * RAD2DEG,
             visual.color
         );
     }
@@ -749,18 +1014,31 @@ void AngryBalls::DrawWorld()
     }
 }
 
-void AngryBalls::DrawUI()
+void AngryBallsLevelBase::DrawUI()
 {
-    if (GuiButton({ 620, 20, 160, 32 }, "Exit to Main") && sceneManager)
-        sceneManager->LoadScene(0);
+    if (GuiButton({ 620, 20, 160, 32 }, "Back To Levels") && sceneManager)
+    {
+        SaveData::Instance().SetAngryCurrentScene(0);
+        sceneManager->LoadScene(kAngryMenuSceneIndex);
+    }
 
     if (GuiButton({ 620, 60, 160, 32 }, "Restart [R]"))
         restartRequested = true;
 
+    if (levelWon)
+    {
+        const int nextSceneIndex = GetNextLevelSceneIndex();
+        if (nextSceneIndex >= 0)
+        {
+            if (GuiButton({ 620, 100, 160, 32 }, "Next Level") && sceneManager)
+                sceneManager->LoadScene(nextSceneIndex);
+        }
+    }
+
     if (uiFont)
-        DrawTextEx(uiFont->value, "Kitsune Angry Birds", { 20.0f, 20.0f }, 30.0f, 1.0f, BLACK);
+        DrawTextEx(uiFont->value, GetLevelTitle(), { 20.0f, 20.0f }, 30.0f, 1.0f, BLACK);
     else
-        DrawText("Kitsune Angry Birds", 20, 20, 30, BLACK);
+        DrawText(GetLevelTitle(), 20, 20, 30, BLACK);
 
     const int birdsInPlay = birdsLeftToSpawn + (activeBird ? 1 : 0);
 
@@ -768,6 +1046,7 @@ void AngryBalls::DrawUI()
     DrawText(TextFormat("Best: %d", bestScore), 20, 92, 22, BLACK);
     DrawText(TextFormat("Birds: %d", birdsInPlay), 20, 120, 22, BLACK);
     DrawText(TextFormat("Pigs: %d", pigsRemaining), 20, 148, 22, BLACK);
+    DrawText(TextFormat("Level: %d/4", GetLevelNumber()), 20, 176, 22, BLACK);
 
     if (IsStartLockActive())
     {
@@ -811,14 +1090,18 @@ void AngryBalls::DrawUI()
 
     if (!IsStartLockActive())
     {
-        DrawText("Click and drag the bird, then release to launch.", 20, 188, 19, BLACK);
-        DrawText("Eliminate all pigs. Press R to reset the round.", 20, 212, 19, BLACK);
+        DrawText("Click and drag the bird, then release to launch.", 20, 230, 19, BLUE);
+        DrawText("Eliminate all pigs. Press R to reset. ESC opens level menu.", 20, 212, 19, BLUE);
     }
 
     if (levelWon)
     {
         DrawText("LEVEL CLEARED", 275, 80, 40, BLACK);
-        DrawText("Press R or click Restart to play again", 220, 125, 24, BLACK);
+
+        if (GetNextLevelSceneIndex() >= 0)
+            DrawText("Next level unlocked. Continue or replay this stage.", 152, 125, 24, BLACK);
+        else
+            DrawText("All AngryBalls levels cleared.", 245, 125, 24, BLACK);
     }
     else if (levelLost)
     {
@@ -827,7 +1110,7 @@ void AngryBalls::DrawUI()
     }
 }
 
-void AngryBalls::Draw()
+void AngryBallsLevelBase::Draw()
 {
     DrawWorld();
     DrawUI();
