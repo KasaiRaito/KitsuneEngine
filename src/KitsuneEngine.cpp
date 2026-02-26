@@ -5,6 +5,8 @@
 #include "game/scene/AngryBalls/AngryBalls.h"
 #include "game/scene/AngryBalls/AngryBalls_Level1.h"
 #include "game/scene/AngryBalls/AngryBalls_Level2.h"
+#include "game/scene/AngryBalls/AngryBalls_Level3.h"
+#include "game/scene/AngryBalls/AngryBalls_Level4.h"
 #include "game/scene/DinoJump/DinoJump.h"
 #include "ResourceManager.h"
 
@@ -26,6 +28,8 @@ int main()
     sceneManager.AddScene(SceneInfo(new DinoJump(&sceneManager), "dinojump", 2));
     sceneManager.AddScene(SceneInfo(new AngryBalls_Level1(&sceneManager), "angryballs_level1", 3));
     sceneManager.AddScene(SceneInfo(new AngryBalls_Level2(&sceneManager), "angryballs_level2", 4));
+    sceneManager.AddScene(SceneInfo(new AngryBalls_Level3(&sceneManager), "angryballs_level3", 5));
+    sceneManager.AddScene(SceneInfo(new AngryBalls_Level4(&sceneManager), "angryballs_level4", 6));
     sceneManager.LoadScene(0);
 
     while (!WindowShouldClose())

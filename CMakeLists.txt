@@ -51,6 +51,10 @@ add_executable(KitsuneEngine
         src/game/scene/AngryBalls/AngryBalls_Level1.h
         src/game/scene/AngryBalls/AngryBalls_Level2.cpp
         src/game/scene/AngryBalls/AngryBalls_Level2.h
+        src/game/scene/AngryBalls/AngryBalls_Level3.cpp
+        src/game/scene/AngryBalls/AngryBalls_Level3.h
+        src/game/scene/AngryBalls/AngryBalls_Level4.cpp
+        src/game/scene/AngryBalls/AngryBalls_Level4.h
 )
 
 # -----------------------------

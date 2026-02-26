@@ -95,6 +95,8 @@ namespace
     }
 }
 
+int AngryBallsLevelBase::pendingResetLevelNumber = -1;
+
 std::string AngryBallsLevelBase::ResolveAssetPath(const std::string& repoRelativePath)
 {
     const std::string candidates[] = {
@@ -122,7 +124,6 @@ AngryBallsLevelBase::AngryBallsLevelBase(SceneManager* manager)
 
     uiFont = resources.GetOrLoadFont(fontPath);
     backgroundImage = resources.GetOrLoadTexture(backgroundPath);
-    bestScore = SaveData::Instance().GetAngryBestScore();
 }
 
 AngryBallsLevelBase::~AngryBallsLevelBase()
@@ -130,11 +131,17 @@ AngryBallsLevelBase::~AngryBallsLevelBase()
     ClearSceneObjects();
 }
 
+void AngryBallsLevelBase::RequestResetForLevel(int levelNumber)
+{
+    pendingResetLevelNumber = levelNumber;
+}
+
 void AngryBallsLevelBase::BuildLevel()
 {
     ClearSceneObjects();
 
     SaveData::Instance().SetAngryCurrentScene(GetLevelNumber());
+    bestScore = SaveData::Instance().GetAngryBestScore(GetLevelNumber());
 
     score = 0;
     roundElapsedSeconds = 0.0f;
@@ -469,7 +476,7 @@ void AngryBallsLevelBase::RemoveObject(Object* obj)
         if (score > bestScore)
         {
             bestScore = score;
-            SaveData::Instance().SetAngryBestScore(bestScore);
+            SaveData::Instance().SetAngryBestScore(GetLevelNumber(), bestScore);
         }
 
         visuals.erase(it);
@@ -664,7 +671,7 @@ void AngryBallsLevelBase::PersistLevelCompletion()
         return;
 
     completionPersisted = true;
-    const int unlockCount = std::clamp(GetLevelNumber() + 1, 1, 2);
+    const int unlockCount = std::clamp(GetLevelNumber() + 1, 1, 4);
     SaveData::Instance().SetAngryUnlockedLevelCount(unlockCount);
 }
 
@@ -693,7 +700,13 @@ void AngryBallsLevelBase::UpdateRoundState(float dt)
 
 void AngryBallsLevelBase::Update(float dt)
 {
-    if (!levelBuilt)
+    if (pendingResetLevelNumber == GetLevelNumber())
+    {
+        pendingResetLevelNumber = -1;
+        restartRequested = true;
+    }
+
+    if (!levelBuilt || restartRequested)
     {
         BuildLevel();
         return;
@@ -709,12 +722,6 @@ void AngryBallsLevelBase::Update(float dt)
 
     if (IsKeyPressed(KEY_R))
         restartRequested = true;
-
-    if (restartRequested)
-    {
-        BuildLevel();
-        return;
-    }
 
     roundElapsedSeconds += dt;
 
@@ -855,7 +862,7 @@ void AngryBallsLevelBase::DrawUI()
     DrawText(TextFormat("Best: %d", bestScore), 20, 92, 22, BLACK);
     DrawText(TextFormat("Birds: %d", birdsInPlay), 20, 120, 22, BLACK);
     DrawText(TextFormat("Pigs: %d", pigsRemaining), 20, 148, 22, BLACK);
-    DrawText(TextFormat("Level: %d/2", GetLevelNumber()), 20, 176, 22, BLACK);
+    DrawText(TextFormat("Level: %d/4", GetLevelNumber()), 20, 176, 22, BLACK);
 
     if (IsStartLockActive())
     {

@@ -29,12 +29,17 @@ private:
     {
         Menu = 0,
         Level1 = 1,
-        Level2 = 2
+        Level2 = 2,
+        Level3 = 3,
+        Level4 = 4
     };
 
     static constexpr int kProjectMainMenuSceneIndex = 0;
     static constexpr int kAngryLevel1SceneIndex = 3;
     static constexpr int kAngryLevel2SceneIndex = 4;
+    static constexpr int kAngryLevel3SceneIndex = 5;
+    static constexpr int kAngryLevel4SceneIndex = 6;
+    static constexpr int kAngryTotalLevels = 4;
 
     SceneManager* sceneManager = nullptr;
     std::shared_ptr<ResourceManager::FontResource> uiFont;

@@ -9,6 +9,8 @@
 
 namespace
 {
+    static constexpr int kAngryLevelCount = 4;
+
     static std::string Trim(const std::string& value)
     {
         size_t begin = 0;
@@ -38,6 +40,11 @@ namespace
             return fallback;
         }
     }
+
+    static int ToAngryLevelIndex(int levelNumber)
+    {
+        return std::clamp(levelNumber, 1, kAngryLevelCount) - 1;
+    }
 }
 
 SaveData& SaveData::Instance()
@@ -60,10 +67,10 @@ int SaveData::GetDinoBestScore()
     return dinoBestScore;
 }
 
-int SaveData::GetAngryBestScore()
+int SaveData::GetAngryBestScore(int levelNumber)
 {
     EnsureLoaded();
-    return angryBestScore;
+    return angryBestScoresByLevel[ToAngryLevelIndex(levelNumber)];
 }
 
 int SaveData::GetAngryUnlockedLevelCount()
@@ -89,14 +96,18 @@ void SaveData::SetDinoBestScore(int score)
     SaveToDisk();
 }
 
-void SaveData::SetAngryBestScore(int score)
+void SaveData::SetAngryBestScore(int levelNumber, int score)
 {
     EnsureLoaded();
 
-    if (score <= angryBestScore)
+    if (score < 0)
         return;
 
-    angryBestScore = score;
+    const int levelIndex = ToAngryLevelIndex(levelNumber);
+    if (score <= angryBestScoresByLevel[levelIndex])
+        return;
+
+    angryBestScoresByLevel[levelIndex] = score;
     SaveToDisk();
 }
 
@@ -104,7 +115,7 @@ void SaveData::SetAngryUnlockedLevelCount(int unlockedLevelCount)
 {
     EnsureLoaded();
 
-    const int clamped = std::clamp(unlockedLevelCount, 1, 2);
+    const int clamped = std::clamp(unlockedLevelCount, 1, 4);
     if (clamped <= angryUnlockedLevelCount)
         return;
 
@@ -116,7 +127,7 @@ void SaveData::SetAngryCurrentScene(int sceneId)
 {
     EnsureLoaded();
 
-    const int clamped = std::clamp(sceneId, 0, 2);
+    const int clamped = std::clamp(sceneId, 0, 4);
     if (clamped == angryCurrentScene)
         return;
 
@@ -170,9 +181,24 @@ bool SaveData::LoadFromDisk()
                 input >> json;
 
                 dinoBestScore = std::max(0, json.value("dino_best", dinoBestScore));
-                angryBestScore = std::max(0, json.value("angry_best", angryBestScore));
-                angryUnlockedLevelCount = std::clamp(json.value("angry_unlocked_levels", angryUnlockedLevelCount), 1, 2);
-                angryCurrentScene = std::clamp(json.value("angry_current_scene", angryCurrentScene), 0, 2);
+                if (json.contains("angry_best_by_level") && json["angry_best_by_level"].is_array())
+                {
+                    const auto& levelScores = json["angry_best_by_level"];
+                    for (int i = 0; i < kAngryLevelCount; ++i)
+                    {
+                        if (i >= (int)levelScores.size() || !levelScores[(size_t)i].is_number_integer())
+                            continue;
+
+                        angryBestScoresByLevel[(size_t)i] = std::max(0, levelScores[(size_t)i].get<int>());
+                    }
+                }
+                else
+                {
+                    // Backward compatibility with single angry_best key from older save versions.
+                    angryBestScoresByLevel[0] = std::max(0, json.value("angry_best", angryBestScoresByLevel[0]));
+                }
+                angryUnlockedLevelCount = std::clamp(json.value("angry_unlocked_levels", angryUnlockedLevelCount), 1, 4);
+                angryCurrentScene = std::clamp(json.value("angry_current_scene", angryCurrentScene), 0, 4);
 
                 return true;
             }
@@ -209,15 +235,25 @@ bool SaveData::LoadFromDisk()
             }
             else if (key == "angry_best")
             {
-                angryBestScore = std::max(0, ParseIntOrDefault(value, angryBestScore));
+                angryBestScoresByLevel[0] = std::max(0, ParseIntOrDefault(value, angryBestScoresByLevel[0]));
+            }
+            else if (key.rfind("angry_best_level", 0) == 0)
+            {
+                const std::string suffix = key.substr(std::string("angry_best_level").size());
+                const int levelNumber = ParseIntOrDefault(suffix, 1);
+                const int levelIndex = ToAngryLevelIndex(levelNumber);
+                angryBestScoresByLevel[(size_t)levelIndex] = std::max(
+                    0,
+                    ParseIntOrDefault(value, angryBestScoresByLevel[(size_t)levelIndex])
+                );
             }
             else if (key == "angry_unlocked_levels")
             {
-                angryUnlockedLevelCount = std::clamp(ParseIntOrDefault(value, angryUnlockedLevelCount), 1, 2);
+                angryUnlockedLevelCount = std::clamp(ParseIntOrDefault(value, angryUnlockedLevelCount), 1, 4);
             }
             else if (key == "angry_current_scene")
             {
-                angryCurrentScene = std::clamp(ParseIntOrDefault(value, angryCurrentScene), 0, 2);
+                angryCurrentScene = std::clamp(ParseIntOrDefault(value, angryCurrentScene), 0, 4);
             }
         }
 
@@ -227,8 +263,8 @@ bool SaveData::LoadFromDisk()
     if (!loadLegacyKeyValue(legacyScoreFile) && !loadLegacyKeyValue(legacyScoresFile))
         return false;
 
-    angryUnlockedLevelCount = std::clamp(angryUnlockedLevelCount, 1, 2);
-    angryCurrentScene = std::clamp(angryCurrentScene, 0, 2);
+    angryUnlockedLevelCount = std::clamp(angryUnlockedLevelCount, 1, 4);
+    angryCurrentScene = std::clamp(angryCurrentScene, 0, 4);
 
     return true;
 }
@@ -244,7 +280,8 @@ bool SaveData::SaveToDisk() const
 
     nlohmann::json json;
     json["dino_best"] = dinoBestScore;
-    json["angry_best"] = angryBestScore;
+    json["angry_best_by_level"] = angryBestScoresByLevel;
+    json["angry_best"] = *std::max_element(angryBestScoresByLevel.begin(), angryBestScoresByLevel.end());
     json["angry_unlocked_levels"] = angryUnlockedLevelCount;
     json["angry_current_scene"] = angryCurrentScene;
 

@@ -1,5 +1,6 @@
 #include "AngryBalls/AngryBalls.h"
 
+#include "AngryBalls_LevelBase.h"
 #include "SceneManager.h"
 #include "save_data/SaveData.h"
 
@@ -42,7 +43,7 @@ AngryBalls::AngryBalls(SceneManager* manager)
 
 void AngryBalls::RefreshProgressFromSave()
 {
-    unlockedLevelCount = std::clamp(SaveData::Instance().GetAngryUnlockedLevelCount(), 1, 2);
+    unlockedLevelCount = std::clamp(SaveData::Instance().GetAngryUnlockedLevelCount(), 1, kAngryTotalLevels);
 }
 
 void AngryBalls::StartAngryScene(AngrySceneId targetScene)
@@ -61,11 +62,24 @@ void AngryBalls::StartAngryScene(AngrySceneId targetScene)
             return;
         targetSceneIndex = kAngryLevel2SceneIndex;
         break;
+    case AngrySceneId::Level3:
+        if (unlockedLevelCount < 3)
+            return;
+        targetSceneIndex = kAngryLevel3SceneIndex;
+        break;
+    case AngrySceneId::Level4:
+        if (unlockedLevelCount < 4)
+            return;
+        targetSceneIndex = kAngryLevel4SceneIndex;
+        break;
     case AngrySceneId::Menu:
     default:
         targetSceneIndex = 1;
         break;
     }
+
+    if (targetScene != AngrySceneId::Menu)
+        AngryBallsLevelBase::RequestResetForLevel((int)targetScene);
 
     SaveData::Instance().SetAngryCurrentScene((int)targetScene);
     sceneManager->LoadScene(targetSceneIndex);
@@ -100,13 +114,13 @@ void AngryBalls::Draw()
     DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, 0.25f));
 
     if (uiFont)
-        DrawTextEx(uiFont->value, "AngryBalls", { 26.0f, 20.0f }, 52.0f, 1.0f, WHITE);
+        DrawTextEx(uiFont->value, "Angry-Balls", { 26.0f, 20.0f }, 52.0f, 1.0f, WHITE);
     else
-        DrawText("AngryBalls", 26, 20, 52, WHITE);
+        DrawText("Angry-Balls", 26, 20, 52, WHITE);
 
     DrawText("Game Menu", 30, 82, 34, WHITE);
     DrawText("Select a level to play", 30, 118, 24, Color{ 240, 240, 240, 255 });
-    DrawText(TextFormat("Unlocked levels: %d/2", unlockedLevelCount), 30, 146, 24, Color{ 255, 232, 156, 255 });
+    DrawText(TextFormat("Unlocked levels: %d/%d", unlockedLevelCount, kAngryTotalLevels), 30, 146, 24, Color{ 255, 232, 156, 255 });
 
     const int currentSceneId = SaveData::Instance().GetAngryCurrentScene();
     const char* currentSceneLabel = "AngryBalls_Menu";
@@ -114,50 +128,75 @@ void AngryBalls::Draw()
         currentSceneLabel = "AngryBalls_Level1";
     else if (currentSceneId == (int)AngrySceneId::Level2)
         currentSceneLabel = "AngryBalls_Level2";
+    else if (currentSceneId == (int)AngrySceneId::Level3)
+        currentSceneLabel = "AngryBalls_Level3";
+    else if (currentSceneId == (int)AngrySceneId::Level4)
+        currentSceneLabel = "AngryBalls_Level4";
 
     DrawText(TextFormat("Current scene: %s", currentSceneLabel), 30, 174, 22, Color{ 239, 239, 239, 255 });
 
     const float buttonWidth = 280.0f;
-    const float buttonHeight = 64.0f;
-    const float buttonSpacing = 22.0f;
-    const float totalWidth = (buttonWidth * 2.0f) + buttonSpacing;
+    const float buttonHeight = 56.0f;
+    const float columnSpacing = 22.0f;
+    const float rowSpacing = 26.0f;
+    const float totalWidth = (buttonWidth * 2.0f) + columnSpacing;
     const float startX = ((float)GetScreenWidth() - totalWidth) * 0.5f;
-    const float y = (float)GetScreenHeight() * 0.55f;
+    const float startY = (float)GetScreenHeight() * 0.43f;
 
-    const Rectangle level1Button = { startX, y, buttonWidth, buttonHeight };
-    const Rectangle level2Button = { startX + buttonWidth + buttonSpacing, y, buttonWidth, buttonHeight };
-
-    if (GuiButton(level1Button, "AngryBalls_Level1"))
-        StartAngryScene(AngrySceneId::Level1);
-
-    if (unlockedLevelCount >= 2)
+    struct LevelButton
     {
-        if (GuiButton(level2Button, "AngryBalls_Level2"))
-            StartAngryScene(AngrySceneId::Level2);
-    }
-    else
-    {
-        DrawRectangleRounded(level2Button, 0.22f, 8, Fade(BLACK, 0.55f));
-        DrawRectangleRoundedLinesEx(level2Button, 0.22f, 8, 2.0f, Fade(WHITE, 0.45f));
+        AngrySceneId sceneId;
+        int levelNumber;
+        const char* label;
+    };
 
-        const char* label = "AngryBalls_Level2";
-        const int labelSize = 27;
-        const int labelW = MeasureText(label, labelSize);
+    const LevelButton buttons[] = {
+        { AngrySceneId::Level1, 1, "AngryBalls_Level1" },
+        { AngrySceneId::Level2, 2, "AngryBalls_Level2" },
+        { AngrySceneId::Level3, 3, "AngryBalls_Level3" },
+        { AngrySceneId::Level4, 4, "AngryBalls_Level4" }
+    };
+
+    for (int i = 0; i < 4; ++i)
+    {
+        const int column = i % 2;
+        const int row = i / 2;
+
+        const Rectangle buttonRect = {
+            startX + ((buttonWidth + columnSpacing) * (float)column),
+            startY + ((buttonHeight + rowSpacing) * (float)row),
+            buttonWidth,
+            buttonHeight
+        };
+
+        const LevelButton& entry = buttons[i];
+        if (unlockedLevelCount >= entry.levelNumber)
+        {
+            if (GuiButton(buttonRect, entry.label))
+                StartAngryScene(entry.sceneId);
+            continue;
+        }
+
+        DrawRectangleRounded(buttonRect, 0.22f, 8, Fade(BLACK, 0.55f));
+        DrawRectangleRoundedLinesEx(buttonRect, 0.22f, 8, 2.0f, Fade(WHITE, 0.45f));
+
+        const int labelSize = 24;
+        const int labelW = MeasureText(entry.label, labelSize);
         DrawText(
-            label,
-            (int)(level2Button.x + (level2Button.width - (float)labelW) * 0.5f),
-            (int)level2Button.y + 12,
+            entry.label,
+            (int)(buttonRect.x + (buttonRect.width - (float)labelW) * 0.5f),
+            (int)buttonRect.y + 10,
             labelSize,
             Fade(WHITE, 0.7f)
         );
 
-        const char* lockText = "Locked - clear Level1";
-        const int lockW = MeasureText(lockText, 20);
+        const char* lockText = TextFormat("Locked - clear Level%d", entry.levelNumber - 1);
+        const int lockW = MeasureText(lockText, 18);
         DrawText(
             lockText,
-            (int)(level2Button.x + (level2Button.width - (float)lockW) * 0.5f),
-            (int)(level2Button.y + level2Button.height + 8.0f),
-            20,
+            (int)(buttonRect.x + (buttonRect.width - (float)lockW) * 0.5f),
+            (int)(buttonRect.y + buttonRect.height + 6.0f),
+            18,
             Color{ 255, 210, 160, 255 }
         );
     }
@@ -165,5 +204,5 @@ void AngryBalls::Draw()
     if (GuiButton({ 20, (float)GetScreenHeight() - 52, 190, 34 }, "Back To Project Menu") && sceneManager)
         sceneManager->LoadScene(kProjectMainMenuSceneIndex);
 
-    DrawText("Level2 unlocks after Level1 is cleared. Progress is stored in save_data.json", 20, GetScreenHeight() - 82, 18, WHITE);
+    DrawText("Each cleared level unlocks the next one. Progress is stored in save_data.json", 20, GetScreenHeight() - 82, 18, WHITE);
 }

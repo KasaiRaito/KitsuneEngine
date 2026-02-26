@@ -20,6 +20,8 @@ public:
     void Update(float dt) override;
     void Draw() override;
 
+    static void RequestResetForLevel(int levelNumber);
+
 protected:
     virtual void BuildLevelLayout() = 0;
     virtual int GetBirdCount() const = 0;
@@ -117,4 +119,5 @@ private:
     void DrawTrajectoryPreview() const;
 
     static std::string ResolveAssetPath(const std::string& repoRelativePath);
+    static int pendingResetLevelNumber;
 };
