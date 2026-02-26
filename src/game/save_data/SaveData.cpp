@@ -48,7 +48,7 @@ SaveData& SaveData::Instance()
 
 SaveData::SaveData()
     : saveDirectory(ResolveSaveDirectory())
-    , saveFile(saveDirectory / "score.json")
+    , saveFile(saveDirectory / "save_data.json")
     , legacyScoreFile(saveDirectory / "score.txt")
     , legacyScoresFile(saveDirectory / "scores.txt")
 {

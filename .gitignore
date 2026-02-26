@@ -30,4 +30,4 @@
 *.exe
 *.out
 *.app
-save_data/score.json
+save_data/save_data.json
