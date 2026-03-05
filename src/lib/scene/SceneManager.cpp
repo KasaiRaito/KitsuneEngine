@@ -2,6 +2,16 @@
 
 SceneManager::SceneManager() = default;
 
+SceneManager::~SceneManager()
+{
+    for (size_t i = 0; i < scenes.Size(); ++i)
+    {
+        SceneInfo& sceneInfo = scenes[i];
+        delete sceneInfo.scene;
+        sceneInfo.scene = nullptr;
+    }
+}
+
 void SceneManager::AddScene(const SceneInfo& scene)
 {
     scenes.Add(scene);
@@ -52,3 +62,12 @@ void SceneManager::NextScene()
     LoadScene(next);
 }
 
+void SceneManager::RequestQuit()
+{
+    quitRequested = true;
+}
+
+bool SceneManager::IsQuitRequested() const
+{
+    return quitRequested;
+}

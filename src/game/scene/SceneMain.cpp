@@ -377,15 +377,16 @@ void SceneMain::Draw()
     const float buttonX = (float)GetScreenWidth() - buttonWidth - buttonRightMargin;
     const Vector2 mouse = GetMousePosition();
 
-    const std::array<const char*, 4> labels = {
+    const std::array<const char*, 5> labels = {
         "Play Angry Balls",
         "Play Dino Jump",
         "Play Space Invaders",
-        "Play Where Is My Water"
+        "Play Where Is My Water",
+        "Quit Game"
     };
     const std::array<int, 4> sceneIndexes = { 1, 2, 7, 8 };
 
-    std::array<Rectangle, 4> probeRects{};
+    std::array<Rectangle, 5> probeRects{};
     {
         const float baseTotalHeight = (buttonHeight * (float)probeRects.size()) + (buttonSpacing * ((float)probeRects.size() - 1.0f));
         float y = ((float)GetScreenHeight() - baseTotalHeight) * 0.5f;
@@ -411,7 +412,7 @@ void SceneMain::Draw()
         totalStackHeight += ((int)i == hoveredButton) ? buttonHeightHovered : buttonHeight;
     const float startY = ((float)GetScreenHeight() - totalStackHeight) * 0.5f;
 
-    std::array<Rectangle, 4> buttonRects{};
+    std::array<Rectangle, 5> buttonRects{};
     {
         float y = startY;
         for (size_t i = 0; i < buttonRects.size(); ++i)
@@ -445,8 +446,13 @@ void SceneMain::Draw()
 
     for (size_t i = 0; i < buttonRects.size(); ++i)
     {
-        if (GuiButton(buttonRects[i], labels[i]) && sceneManager)
+        if (!GuiButton(buttonRects[i], labels[i]) || !sceneManager)
+            continue;
+
+        if (i < sceneIndexes.size())
             sceneManager->LoadScene(sceneIndexes[i]);
+        else
+            sceneManager->RequestQuit();
     }
 
     // Draw objects
