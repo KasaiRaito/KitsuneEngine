@@ -55,6 +55,20 @@ add_executable(KitsuneEngine
         src/game/scene/AngryBalls/AngryBalls_Level3.h
         src/game/scene/AngryBalls/AngryBalls_Level4.cpp
         src/game/scene/AngryBalls/AngryBalls_Level4.h
+        src/game/scene/SpaceInvaders/SpaceInvaders.cpp
+        src/game/scene/SpaceInvaders/SpaceInvaders.h
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater.cpp
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater.h
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_LevelBase.cpp
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_LevelBase.h
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level1.cpp
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level1.h
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level2.cpp
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level2.h
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level3.cpp
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level3.h
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level4.cpp
+        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level4.h
 )
 
 # -----------------------------

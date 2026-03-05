@@ -10,6 +10,7 @@
 namespace
 {
     static constexpr int kAngryLevelCount = 4;
+    static constexpr int kWaterLevelCount = 4;
 
     static std::string Trim(const std::string& value)
     {
@@ -44,6 +45,11 @@ namespace
     static int ToAngryLevelIndex(int levelNumber)
     {
         return std::clamp(levelNumber, 1, kAngryLevelCount) - 1;
+    }
+
+    static int ToWaterLevelIndex(int levelNumber)
+    {
+        return std::clamp(levelNumber, 1, kWaterLevelCount) - 1;
     }
 }
 
@@ -85,6 +91,24 @@ int SaveData::GetAngryCurrentScene()
     return angryCurrentScene;
 }
 
+int SaveData::GetWaterBestScore(int levelNumber)
+{
+    EnsureLoaded();
+    return waterBestScoresByLevel[ToWaterLevelIndex(levelNumber)];
+}
+
+int SaveData::GetWaterUnlockedLevelCount()
+{
+    EnsureLoaded();
+    return waterUnlockedLevelCount;
+}
+
+int SaveData::GetWaterCurrentLevel()
+{
+    EnsureLoaded();
+    return waterCurrentLevel;
+}
+
 void SaveData::SetDinoBestScore(int score)
 {
     EnsureLoaded();
@@ -115,7 +139,7 @@ void SaveData::SetAngryUnlockedLevelCount(int unlockedLevelCount)
 {
     EnsureLoaded();
 
-    const int clamped = std::clamp(unlockedLevelCount, 1, 4);
+    const int clamped = std::clamp(unlockedLevelCount, 1, kAngryLevelCount);
     if (clamped <= angryUnlockedLevelCount)
         return;
 
@@ -127,11 +151,50 @@ void SaveData::SetAngryCurrentScene(int sceneId)
 {
     EnsureLoaded();
 
-    const int clamped = std::clamp(sceneId, 0, 4);
+    const int clamped = std::clamp(sceneId, 0, kAngryLevelCount);
     if (clamped == angryCurrentScene)
         return;
 
     angryCurrentScene = clamped;
+    SaveToDisk();
+}
+
+void SaveData::SetWaterBestScore(int levelNumber, int score)
+{
+    EnsureLoaded();
+
+    if (score < 0)
+        return;
+
+    const int levelIndex = ToWaterLevelIndex(levelNumber);
+    if (score <= waterBestScoresByLevel[levelIndex])
+        return;
+
+    waterBestScoresByLevel[levelIndex] = score;
+    SaveToDisk();
+}
+
+void SaveData::SetWaterUnlockedLevelCount(int unlockedLevelCount)
+{
+    EnsureLoaded();
+
+    const int clamped = std::clamp(unlockedLevelCount, 1, kWaterLevelCount);
+    if (clamped <= waterUnlockedLevelCount)
+        return;
+
+    waterUnlockedLevelCount = clamped;
+    SaveToDisk();
+}
+
+void SaveData::SetWaterCurrentLevel(int levelNumber)
+{
+    EnsureLoaded();
+
+    const int clamped = std::clamp(levelNumber, 1, kWaterLevelCount);
+    if (clamped == waterCurrentLevel)
+        return;
+
+    waterCurrentLevel = clamped;
     SaveToDisk();
 }
 
@@ -197,8 +260,27 @@ bool SaveData::LoadFromDisk()
                     // Backward compatibility with single angry_best key from older save versions.
                     angryBestScoresByLevel[0] = std::max(0, json.value("angry_best", angryBestScoresByLevel[0]));
                 }
-                angryUnlockedLevelCount = std::clamp(json.value("angry_unlocked_levels", angryUnlockedLevelCount), 1, 4);
-                angryCurrentScene = std::clamp(json.value("angry_current_scene", angryCurrentScene), 0, 4);
+                angryUnlockedLevelCount = std::clamp(json.value("angry_unlocked_levels", angryUnlockedLevelCount), 1, kAngryLevelCount);
+                angryCurrentScene = std::clamp(json.value("angry_current_scene", angryCurrentScene), 0, kAngryLevelCount);
+
+                if (json.contains("water_best_by_level") && json["water_best_by_level"].is_array())
+                {
+                    const auto& levelScores = json["water_best_by_level"];
+                    for (int i = 0; i < kWaterLevelCount; ++i)
+                    {
+                        if (i >= (int)levelScores.size() || !levelScores[(size_t)i].is_number_integer())
+                            continue;
+
+                        waterBestScoresByLevel[(size_t)i] = std::max(0, levelScores[(size_t)i].get<int>());
+                    }
+                }
+                else
+                {
+                    // Backward compatibility with single water_best key from older save versions.
+                    waterBestScoresByLevel[0] = std::max(0, json.value("water_best", waterBestScoresByLevel[0]));
+                }
+                waterUnlockedLevelCount = std::clamp(json.value("water_unlocked_levels", waterUnlockedLevelCount), 1, kWaterLevelCount);
+                waterCurrentLevel = std::clamp(json.value("water_current_level", waterCurrentLevel), 1, kWaterLevelCount);
 
                 return true;
             }
@@ -249,11 +331,33 @@ bool SaveData::LoadFromDisk()
             }
             else if (key == "angry_unlocked_levels")
             {
-                angryUnlockedLevelCount = std::clamp(ParseIntOrDefault(value, angryUnlockedLevelCount), 1, 4);
+                angryUnlockedLevelCount = std::clamp(ParseIntOrDefault(value, angryUnlockedLevelCount), 1, kAngryLevelCount);
             }
             else if (key == "angry_current_scene")
             {
-                angryCurrentScene = std::clamp(ParseIntOrDefault(value, angryCurrentScene), 0, 4);
+                angryCurrentScene = std::clamp(ParseIntOrDefault(value, angryCurrentScene), 0, kAngryLevelCount);
+            }
+            else if (key == "water_best")
+            {
+                waterBestScoresByLevel[0] = std::max(0, ParseIntOrDefault(value, waterBestScoresByLevel[0]));
+            }
+            else if (key.rfind("water_best_level", 0) == 0)
+            {
+                const std::string suffix = key.substr(std::string("water_best_level").size());
+                const int levelNumber = ParseIntOrDefault(suffix, 1);
+                const int levelIndex = ToWaterLevelIndex(levelNumber);
+                waterBestScoresByLevel[(size_t)levelIndex] = std::max(
+                    0,
+                    ParseIntOrDefault(value, waterBestScoresByLevel[(size_t)levelIndex])
+                );
+            }
+            else if (key == "water_unlocked_levels")
+            {
+                waterUnlockedLevelCount = std::clamp(ParseIntOrDefault(value, waterUnlockedLevelCount), 1, kWaterLevelCount);
+            }
+            else if (key == "water_current_level")
+            {
+                waterCurrentLevel = std::clamp(ParseIntOrDefault(value, waterCurrentLevel), 1, kWaterLevelCount);
             }
         }
 
@@ -263,8 +367,10 @@ bool SaveData::LoadFromDisk()
     if (!loadLegacyKeyValue(legacyScoreFile) && !loadLegacyKeyValue(legacyScoresFile))
         return false;
 
-    angryUnlockedLevelCount = std::clamp(angryUnlockedLevelCount, 1, 4);
-    angryCurrentScene = std::clamp(angryCurrentScene, 0, 4);
+    angryUnlockedLevelCount = std::clamp(angryUnlockedLevelCount, 1, kAngryLevelCount);
+    angryCurrentScene = std::clamp(angryCurrentScene, 0, kAngryLevelCount);
+    waterUnlockedLevelCount = std::clamp(waterUnlockedLevelCount, 1, kWaterLevelCount);
+    waterCurrentLevel = std::clamp(waterCurrentLevel, 1, kWaterLevelCount);
 
     return true;
 }
@@ -284,6 +390,10 @@ bool SaveData::SaveToDisk() const
     json["angry_best"] = *std::max_element(angryBestScoresByLevel.begin(), angryBestScoresByLevel.end());
     json["angry_unlocked_levels"] = angryUnlockedLevelCount;
     json["angry_current_scene"] = angryCurrentScene;
+    json["water_best_by_level"] = waterBestScoresByLevel;
+    json["water_best"] = *std::max_element(waterBestScoresByLevel.begin(), waterBestScoresByLevel.end());
+    json["water_unlocked_levels"] = waterUnlockedLevelCount;
+    json["water_current_level"] = waterCurrentLevel;
 
     output << json.dump(4) << "\n";
 
