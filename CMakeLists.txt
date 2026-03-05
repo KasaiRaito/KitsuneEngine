@@ -55,6 +55,8 @@ add_executable(KitsuneEngine
         src/game/scene/AngryBalls/AngryBalls_Level3.h
         src/game/scene/AngryBalls/AngryBalls_Level4.cpp
         src/game/scene/AngryBalls/AngryBalls_Level4.h
+        src/game/scene/SpaceInvaders/SpaceInvaders.cpp
+        src/game/scene/SpaceInvaders/SpaceInvaders.h
 )
 
 # -----------------------------

@@ -214,6 +214,9 @@ SceneMain::SceneMain(SceneManager* manager)
 
     angryPreviewFrames = LoadPreviewFrames("src/game/assets/previews/angryballs");
     dinoPreviewFrames = LoadPreviewFrames("src/game/assets/previews/dinojump");
+    spacePreviewFrames = LoadPreviewFrames("src/game/assets/previews/space_invaders");
+    if (spacePreviewFrames.empty())
+        spacePreviewFrames = LoadPreviewFrames("src/game/assets/previews/spaceinvaders");
 }
 
 SceneMain::~SceneMain()
@@ -369,12 +372,12 @@ void SceneMain::Draw()
     const float buttonX = (float)GetScreenWidth() - buttonWidth - buttonRightMargin;
     const Vector2 mouse = GetMousePosition();
 
-    const std::array<const char*, 2> labels = { "Play Angry Balls", "Play Dino Jump" };
-    const std::array<int, 2> sceneIndexes = { 1, 2 };
+    const std::array<const char*, 3> labels = { "Play Angry Balls", "Play Dino Jump", "Play Space Invaders" };
+    const std::array<int, 3> sceneIndexes = { 1, 2, 7 };
 
-    std::array<Rectangle, 2> probeRects{};
+    std::array<Rectangle, 3> probeRects{};
     {
-        const float baseTotalHeight = (buttonHeight * 2.0f) + buttonSpacing;
+        const float baseTotalHeight = (buttonHeight * (float)probeRects.size()) + (buttonSpacing * ((float)probeRects.size() - 1.0f));
         float y = ((float)GetScreenHeight() - baseTotalHeight) * 0.5f;
         for (size_t i = 0; i < probeRects.size(); ++i)
         {
@@ -393,13 +396,12 @@ void SceneMain::Draw()
         }
     }
 
-    const float totalStackHeight =
-        ((hoveredButton == 0) ? buttonHeightHovered : buttonHeight) +
-        ((hoveredButton == 1) ? buttonHeightHovered : buttonHeight) +
-        buttonSpacing;
+    float totalStackHeight = buttonSpacing * ((float)probeRects.size() - 1.0f);
+    for (size_t i = 0; i < probeRects.size(); ++i)
+        totalStackHeight += ((int)i == hoveredButton) ? buttonHeightHovered : buttonHeight;
     const float startY = ((float)GetScreenHeight() - totalStackHeight) * 0.5f;
 
-    std::array<Rectangle, 2> buttonRects{};
+    std::array<Rectangle, 3> buttonRects{};
     {
         float y = startY;
         for (size_t i = 0; i < buttonRects.size(); ++i)
@@ -419,6 +421,11 @@ void SceneMain::Draw()
     {
         const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
         DrawPreviewPanel(panel, dinoPreviewFrames, "Dino Jump", "Add frames or mp4: assets/previews/dinojump");
+    }
+    else if (hoveredButton == 2)
+    {
+        const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
+        DrawPreviewPanel(panel, spacePreviewFrames, "Space Invaders", "Add frames or mp4: assets/previews/space_invaders");
     }
 
     for (size_t i = 0; i < buttonRects.size(); ++i)
