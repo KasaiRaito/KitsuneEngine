@@ -44,7 +44,7 @@ int main()
     sceneManager.AddScene(SceneInfo(new WhereIsMyWater_Level4(&sceneManager), "where_is_my_water_level4", 12));
     sceneManager.LoadScene(0);
 
-    while (!WindowShouldClose())
+    while (!WindowShouldClose() && !sceneManager.IsQuitRequested())
     {
         float dt = GetFrameTime();
 

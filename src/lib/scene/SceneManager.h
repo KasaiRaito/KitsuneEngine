@@ -30,6 +30,12 @@ class SceneManager
 {
 public:
     SceneManager();
+    ~SceneManager();
+
+    SceneManager(const SceneManager&) = delete;
+    SceneManager& operator=(const SceneManager&) = delete;
+    SceneManager(SceneManager&&) = delete;
+    SceneManager& operator=(SceneManager&&) = delete;
 
     void AddScene(const SceneInfo& scene);
 
@@ -40,10 +46,13 @@ public:
     void LoadScene(int index);
 
     void NextScene();
+    void RequestQuit();
+    bool IsQuitRequested() const;
 
 private:
     List<SceneInfo> scenes;
     int currentSceneIndex = -1;
+    bool quitRequested = false;
 };
 
 
