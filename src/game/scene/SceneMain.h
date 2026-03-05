@@ -16,11 +16,16 @@ class SceneManager;
 class SceneMain : public SceneBase
 {
 public:
-    explicit SceneMain(SceneManager* manager);
+    explicit SceneMain(SceneManager* manager, bool preloadPreviewFrames = true);
     ~SceneMain() override;
 
     void Update(float dt) override;
     void Draw() override;
+
+    void PreloadAngryPreviewFrames();
+    void PreloadDinoPreviewFrames();
+    void PreloadSpacePreviewFrames();
+    void PreloadWaterPreviewFrames();
 
     List<Object*> objects;
 
@@ -32,6 +37,10 @@ private:
     std::vector<std::shared_ptr<ResourceManager::TextureResource>> dinoPreviewFrames;
     std::vector<std::shared_ptr<ResourceManager::TextureResource>> spacePreviewFrames;
     std::vector<std::shared_ptr<ResourceManager::TextureResource>> waterPreviewFrames;
+    bool angryPreviewLoadAttempted = false;
+    bool dinoPreviewLoadAttempted = false;
+    bool spacePreviewLoadAttempted = false;
+    bool waterPreviewLoadAttempted = false;
     float previewFps = 14.0f;
 
     std::vector<std::shared_ptr<ResourceManager::TextureResource>> LoadPreviewFrames(const std::string& repoRelativeDirectory);

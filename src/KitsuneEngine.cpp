@@ -146,7 +146,7 @@ namespace
         }
 
         const char* hintText = finished
-            ? "Press \"Space\" or \"Enter\" to continue."
+            ? "Startup complete. Opening main menu..."
             : "Please wait, loading game data...";
         const int hintWidth = MeasureText(hintText, 20);
         DrawText(hintText, (screenW - hintWidth) / 2, screenH - 28, 20, Color{ 196, 205, 216, 255 });
@@ -165,7 +165,8 @@ int main()
     SceneManager sceneManager;
     using LoadingStep = std::pair<std::string, std::function<void()>>;
     std::vector<LoadingStep> loadingSteps;
-    loadingSteps.reserve(23);
+    loadingSteps.reserve(27);
+    SceneMain* mainScene = nullptr;
 
     auto AddLoadingStep = [&loadingSteps](std::string label, std::function<void()> step)
     {
@@ -174,7 +175,28 @@ int main()
 
     AddLoadingStep("Main menu scene", [&]()
     {
-        sceneManager.AddScene(SceneInfo(new SceneMain(&sceneManager), "main", 0));
+        mainScene = new SceneMain(&sceneManager, false);
+        sceneManager.AddScene(SceneInfo(mainScene, "main", 0));
+    });
+    AddLoadingStep("Main menu preview cache: Angry Balls", [&]()
+    {
+        if (mainScene)
+            mainScene->PreloadAngryPreviewFrames();
+    });
+    AddLoadingStep("Main menu preview cache: Dino Jump", [&]()
+    {
+        if (mainScene)
+            mainScene->PreloadDinoPreviewFrames();
+    });
+    AddLoadingStep("Main menu preview cache: Space Invaders", [&]()
+    {
+        if (mainScene)
+            mainScene->PreloadSpacePreviewFrames();
+    });
+    AddLoadingStep("Main menu preview cache: Where Is My Water", [&]()
+    {
+        if (mainScene)
+            mainScene->PreloadWaterPreviewFrames();
     });
     AddLoadingStep("Angry Balls menu scene", [&]()
     {
@@ -407,10 +429,16 @@ int main()
 
     size_t completedSteps = 0;
     captureStartupLogs = true;
+    float finishedElapsedSeconds = 0.0f;
+    constexpr float kAutoContinueDelaySeconds = 0.35f;
 
     while (!WindowShouldClose())
     {
+        const float dt = GetFrameTime();
         const bool finished = completedSteps >= loadingSteps.size();
+        if (finished)
+            finishedElapsedSeconds += dt;
+
         std::string currentStep = finished
             ? "All startup tasks finished"
             : loadingSteps[completedSteps].first;
@@ -419,7 +447,7 @@ int main()
         DrawStartupLoader(completedSteps, loadingSteps.size(), currentStep);
         EndDrawing();
 
-        if (finished && (IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_ENTER)))
+        if (finished && finishedElapsedSeconds >= kAutoContinueDelaySeconds)
             break;
 
         if (!finished)
