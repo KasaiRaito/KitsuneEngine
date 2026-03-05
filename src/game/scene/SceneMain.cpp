@@ -384,7 +384,7 @@ void SceneMain::Draw()
         "Play Where Is My Water",
         "Quit Game"
     };
-    const std::array<int, 4> sceneIndexes = { 1, 2, 7, 8 };
+    const std::array<int, 4> sceneIndexes = { 1, 13, 14, 8 };
 
     std::array<Rectangle, 5> probeRects{};
     {

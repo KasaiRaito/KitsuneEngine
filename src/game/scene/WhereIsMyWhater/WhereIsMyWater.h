@@ -26,10 +26,10 @@ public:
 
 private:
     static constexpr int kProjectMainMenuSceneIndex = 0;
-    static constexpr int kWaterLevel1SceneIndex = 9;
-    static constexpr int kWaterLevel2SceneIndex = 10;
-    static constexpr int kWaterLevel3SceneIndex = 11;
-    static constexpr int kWaterLevel4SceneIndex = 12;
+    static constexpr int kWaterLevel1LoadingSceneIndex = 19;
+    static constexpr int kWaterLevel2LoadingSceneIndex = 20;
+    static constexpr int kWaterLevel3LoadingSceneIndex = 21;
+    static constexpr int kWaterLevel4LoadingSceneIndex = 22;
     static constexpr int kWaterTotalLevels = 4;
 
     SceneManager* sceneManager = nullptr;

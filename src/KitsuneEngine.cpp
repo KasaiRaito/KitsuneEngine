@@ -2,6 +2,7 @@
 #include "Debug.h"
 #include "SceneManager.h"
 #include "SceneMain.h"
+#include "game/scene/GameLoadingScene.h"
 #include "game/scene/AngryBalls/AngryBalls.h"
 #include "game/scene/AngryBalls/AngryBalls_Level1.h"
 #include "game/scene/AngryBalls/AngryBalls_Level2.h"
@@ -42,6 +43,157 @@ int main()
     sceneManager.AddScene(SceneInfo(new WhereIsMyWater_Level2(&sceneManager), "where_is_my_water_level2", 10));
     sceneManager.AddScene(SceneInfo(new WhereIsMyWater_Level3(&sceneManager), "where_is_my_water_level3", 11));
     sceneManager.AddScene(SceneInfo(new WhereIsMyWater_Level4(&sceneManager), "where_is_my_water_level4", 12));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            2,
+            "Dino Jump",
+            {
+                "Space / Up / W: jump (hold for higher jump)",
+                "R: restart after game over",
+                "Avoid cacti and birds"
+            }
+        ),
+        "loading_dinojump",
+        13
+    ));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            7,
+            "Space Invaders",
+            {
+                "A/D or Left/Right: move",
+                "Space / Up / W: shoot",
+                "R or Enter: restart after game over"
+            }
+        ),
+        "loading_space_invaders",
+        14
+    ));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            3,
+            "Angry Balls - Level 1",
+            {
+                "Click and drag bird from slingshot",
+                "Release mouse to launch",
+                "R: restart level, ESC: back to level menu"
+            }
+        ),
+        "loading_angryballs_level1",
+        15
+    ));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            4,
+            "Angry Balls - Level 2",
+            {
+                "Click and drag bird from slingshot",
+                "Release mouse to launch",
+                "R: restart level, ESC: back to level menu"
+            }
+        ),
+        "loading_angryballs_level2",
+        16
+    ));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            5,
+            "Angry Balls - Level 3",
+            {
+                "Click and drag bird from slingshot",
+                "Release mouse to launch",
+                "R: restart level, ESC: back to level menu"
+            }
+        ),
+        "loading_angryballs_level3",
+        17
+    ));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            6,
+            "Angry Balls - Level 4",
+            {
+                "Click and drag bird from slingshot",
+                "Release mouse to launch",
+                "R: restart level, ESC: back to level menu"
+            }
+        ),
+        "loading_angryballs_level4",
+        18
+    ));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            9,
+            "Where Is My Water? - Level 1",
+            {
+                "Left Mouse: dig through dirt",
+                "Any key: start water flow",
+                "R: restart, ESC/L: level select"
+            }
+        ),
+        "loading_where_is_my_water_level1",
+        19
+    ));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            10,
+            "Where Is My Water? - Level 2",
+            {
+                "Left Mouse: dig through dirt",
+                "Any key: start water flow",
+                "R: restart, ESC/L: level select"
+            }
+        ),
+        "loading_where_is_my_water_level2",
+        20
+    ));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            11,
+            "Where Is My Water? - Level 3",
+            {
+                "Left Mouse: dig through dirt",
+                "Any key: start water flow",
+                "R: restart, ESC/L: level select"
+            }
+        ),
+        "loading_where_is_my_water_level3",
+        21
+    ));
+
+    sceneManager.AddScene(SceneInfo(
+        new GameLoadingScene(
+            &sceneManager,
+            12,
+            "Where Is My Water? - Level 4",
+            {
+                "Left Mouse: dig through dirt",
+                "Any key: start water flow",
+                "R: restart, ESC/L: level select"
+            }
+        ),
+        "loading_where_is_my_water_level4",
+        22
+    ));
+
     sceneManager.LoadScene(0);
 
     while (!WindowShouldClose() && !sceneManager.IsQuitRequested())

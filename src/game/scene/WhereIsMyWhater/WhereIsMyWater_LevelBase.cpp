@@ -446,7 +446,7 @@ void WhereIsMyWaterLevelBase::DigAt(const Vector2& position, int radiusInCells)
 
 void WhereIsMyWaterLevelBase::HandleDigInput()
 {
-    if (!started || won || failed)
+    if (won || failed)
         return;
 
     const Vector2 mouse = GetMousePosition();
@@ -773,7 +773,7 @@ void WhereIsMyWaterLevelBase::DrawDigPreview() const
     if (!IsInsideGrid(centerCol, centerRow))
         return;
 
-    const bool canDigNow = started && !won && !failed;
+    const bool canDigNow = !won && !failed;
     const Color diggableFill = canDigNow
         ? Color{ 93, 220, 135, 95 }
         : Color{ 165, 181, 205, 70 };
@@ -882,13 +882,6 @@ void WhereIsMyWaterLevelBase::DrawHud()
     DrawText(TextFormat("SUPPLY LEFT: %d", std::max(0, maxSpawnedDrops - spawnedDrops)), 280, 78, 24, Color{ 255, 238, 179, 255 });
 
     DrawText("Left Mouse: Dig dirt | R: Restart | ESC/L: Level Select", 20, GetScreenHeight() - 22, 20, Fade(RAYWHITE, 0.82f));
-
-    if (!started)
-    {
-        DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, 0.36f));
-        DrawText("PRESS A KEY TO START WATER FLOW", 142, 136, 36, RAYWHITE);
-        DrawText("After start: Left Mouse to dig", 248, 183, 26, SKYBLUE);
-    }
 
     if (won)
     {

@@ -17,5 +17,5 @@ const char* WhereIsMyWater_Level2::GetLevelTitle() const
 
 int WhereIsMyWater_Level2::GetNextLevelSceneIndex() const
 {
-    return 11;
+    return 21;
 }

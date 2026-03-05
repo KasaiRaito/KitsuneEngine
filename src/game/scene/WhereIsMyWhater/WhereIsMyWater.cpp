@@ -58,15 +58,15 @@ void WhereIsMyWater::StartWaterScene(int levelNumber)
 
     SaveData::Instance().SetWaterCurrentLevel(clampedLevel);
 
-    int sceneIndex = kWaterLevel1SceneIndex;
+    int loadingSceneIndex = kWaterLevel1LoadingSceneIndex;
     if (clampedLevel == 2)
-        sceneIndex = kWaterLevel2SceneIndex;
+        loadingSceneIndex = kWaterLevel2LoadingSceneIndex;
     else if (clampedLevel == 3)
-        sceneIndex = kWaterLevel3SceneIndex;
+        loadingSceneIndex = kWaterLevel3LoadingSceneIndex;
     else if (clampedLevel == 4)
-        sceneIndex = kWaterLevel4SceneIndex;
+        loadingSceneIndex = kWaterLevel4LoadingSceneIndex;
 
-    sceneManager->LoadScene(sceneIndex);
+    sceneManager->LoadScene(loadingSceneIndex);
 }
 
 void WhereIsMyWater::Update(float dt)
