@@ -32,7 +32,7 @@ private:
 
     void EnsureLoaded();
     bool LoadFromDisk();
-    bool SaveToDisk() const;
+    [[nodiscard]] bool SaveToDisk() const;
 
     static std::filesystem::path ResolveSaveDirectory();
 

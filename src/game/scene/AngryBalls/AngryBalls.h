@@ -39,6 +39,10 @@ private:
     static constexpr int kAngryLevel2SceneIndex = 4;
     static constexpr int kAngryLevel3SceneIndex = 5;
     static constexpr int kAngryLevel4SceneIndex = 6;
+    static constexpr int kAngryLevel1LoadingSceneIndex = 15;
+    static constexpr int kAngryLevel2LoadingSceneIndex = 16;
+    static constexpr int kAngryLevel3LoadingSceneIndex = 17;
+    static constexpr int kAngryLevel4LoadingSceneIndex = 18;
     static constexpr int kAngryTotalLevels = 4;
 
     SceneManager* sceneManager = nullptr;

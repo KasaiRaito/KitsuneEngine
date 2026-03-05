@@ -1,6 +1,7 @@
 #include "WhereIsMyWater_LevelBase.h"
 
 #include "CollisionSystem2D.h"
+#include "InputSystem.h"
 #include "SceneManager.h"
 #include "save_data/SaveData.h"
 
@@ -446,14 +447,14 @@ void WhereIsMyWaterLevelBase::DigAt(const Vector2& position, int radiusInCells)
 
 void WhereIsMyWaterLevelBase::HandleDigInput()
 {
-    if (!started || won || failed)
+    if (won || failed)
         return;
 
-    const Vector2 mouse = GetMousePosition();
+    const Vector2 mouse = InputSystem::GetMousePosition();
     if (!IsPointInPlayArea(mouse))
         return;
 
-    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+    if (InputSystem::IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         DigAt(mouse, digRadiusCells);
 }
 
@@ -474,13 +475,15 @@ bool WhereIsMyWaterLevelBase::IsDropInTub(const WaterDrop& drop) const
 
 bool WhereIsMyWaterLevelBase::IsStartKeyPressed() const
 {
-    return IsKeyPressed(KEY_SPACE)
-        || IsKeyPressed(KEY_LEFT)
-        || IsKeyPressed(KEY_RIGHT)
-        || IsKeyPressed(KEY_UP)
-        || IsKeyPressed(KEY_A)
-        || IsKeyPressed(KEY_D)
-        || IsKeyPressed(KEY_W);
+    return InputSystem::IsAnyKeyPressed({
+        KEY_SPACE,
+        KEY_LEFT,
+        KEY_RIGHT,
+        KEY_UP,
+        KEY_A,
+        KEY_D,
+        KEY_W
+    });
 }
 
 void WhereIsMyWaterLevelBase::SpawnWater(float dt)
@@ -678,14 +681,14 @@ void WhereIsMyWaterLevelBase::Update(float dt)
     if (dt <= 0.0f)
         return;
 
-    if (IsKeyPressed(KEY_ESCAPE))
+    if (InputSystem::IsKeyPressed(KEY_ESCAPE))
     {
         if (sceneManager)
             sceneManager->LoadScene(kWaterMenuSceneIndex);
         return;
     }
 
-    if (IsKeyPressed(KEY_R))
+    if (InputSystem::IsKeyPressed(KEY_R))
     {
         ResetLevel();
         return;
@@ -703,7 +706,7 @@ void WhereIsMyWaterLevelBase::Update(float dt)
     {
         PersistLevelCompletion();
 
-        if ((IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_N))
+        if (InputSystem::IsAnyKeyPressed({ KEY_ENTER, KEY_N })
             && GetLevelNumber() < unlockedLevelCount
             && GetLevelNumber() < kTotalLevels
             && sceneManager
@@ -714,14 +717,14 @@ void WhereIsMyWaterLevelBase::Update(float dt)
             return;
         }
 
-        if (IsKeyPressed(KEY_L) && sceneManager)
+        if (InputSystem::IsKeyPressed(KEY_L) && sceneManager)
             sceneManager->LoadScene(kWaterMenuSceneIndex);
         return;
     }
 
     if (failed)
     {
-        if (IsKeyPressed(KEY_L) && sceneManager)
+        if (InputSystem::IsKeyPressed(KEY_L) && sceneManager)
             sceneManager->LoadScene(kWaterMenuSceneIndex);
         return;
     }
@@ -764,7 +767,7 @@ void WhereIsMyWaterLevelBase::DrawGridAndTerrain() const
 
 void WhereIsMyWaterLevelBase::DrawDigPreview() const
 {
-    const Vector2 mouse = GetMousePosition();
+    const Vector2 mouse = InputSystem::GetMousePosition();
     if (!IsPointInPlayArea(mouse))
         return;
 
@@ -773,7 +776,7 @@ void WhereIsMyWaterLevelBase::DrawDigPreview() const
     if (!IsInsideGrid(centerCol, centerRow))
         return;
 
-    const bool canDigNow = started && !won && !failed;
+    const bool canDigNow = !won && !failed;
     const Color diggableFill = canDigNow
         ? Color{ 93, 220, 135, 95 }
         : Color{ 165, 181, 205, 70 };
@@ -882,13 +885,6 @@ void WhereIsMyWaterLevelBase::DrawHud()
     DrawText(TextFormat("SUPPLY LEFT: %d", std::max(0, maxSpawnedDrops - spawnedDrops)), 280, 78, 24, Color{ 255, 238, 179, 255 });
 
     DrawText("Left Mouse: Dig dirt | R: Restart | ESC/L: Level Select", 20, GetScreenHeight() - 22, 20, Fade(RAYWHITE, 0.82f));
-
-    if (!started)
-    {
-        DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(BLACK, 0.36f));
-        DrawText("PRESS A KEY TO START WATER FLOW", 142, 136, 36, RAYWHITE);
-        DrawText("After start: Left Mouse to dig", 248, 183, 26, SKYBLUE);
-    }
 
     if (won)
     {

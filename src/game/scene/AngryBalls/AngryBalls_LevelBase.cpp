@@ -4,6 +4,7 @@
 #include "ColliderComponent2D.h"
 #include "CollisionSystem2D.h"
 #include "Debug.h"
+#include "InputSystem.h"
 #include "SceneManager.h"
 #include "SquareCollider2D.h"
 #include "physics_system/PhysicsComponent.h"
@@ -542,16 +543,16 @@ void AngryBallsLevelBase::HandleBirdDragAndLaunch()
     if (auto it = visuals.find(activeBird); it != visuals.end())
         pickupRadius = it->second.radius + 8.0f;
 
-    const Vector2D mouse = ToEngineVector(GetMousePosition());
+    const Vector2D mouse = ToEngineVector(InputSystem::GetMousePosition());
     const float distanceToBird = (mouse - activeBird->transform.location.value).Length();
 
-    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON) && distanceToBird <= pickupRadius)
+    if (InputSystem::IsMouseButtonDown(MOUSE_LEFT_BUTTON) && distanceToBird <= pickupRadius)
         isDraggingBird = true;
 
     if (!isDraggingBird)
         return;
 
-    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+    if (InputSystem::IsMouseButtonDown(MOUSE_LEFT_BUTTON))
     {
         Vector2D stretch = mouse - slingAnchor;
         stretch = ClampLength(stretch, slingMaxStretch);
@@ -561,7 +562,7 @@ void AngryBallsLevelBase::HandleBirdDragAndLaunch()
         return;
     }
 
-    if (!IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+    if (!InputSystem::IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
         return;
 
     isDraggingBird = false;
@@ -896,7 +897,7 @@ void AngryBallsLevelBase::Update(float dt)
         return;
     }
 
-    if (IsKeyPressed(KEY_ESCAPE))
+    if (InputSystem::IsKeyPressed(KEY_ESCAPE))
     {
         SaveData::Instance().SetAngryCurrentScene(0);
         if (sceneManager)
@@ -904,7 +905,7 @@ void AngryBallsLevelBase::Update(float dt)
         return;
     }
 
-    if (IsKeyPressed(KEY_R))
+    if (InputSystem::IsKeyPressed(KEY_R))
         restartRequested = true;
 
     roundElapsedSeconds += dt;

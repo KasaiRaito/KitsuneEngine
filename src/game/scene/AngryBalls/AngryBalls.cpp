@@ -51,30 +51,30 @@ void AngryBalls::StartAngryScene(AngrySceneId targetScene)
     if (!sceneManager)
         return;
 
-    int targetSceneIndex = -1;
+    int loadingSceneIndex = -1;
     switch (targetScene)
     {
     case AngrySceneId::Level1:
-        targetSceneIndex = kAngryLevel1SceneIndex;
+        loadingSceneIndex = kAngryLevel1LoadingSceneIndex;
         break;
     case AngrySceneId::Level2:
         if (unlockedLevelCount < 2)
             return;
-        targetSceneIndex = kAngryLevel2SceneIndex;
+        loadingSceneIndex = kAngryLevel2LoadingSceneIndex;
         break;
     case AngrySceneId::Level3:
         if (unlockedLevelCount < 3)
             return;
-        targetSceneIndex = kAngryLevel3SceneIndex;
+        loadingSceneIndex = kAngryLevel3LoadingSceneIndex;
         break;
     case AngrySceneId::Level4:
         if (unlockedLevelCount < 4)
             return;
-        targetSceneIndex = kAngryLevel4SceneIndex;
+        loadingSceneIndex = kAngryLevel4LoadingSceneIndex;
         break;
     case AngrySceneId::Menu:
     default:
-        targetSceneIndex = 1;
+        loadingSceneIndex = 1;
         break;
     }
 
@@ -82,7 +82,7 @@ void AngryBalls::StartAngryScene(AngrySceneId targetScene)
         AngryBallsLevelBase::RequestResetForLevel((int)targetScene);
 
     SaveData::Instance().SetAngryCurrentScene((int)targetScene);
-    sceneManager->LoadScene(targetSceneIndex);
+    sceneManager->LoadScene(loadingSceneIndex);
 }
 
 void AngryBalls::Update(float dt)

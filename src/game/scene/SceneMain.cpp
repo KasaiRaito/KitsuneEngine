@@ -204,7 +204,7 @@ static bool ExtractFramesFromVideo(const std::filesystem::path& videoPath,
     return !cachedFrames.empty();
 }
 
-SceneMain::SceneMain(SceneManager* manager)
+SceneMain::SceneMain(SceneManager* manager, bool preloadPreviewFrames)
     : sceneManager(manager)
 {
     auto& resources = ResourceManager::Instance();
@@ -212,22 +212,63 @@ SceneMain::SceneMain(SceneManager* manager)
 
     uiFont = resources.GetOrLoadFont(fontPath);
 
-    angryPreviewFrames = LoadPreviewFrames("src/game/assets/previews/angryballs");
-    dinoPreviewFrames = LoadPreviewFrames("src/game/assets/previews/dinojump");
-    spacePreviewFrames = LoadPreviewFrames("src/game/assets/previews/space_invaders");
-    if (spacePreviewFrames.empty())
-        spacePreviewFrames = LoadPreviewFrames("src/game/assets/previews/spaceinvaders");
-    waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/where_is_my_water");
-    if (waterPreviewFrames.empty())
-        waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/whereismywater");
-    if (waterPreviewFrames.empty())
-        waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/where_is_my_whater");
+    if (!preloadPreviewFrames)
+        return;
+
+    PreloadAngryPreviewFrames();
+    PreloadDinoPreviewFrames();
+    PreloadSpacePreviewFrames();
+    PreloadWaterPreviewFrames();
 }
 
 SceneMain::~SceneMain()
 {
     for (size_t i = 0; i < objects.Size(); i++)
         delete objects.Get(i);
+}
+
+void SceneMain::PreloadAngryPreviewFrames()
+{
+    if (angryPreviewLoadAttempted)
+        return;
+
+    angryPreviewLoadAttempted = true;
+    angryPreviewFrames = LoadPreviewFrames("src/game/assets/previews/angryballs");
+}
+
+void SceneMain::PreloadDinoPreviewFrames()
+{
+    if (dinoPreviewLoadAttempted)
+        return;
+
+    dinoPreviewLoadAttempted = true;
+    dinoPreviewFrames = LoadPreviewFrames("src/game/assets/previews/dinojump");
+}
+
+void SceneMain::PreloadSpacePreviewFrames()
+{
+    if (spacePreviewLoadAttempted)
+        return;
+
+    spacePreviewLoadAttempted = true;
+    spacePreviewFrames = LoadPreviewFrames("src/game/assets/previews/space_invaders");
+    if (spacePreviewFrames.empty())
+        spacePreviewFrames = LoadPreviewFrames("src/game/assets/previews/spaceinvaders");
+}
+
+void SceneMain::PreloadWaterPreviewFrames()
+{
+    if (waterPreviewLoadAttempted)
+        return;
+
+    waterPreviewLoadAttempted = true;
+    waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/WhereIsMyWater");
+    if (waterPreviewFrames.empty())
+        waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/where_is_my_water");
+    if (waterPreviewFrames.empty())
+        waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/whereismywater");
+    if (waterPreviewFrames.empty())
+        waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/where_is_my_whater");
 }
 
 void SceneMain::Update(float dt)
@@ -374,8 +415,11 @@ void SceneMain::Draw()
     const float buttonHeightHovered = 62.0f;
     const float buttonSpacing = 16.0f;
     const float buttonRightMargin = 52.0f;
+    const size_t quitButtonIndex = 4;
+    const float quitButtonWidth = 206.0f;
+    const float quitButtonHeight = 34.0f;
     const float buttonX = (float)GetScreenWidth() - buttonWidth - buttonRightMargin;
-    const Vector2 mouse = GetMousePosition();
+    const Vector2 mouse = InputSystem::GetMousePosition();
 
     const std::array<const char*, 5> labels = {
         "Play Angry Balls",
@@ -384,16 +428,22 @@ void SceneMain::Draw()
         "Play Where Is My Water",
         "Quit Game"
     };
-    const std::array<int, 4> sceneIndexes = { 1, 2, 7, 8 };
+    const std::array<int, 4> sceneIndexes = { 1, 13, 14, 8 };
 
     std::array<Rectangle, 5> probeRects{};
     {
-        const float baseTotalHeight = (buttonHeight * (float)probeRects.size()) + (buttonSpacing * ((float)probeRects.size() - 1.0f));
+        float baseTotalHeight = buttonSpacing * ((float)probeRects.size() - 1.0f);
+        for (size_t i = 0; i < probeRects.size(); ++i)
+            baseTotalHeight += (i == quitButtonIndex) ? quitButtonHeight : buttonHeight;
+
         float y = ((float)GetScreenHeight() - baseTotalHeight) * 0.5f;
         for (size_t i = 0; i < probeRects.size(); ++i)
         {
-            probeRects[i] = { buttonX, y, buttonWidth, buttonHeight };
-            y += buttonHeight + buttonSpacing;
+            const float w = (i == quitButtonIndex) ? quitButtonWidth : buttonWidth;
+            const float h = (i == quitButtonIndex) ? quitButtonHeight : buttonHeight;
+            const float x = (i == quitButtonIndex) ? (buttonX + (buttonWidth - quitButtonWidth) * 0.5f) : buttonX;
+            probeRects[i] = { x, y, w, h };
+            y += h + buttonSpacing;
         }
     }
 
@@ -409,7 +459,12 @@ void SceneMain::Draw()
 
     float totalStackHeight = buttonSpacing * ((float)probeRects.size() - 1.0f);
     for (size_t i = 0; i < probeRects.size(); ++i)
-        totalStackHeight += ((int)i == hoveredButton) ? buttonHeightHovered : buttonHeight;
+    {
+        if (i == quitButtonIndex)
+            totalStackHeight += quitButtonHeight;
+        else
+            totalStackHeight += ((int)i == hoveredButton) ? buttonHeightHovered : buttonHeight;
+    }
     const float startY = ((float)GetScreenHeight() - totalStackHeight) * 0.5f;
 
     std::array<Rectangle, 5> buttonRects{};
@@ -417,36 +472,87 @@ void SceneMain::Draw()
         float y = startY;
         for (size_t i = 0; i < buttonRects.size(); ++i)
         {
-            const float h = ((int)i == hoveredButton) ? buttonHeightHovered : buttonHeight;
-            buttonRects[i] = { buttonX, y, buttonWidth, h };
+            const float h = (i == quitButtonIndex)
+                ? quitButtonHeight
+                : (((int)i == hoveredButton) ? buttonHeightHovered : buttonHeight);
+            const float w = (i == quitButtonIndex) ? quitButtonWidth : buttonWidth;
+            const float x = (i == quitButtonIndex) ? (buttonX + (buttonWidth - quitButtonWidth) * 0.5f) : buttonX;
+            buttonRects[i] = { x, y, w, h };
             y += h + buttonSpacing;
         }
     }
 
     if (hoveredButton == 0)
     {
+        PreloadAngryPreviewFrames();
         const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
         DrawPreviewPanel(panel, angryPreviewFrames, "Angry Balls", "Add frames or mp4: assets/previews/angryballs");
     }
     else if (hoveredButton == 1)
     {
+        PreloadDinoPreviewFrames();
         const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
         DrawPreviewPanel(panel, dinoPreviewFrames, "Dino Jump", "Add frames or mp4: assets/previews/dinojump");
     }
     else if (hoveredButton == 2)
     {
+        PreloadSpacePreviewFrames();
         const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
         DrawPreviewPanel(panel, spacePreviewFrames, "Space Invaders", "Add frames or mp4: assets/previews/space_invaders");
     }
     else if (hoveredButton == 3)
     {
+        PreloadWaterPreviewFrames();
         const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
-        DrawPreviewPanel(panel, waterPreviewFrames, "Where Is My Water", "Add frames or mp4: assets/previews/where_is_my_water");
+        DrawPreviewPanel(panel, waterPreviewFrames, "Where Is My Water", "Add frames or mp4: assets/previews/WhereIsMyWater");
     }
 
     for (size_t i = 0; i < buttonRects.size(); ++i)
     {
-        if (!GuiButton(buttonRects[i], labels[i]) || !sceneManager)
+        if (!sceneManager)
+            continue;
+
+        bool buttonClicked = false;
+        if (i == quitButtonIndex)
+        {
+            const int prevBorderNormal = GuiGetStyle(BUTTON, BORDER_COLOR_NORMAL);
+            const int prevBaseNormal = GuiGetStyle(BUTTON, BASE_COLOR_NORMAL);
+            const int prevTextNormal = GuiGetStyle(BUTTON, TEXT_COLOR_NORMAL);
+            const int prevBorderFocused = GuiGetStyle(BUTTON, BORDER_COLOR_FOCUSED);
+            const int prevBaseFocused = GuiGetStyle(BUTTON, BASE_COLOR_FOCUSED);
+            const int prevTextFocused = GuiGetStyle(BUTTON, TEXT_COLOR_FOCUSED);
+            const int prevBorderPressed = GuiGetStyle(BUTTON, BORDER_COLOR_PRESSED);
+            const int prevBasePressed = GuiGetStyle(BUTTON, BASE_COLOR_PRESSED);
+            const int prevTextPressed = GuiGetStyle(BUTTON, TEXT_COLOR_PRESSED);
+
+            GuiSetStyle(BUTTON, BORDER_COLOR_NORMAL, ColorToInt(Color{ 128, 30, 30, 255 }));
+            GuiSetStyle(BUTTON, BASE_COLOR_NORMAL, ColorToInt(Color{ 185, 44, 44, 255 }));
+            GuiSetStyle(BUTTON, TEXT_COLOR_NORMAL, ColorToInt(RAYWHITE));
+            GuiSetStyle(BUTTON, BORDER_COLOR_FOCUSED, ColorToInt(Color{ 150, 48, 48, 255 }));
+            GuiSetStyle(BUTTON, BASE_COLOR_FOCUSED, ColorToInt(Color{ 210, 60, 60, 255 }));
+            GuiSetStyle(BUTTON, TEXT_COLOR_FOCUSED, ColorToInt(RAYWHITE));
+            GuiSetStyle(BUTTON, BORDER_COLOR_PRESSED, ColorToInt(Color{ 95, 22, 22, 255 }));
+            GuiSetStyle(BUTTON, BASE_COLOR_PRESSED, ColorToInt(Color{ 145, 33, 33, 255 }));
+            GuiSetStyle(BUTTON, TEXT_COLOR_PRESSED, ColorToInt(RAYWHITE));
+
+            buttonClicked = GuiButton(buttonRects[i], labels[i]);
+
+            GuiSetStyle(BUTTON, BORDER_COLOR_NORMAL, prevBorderNormal);
+            GuiSetStyle(BUTTON, BASE_COLOR_NORMAL, prevBaseNormal);
+            GuiSetStyle(BUTTON, TEXT_COLOR_NORMAL, prevTextNormal);
+            GuiSetStyle(BUTTON, BORDER_COLOR_FOCUSED, prevBorderFocused);
+            GuiSetStyle(BUTTON, BASE_COLOR_FOCUSED, prevBaseFocused);
+            GuiSetStyle(BUTTON, TEXT_COLOR_FOCUSED, prevTextFocused);
+            GuiSetStyle(BUTTON, BORDER_COLOR_PRESSED, prevBorderPressed);
+            GuiSetStyle(BUTTON, BASE_COLOR_PRESSED, prevBasePressed);
+            GuiSetStyle(BUTTON, TEXT_COLOR_PRESSED, prevTextPressed);
+        }
+        else
+        {
+            buttonClicked = GuiButton(buttonRects[i], labels[i]);
+        }
+
+        if (!buttonClicked)
             continue;
 
         if (i < sceneIndexes.size())

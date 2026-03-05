@@ -1,5 +1,6 @@
 #include "InputComponent.h"
 #include "Events.h"
+#include "InputSystem.h"
 #include "Object.h"
 #include <cmath>
 
@@ -9,7 +10,7 @@ bool InputComponent::AnyKeyDown(const List<int>& keys)
 {
     for (size_t i = 0; i < keys.Size(); i++)
     {
-        if (IsKeyDown(keys.Get(i))) {
+        if (InputSystem::IsKeyDown(keys.Get(i))) {
             return true;
         }
     }

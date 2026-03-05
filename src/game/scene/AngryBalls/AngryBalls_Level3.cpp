@@ -32,5 +32,5 @@ const char* AngryBalls_Level3::GetLevelTitle() const
 
 int AngryBalls_Level3::GetNextLevelSceneIndex() const
 {
-    return 6;
+    return 18;
 }

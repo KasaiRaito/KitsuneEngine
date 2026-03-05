@@ -5,6 +5,7 @@
 #include "SpaceInvaders.h"
 
 #include "CollisionSystem2D.h"
+#include "InputSystem.h"
 #include "SceneManager.h"
 
 #include "raygui.h"
@@ -156,13 +157,15 @@ void SpaceInvaders::TriggerGameOver()
 
 bool SpaceInvaders::IsStartKeyPressed() const
 {
-    return IsKeyPressed(KEY_SPACE)
-        || IsKeyPressed(KEY_LEFT)
-        || IsKeyPressed(KEY_RIGHT)
-        || IsKeyPressed(KEY_UP)
-        || IsKeyPressed(KEY_A)
-        || IsKeyPressed(KEY_D)
-        || IsKeyPressed(KEY_W);
+    return InputSystem::IsAnyKeyPressed({
+        KEY_SPACE,
+        KEY_LEFT,
+        KEY_RIGHT,
+        KEY_UP,
+        KEY_A,
+        KEY_D,
+        KEY_W
+    });
 }
 
 void SpaceInvaders::UpdateStars(float dt)
@@ -236,16 +239,16 @@ void SpaceInvaders::UpdatePlayer(float dt)
     if (dt <= 0.0f)
         return;
 
-    if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A))
+    if (InputSystem::IsAnyKeyDown({ KEY_LEFT, KEY_A }))
         playerX -= playerSpeed * dt;
-    if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
+    if (InputSystem::IsAnyKeyDown({ KEY_RIGHT, KEY_D }))
         playerX += playerSpeed * dt;
 
     playerX = std::clamp(playerX, 8.0f, (float)GetScreenWidth() - kPlayerWidth - 8.0f);
     playerY = (float)GetScreenHeight() - 54.0f;
 
     playerShotCooldown = std::max(0.0f, playerShotCooldown - dt);
-    if ((IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_W))
+    if (InputSystem::IsAnyKeyPressed({ KEY_SPACE, KEY_UP, KEY_W })
         && playerShotCooldown <= 0.0f)
     {
         FirePlayerShot();
@@ -444,7 +447,7 @@ void SpaceInvaders::Update(float dt)
 
     if (gameOver)
     {
-        if (IsKeyPressed(KEY_R) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE))
+        if (InputSystem::IsAnyKeyPressed({ KEY_R, KEY_ENTER, KEY_SPACE }))
             ResetGame();
         return;
     }
