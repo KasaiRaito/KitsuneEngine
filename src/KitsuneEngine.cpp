@@ -9,6 +9,11 @@
 #include "game/scene/AngryBalls/AngryBalls_Level4.h"
 #include "game/scene/DinoJump/DinoJump.h"
 #include "game/scene/SpaceInvaders/SpaceInvaders.h"
+#include "game/scene/WhereIsMyWhater/WhereIsMyWater.h"
+#include "game/scene/WhereIsMyWhater/WhereIsMyWater_Level1.h"
+#include "game/scene/WhereIsMyWhater/WhereIsMyWater_Level2.h"
+#include "game/scene/WhereIsMyWhater/WhereIsMyWater_Level3.h"
+#include "game/scene/WhereIsMyWhater/WhereIsMyWater_Level4.h"
 #include "ResourceManager.h"
 
 
@@ -32,6 +37,11 @@ int main()
     sceneManager.AddScene(SceneInfo(new AngryBalls_Level3(&sceneManager), "angryballs_level3", 5));
     sceneManager.AddScene(SceneInfo(new AngryBalls_Level4(&sceneManager), "angryballs_level4", 6));
     sceneManager.AddScene(SceneInfo(new SpaceInvaders(&sceneManager), "space_invaders", 7));
+    sceneManager.AddScene(SceneInfo(new WhereIsMyWater(&sceneManager), "where_is_my_water_menu", 8));
+    sceneManager.AddScene(SceneInfo(new WhereIsMyWater_Level1(&sceneManager), "where_is_my_water_level1", 9));
+    sceneManager.AddScene(SceneInfo(new WhereIsMyWater_Level2(&sceneManager), "where_is_my_water_level2", 10));
+    sceneManager.AddScene(SceneInfo(new WhereIsMyWater_Level3(&sceneManager), "where_is_my_water_level3", 11));
+    sceneManager.AddScene(SceneInfo(new WhereIsMyWater_Level4(&sceneManager), "where_is_my_water_level4", 12));
     sceneManager.LoadScene(0);
 
     while (!WindowShouldClose())

@@ -1,0 +1,61 @@
+{
+  "dirt_start_row": 2,
+  "target_drops": 150,
+  "max_spawned_drops": 430,
+  "source": {
+    "col": 3,
+    "row": 1
+  },
+  "tub": {
+    "col": 29,
+    "row": 13,
+    "width_cells": 6,
+    "height_cells": 3
+  },
+  "tub_clear_padding_cols": 0,
+  "tub_clear_padding_rows": 0,
+  "operations": [
+    {
+      "type": "clear_rect",
+      "col": 0,
+      "row": 0,
+      "width": 8,
+      "height": 4
+    },
+    {
+      "type": "rock_line_h",
+      "col": 6,
+      "row": 4,
+      "length": 29,
+      "holes": [7, 8]
+    },
+    {
+      "type": "rock_line_h",
+      "col": 3,
+      "row": 8,
+      "length": 27,
+      "holes": [15, 16, 17]
+    },
+    {
+      "type": "rock_line_h",
+      "col": 11,
+      "row": 11,
+      "length": 22,
+      "holes": [5, 6]
+    },
+    {
+      "type": "rock_line_v",
+      "col": 24,
+      "row": 5,
+      "length": 9,
+      "holes": [4, 5]
+    },
+    {
+      "type": "clear_rect",
+      "col": 29,
+      "row": 13,
+      "width": 6,
+      "height": 3
+    }
+  ]
+}

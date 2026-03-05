@@ -217,6 +217,11 @@ SceneMain::SceneMain(SceneManager* manager)
     spacePreviewFrames = LoadPreviewFrames("src/game/assets/previews/space_invaders");
     if (spacePreviewFrames.empty())
         spacePreviewFrames = LoadPreviewFrames("src/game/assets/previews/spaceinvaders");
+    waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/where_is_my_water");
+    if (waterPreviewFrames.empty())
+        waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/whereismywater");
+    if (waterPreviewFrames.empty())
+        waterPreviewFrames = LoadPreviewFrames("src/game/assets/previews/where_is_my_whater");
 }
 
 SceneMain::~SceneMain()
@@ -372,10 +377,15 @@ void SceneMain::Draw()
     const float buttonX = (float)GetScreenWidth() - buttonWidth - buttonRightMargin;
     const Vector2 mouse = GetMousePosition();
 
-    const std::array<const char*, 3> labels = { "Play Angry Balls", "Play Dino Jump", "Play Space Invaders" };
-    const std::array<int, 3> sceneIndexes = { 1, 2, 7 };
+    const std::array<const char*, 4> labels = {
+        "Play Angry Balls",
+        "Play Dino Jump",
+        "Play Space Invaders",
+        "Play Where Is My Water"
+    };
+    const std::array<int, 4> sceneIndexes = { 1, 2, 7, 8 };
 
-    std::array<Rectangle, 3> probeRects{};
+    std::array<Rectangle, 4> probeRects{};
     {
         const float baseTotalHeight = (buttonHeight * (float)probeRects.size()) + (buttonSpacing * ((float)probeRects.size() - 1.0f));
         float y = ((float)GetScreenHeight() - baseTotalHeight) * 0.5f;
@@ -401,7 +411,7 @@ void SceneMain::Draw()
         totalStackHeight += ((int)i == hoveredButton) ? buttonHeightHovered : buttonHeight;
     const float startY = ((float)GetScreenHeight() - totalStackHeight) * 0.5f;
 
-    std::array<Rectangle, 3> buttonRects{};
+    std::array<Rectangle, 4> buttonRects{};
     {
         float y = startY;
         for (size_t i = 0; i < buttonRects.size(); ++i)
@@ -426,6 +436,11 @@ void SceneMain::Draw()
     {
         const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
         DrawPreviewPanel(panel, spacePreviewFrames, "Space Invaders", "Add frames or mp4: assets/previews/space_invaders");
+    }
+    else if (hoveredButton == 3)
+    {
+        const Rectangle panel = { 26.0f, (float)GetScreenHeight() * 0.5f - 118.0f, 320.0f, 236.0f };
+        DrawPreviewPanel(panel, waterPreviewFrames, "Where Is My Water", "Add frames or mp4: assets/previews/where_is_my_water");
     }
 
     for (size_t i = 0; i < buttonRects.size(); ++i)

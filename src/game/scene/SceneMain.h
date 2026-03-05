@@ -31,6 +31,7 @@ private:
     std::vector<std::shared_ptr<ResourceManager::TextureResource>> angryPreviewFrames;
     std::vector<std::shared_ptr<ResourceManager::TextureResource>> dinoPreviewFrames;
     std::vector<std::shared_ptr<ResourceManager::TextureResource>> spacePreviewFrames;
+    std::vector<std::shared_ptr<ResourceManager::TextureResource>> waterPreviewFrames;
     float previewFps = 14.0f;
 
     std::vector<std::shared_ptr<ResourceManager::TextureResource>> LoadPreviewFrames(const std::string& repoRelativeDirectory);

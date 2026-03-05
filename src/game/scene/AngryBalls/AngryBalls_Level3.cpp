@@ -11,7 +11,7 @@ AngryBalls_Level3::AngryBalls_Level3(SceneManager* manager)
 
 void AngryBalls_Level3::BuildLevelLayout()
 {
-    if (LoadLevelLayoutFromJson("src/game/assets/levels/angryballs_level3.json"))
+    if (LoadLevelLayoutFromJson("src/game/assets/levels/AngryBalls/angryballs_level3.json"))
         return;
 }
 
