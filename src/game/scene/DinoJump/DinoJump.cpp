@@ -4,6 +4,7 @@
 
 #include "DinoJump/DinoJump.h"
 
+#include "InputSystem.h"
 #include "SceneManager.h"
 #include "save_data/SaveData.h"
 #include "raylib.h"
@@ -83,7 +84,7 @@ void DinoJump::ResetRound()
 
 bool DinoJump::IsJumpPressed() const
 {
-    return IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_W);
+    return InputSystem::IsAnyKeyPressed({ KEY_SPACE, KEY_UP, KEY_W });
 }
 
 Rectangle DinoJump::GetDinoBounds() const
@@ -169,7 +170,7 @@ void DinoJump::UpdateObstacles(float dt)
 void DinoJump::UpdateDino(float dt)
 {
     const bool jumpPressed = IsJumpPressed();
-    const bool jumpHeld = IsKeyDown(KEY_SPACE) || IsKeyDown(KEY_UP) || IsKeyDown(KEY_W);
+    const bool jumpHeld = InputSystem::IsAnyKeyDown({ KEY_SPACE, KEY_UP, KEY_W });
 
     if (jumpPressed)
     {
@@ -272,7 +273,7 @@ void DinoJump::Update(float dt)
 
     if (gameOver)
     {
-        if (IsKeyPressed(KEY_R) || IsJumpPressed())
+        if (InputSystem::IsKeyPressed(KEY_R) || IsJumpPressed())
             ResetRound();
 
         return;

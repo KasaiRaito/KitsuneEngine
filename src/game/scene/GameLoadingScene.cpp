@@ -1,5 +1,6 @@
 #include "GameLoadingScene.h"
 
+#include "InputSystem.h"
 #include "SceneManager.h"
 
 #include "raylib.h"
@@ -41,7 +42,7 @@ void GameLoadingScene::Update(float dt)
 
     const bool finishedLoading = elapsedSeconds >= minimumDuration;
     const bool canConfirm = elapsedSeconds >= std::max(minimumDuration, minimumDisplay);
-    const bool confirmRequested = IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_ENTER);
+    const bool confirmRequested = InputSystem::IsAnyKeyPressed({ KEY_SPACE, KEY_ENTER });
 
     if (finishedLoading && canConfirm && confirmRequested)
         TransitionToTarget();

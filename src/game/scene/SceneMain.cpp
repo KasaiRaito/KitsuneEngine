@@ -419,7 +419,7 @@ void SceneMain::Draw()
     const float quitButtonWidth = 206.0f;
     const float quitButtonHeight = 34.0f;
     const float buttonX = (float)GetScreenWidth() - buttonWidth - buttonRightMargin;
-    const Vector2 mouse = GetMousePosition();
+    const Vector2 mouse = InputSystem::GetMousePosition();
 
     const std::array<const char*, 5> labels = {
         "Play Angry Balls",
