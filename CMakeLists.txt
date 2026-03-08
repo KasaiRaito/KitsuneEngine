@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Dependencies
 # -----------------------------
 find_package(raylib CONFIG REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
 find_package(box2d CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
@@ -102,6 +103,7 @@ target_include_directories(KitsuneEngine PRIVATE
 # Link libraries
 # -----------------------------
 target_link_libraries(KitsuneEngine PRIVATE raylib)
+target_link_libraries(KitsuneEngine PRIVATE glfw)
 target_link_libraries(KitsuneEngine PRIVATE box2d::box2d)
 target_link_libraries(KitsuneEngine PRIVATE nlohmann_json::nlohmann_json)
 
