@@ -12,6 +12,8 @@ find_package(raylib CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(box2d CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
+find_package(unofficial-lua CONFIG REQUIRED)
+find_package(sol2 CONFIG REQUIRED)
 
 # -----------------------------
 # Sources
@@ -106,6 +108,8 @@ target_link_libraries(KitsuneEngine PRIVATE raylib)
 target_link_libraries(KitsuneEngine PRIVATE glfw)
 target_link_libraries(KitsuneEngine PRIVATE box2d::box2d)
 target_link_libraries(KitsuneEngine PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(KitsuneEngine PRIVATE unofficial::lua::lua)
+target_link_libraries(KitsuneEngine PRIVATE sol2::sol2)
 
 # -----------------------------
 # macOS frameworks (raylib)
