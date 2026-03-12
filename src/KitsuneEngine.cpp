@@ -10,11 +10,11 @@
 #include "game/scene/AngryBalls/AngryBalls_Level4.h"
 #include "game/scene/DinoJump/DinoJump.h"
 #include "game/scene/SpaceInvaders/SpaceInvaders.h"
-#include "game/scene/WhereIsMyWhater/WhereIsMyWater.h"
-#include "game/scene/WhereIsMyWhater/WhereIsMyWater_Level1.h"
-#include "game/scene/WhereIsMyWhater/WhereIsMyWater_Level2.h"
-#include "game/scene/WhereIsMyWhater/WhereIsMyWater_Level3.h"
-#include "game/scene/WhereIsMyWhater/WhereIsMyWater_Level4.h"
+#include "game/scene/WhereIsMyWater/WhereIsMyWater.h"
+#include "game/scene/WhereIsMyWater/WhereIsMyWater_Level1.h"
+#include "game/scene/WhereIsMyWater/WhereIsMyWater_Level2.h"
+#include "game/scene/WhereIsMyWater/WhereIsMyWater_Level3.h"
+#include "game/scene/WhereIsMyWater/WhereIsMyWater_Level4.h"
 #include "ResourceManager.h"
 
 #include <algorithm>
