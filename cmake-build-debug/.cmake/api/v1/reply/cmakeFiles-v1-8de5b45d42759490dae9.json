@@ -1,0 +1,314 @@
+{
+	"inputs" : 
+	[
+		{
+			"path" : "CMakeLists.txt"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/CMakeFiles/4.1.2/CMakeSystem.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CMakeDependentOption.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CMakeSystemSpecificInitialize.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Platform/Darwin-Initialize.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/CMakeFiles/4.1.2/CMakeCXXCompiler.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CMakeSystemSpecificInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CMakeGenericSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CMakeInitializeConfigs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Platform/Darwin.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Platform/UnixPaths.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CMakeCXXInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CMakeLanguageInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Compiler/AppleClang-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Compiler/Clang.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Compiler/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Platform/Apple-AppleClang-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Platform/Apple-Clang-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Platform/Apple-Clang.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Internal/CMakeCXXLinkerInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Internal/CMakeCommonLinkerInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Platform/Linker/Apple-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Platform/Linker/Apple-AppleClang-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Platform/Linker/Apple-AppleClang.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/raylib/raylib-config-version.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/raylib/raylib-config.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindPkgConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/glfw3/glfw3ConfigVersion.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/glfw3/glfw3Config.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindThreads.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CheckLibraryExists.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CheckIncludeFileCXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/CheckCXXSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/Internal/CheckSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/glfw3/glfw3Targets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/glfw3/glfw3Targets-debug.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/glfw3/glfw3Targets-release.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/box2d/box2dConfigVersion.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/box2d/box2dConfig.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/box2d/box2dConfig-debug.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/box2d/box2dConfig-release.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/nlohmann_json/nlohmann_jsonConfigVersion.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/nlohmann_json/nlohmann_jsonConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.1/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/nlohmann_json/nlohmann_jsonTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/unofficial-lua/unofficial-lua-config-version.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/unofficial-lua/unofficial-lua-config.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/unofficial-lua/unofficial-lua-config-debug.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/unofficial-lua/unofficial-lua-config-release.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/unofficial-lua/unofficial-lua-config-version.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/sol2/sol2-config-version.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/sol2/sol2-config.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/share/sol2/sol2-targets.cmake"
+		}
+	],
+	"kind" : "cmakeFiles",
+	"paths" : 
+	{
+		"build" : "/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug",
+		"source" : "/Users/kasairaito/Documents/GitHub/KitsuneEngine"
+	},
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 1
+	}
+}

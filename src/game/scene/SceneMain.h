@@ -8,6 +8,7 @@
 #pragma once
 #include "SceneBase.h"
 #include "ResourceManager.h"
+#include "sol/sol.hpp"
 #include <vector>
 #include <string>
 
@@ -48,6 +49,11 @@ private:
                           const std::vector<std::shared_ptr<ResourceManager::TextureResource>>& frames,
                           const char* title,
                           const char* emptyHint) const;
+
+    void BindRaylib();
+    sol::state lua;
+    sol::protected_function luaUpdate;
+    sol::protected_function luaDraw;
 };
 
 

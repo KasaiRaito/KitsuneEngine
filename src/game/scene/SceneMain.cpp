@@ -5,15 +5,24 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 
+//RAYLIB
 #include "raylib.h"
 #include "raygui.h"
+
+//JSON
 #include "nlohmann/json.hpp"
 
+//LUA & SOL
+#include "lua.h"
+#include "sol/sol.hpp"
+
+//MATH
 #include <algorithm>
 #include <array>
 #include <cctype>
 #include <cstdlib>
 #include <filesystem>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -211,6 +220,7 @@ SceneMain::SceneMain(SceneManager* manager, bool preloadPreviewFrames)
     const std::string fontPath = ResolveAssetPath("src/game/assets/fonts/DKKitsuneTail.ttf");
 
     uiFont = resources.GetOrLoadFont(fontPath);
+    BindRaylib();
 
     if (!preloadPreviewFrames)
         return;
@@ -221,10 +231,11 @@ SceneMain::SceneMain(SceneManager* manager, bool preloadPreviewFrames)
     PreloadWaterPreviewFrames();
 }
 
-SceneMain::~SceneMain()
-{
+SceneMain::~SceneMain() {
     for (size_t i = 0; i < objects.Size(); i++)
         delete objects.Get(i);
+
+
 }
 
 void SceneMain::PreloadAngryPreviewFrames()
@@ -301,6 +312,21 @@ void SceneMain::Update(float dt)
                 // later: resolve using manifold
             }
         }
+    }
+
+
+
+    if (luaUpdate.valid())
+    {
+        luaUpdate(dt);
+        /*
+         sol::protected_function_result result =
+        if (!result.valid())
+        {
+            sol::error error = result;
+            std::cerr << "[LUA]: update() failed: " << error.what() << std::endl;
+        }
+        */
     }
 }
 
@@ -403,6 +429,52 @@ void SceneMain::DrawPreviewPanel(const Rectangle& panelRect,
 
     DrawRectangleRec(content, Fade(BLACK, 0.20f));
     DrawTexturePro(texture, src, dst, { 0.0f, 0.0f }, 0.0f, WHITE);
+}
+
+void SceneMain::BindRaylib()
+{
+    lua.open_libraries(sol::lib::base, sol::lib::table, sol::lib::math);
+
+    sol::table rl = lua.create_named_table("rl");
+
+    rl.set_function("draw_circle", [](float x, float y, float r, sol::optional<Color> c)
+    {
+        Color color = c.value_or(MAROON);
+        Vector2 center = { x, y };
+        DrawCircle(center.x, center.y, r, color);
+    });
+
+    rl.set_function("mouse_pressed", &IsMouseButtonPressed);
+    rl.set_function("mouse_down", &IsMouseButtonDown);
+    rl.set_function("mouse_x", &GetMouseX);
+    rl.set_function("mouse_y", &GetMouseY);
+    
+    /*
+    rl.set_function("to_world", [&](float sx, float sy) {
+        Vector2 world = GetScreenToWorld2D({sx, sy}, cam);
+        return std::make_tuple(world.x, world.y);
+    });
+    */
+
+    rl.set_function("print", [](std::string message) {
+        std::cout << "[LUA]: " << message << std::endl;
+    });
+
+    rl["maroon"] = MAROON;
+
+    const std::string scriptPath = ResolveAssetPath("src/lua/scene_main.lua");
+    auto result = lua.script_file(scriptPath);
+
+    if (!result.valid())
+    {
+        sol::error error = result;
+        std::cerr << "[LUA]: failed to load '" << scriptPath << "': " << error.what() << std::endl;
+        return;
+    }
+
+    luaUpdate = lua["update"];
+    luaDraw = lua["draw"];
+    std::cout << "[LUA]: script loaded and functions bound." << std::endl;
 }
 
 void SceneMain::Draw()
@@ -567,6 +639,16 @@ void SceneMain::Draw()
         Object* obj = objects.Get(i);
         if (!obj) continue;
         obj->Draw();
+    }
+
+    if (luaDraw.valid())
+    {
+        sol::protected_function_result result = luaDraw();
+        if (!result.valid())
+        {
+            sol::error error = result;
+            std::cerr << "[LUA]: draw() failed: " << error.what() << std::endl;
+        }
     }
 
     if (uiFont)

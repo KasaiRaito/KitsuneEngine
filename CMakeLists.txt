@@ -12,6 +12,8 @@ find_package(raylib CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(box2d CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
+find_package(unofficial-lua CONFIG REQUIRED)
+find_package(sol2 CONFIG REQUIRED)
 
 # -----------------------------
 # Sources
@@ -58,18 +60,18 @@ add_executable(KitsuneEngine
         src/game/scene/AngryBalls/AngryBalls_Level4.h
         src/game/scene/SpaceInvaders/SpaceInvaders.cpp
         src/game/scene/SpaceInvaders/SpaceInvaders.h
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater.cpp
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater.h
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_LevelBase.cpp
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_LevelBase.h
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level1.cpp
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level1.h
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level2.cpp
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level2.h
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level3.cpp
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level3.h
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level4.cpp
-        src/game/scene/WhereIsMyWhater/WhereIsMyWater_Level4.h
+        src/game/scene/WhereIsMyWater/WhereIsMyWater.cpp
+        src/game/scene/WhereIsMyWater/WhereIsMyWater.h
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelBase.cpp
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelBase.h
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_Level1.cpp
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_Level1.h
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_Level2.cpp
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_Level2.h
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_Level3.cpp
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_Level3.h
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_Level4.cpp
+        src/game/scene/WhereIsMyWater/WhereIsMyWater_Level4.h
 )
 
 # -----------------------------
@@ -106,6 +108,8 @@ target_link_libraries(KitsuneEngine PRIVATE raylib)
 target_link_libraries(KitsuneEngine PRIVATE glfw)
 target_link_libraries(KitsuneEngine PRIVATE box2d::box2d)
 target_link_libraries(KitsuneEngine PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(KitsuneEngine PRIVATE unofficial::lua::lua)
+target_link_libraries(KitsuneEngine PRIVATE sol2::sol2)
 
 # -----------------------------
 # macOS frameworks (raylib)
