@@ -30,4 +30,17 @@
 *.exe
 *.out
 *.app
-save_data/save_data.json
+
+# macOS metadata
+.DS_Store
+
+# CMake/build outputs
+/build/
+/build-*/
+/cmake-build-*/
+/compile_commands.json
+/CMakeUserPresets.json
+
+# Runtime-generated save/cache data
+/save_data/save_data.json
+/save_data/preview_cache/
