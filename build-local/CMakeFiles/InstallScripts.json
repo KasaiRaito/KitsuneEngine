@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/kasairaito/Documents/GitHub/KitsuneEngine/build-local/cmake_install.cmake",
+		"/Users/kasairaito/Documents/GitHub/KitsuneEngine/build-local/third_party/raylib/cmake_install.cmake",
+		"/Users/kasairaito/Documents/GitHub/KitsuneEngine/build-local/third_party/raylib/raylib/cmake_install.cmake",
+		"/Users/kasairaito/Documents/GitHub/KitsuneEngine/build-local/third_party/raylib/raylib/external/glfw/cmake_install.cmake",
+		"/Users/kasairaito/Documents/GitHub/KitsuneEngine/build-local/third_party/raylib/raylib/external/glfw/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

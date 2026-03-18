@@ -943,124 +943,6 @@ CMakeFiles/KitsuneEngine.dir/src/KitsuneEngine.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/lauxlib.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/lua.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/lua.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/luaconf.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/lualib.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raygui.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/abort.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/as_args.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/as_returns.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/assert.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/base_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/bind_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/bytecode.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/call.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility/compat-5.3.c.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility/compat-5.3.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility/compat-5.4.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility/lua_version.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/config.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/coroutine.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/demangle.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/deprecate.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/detail/build_version.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/dump_handler.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/ebco.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/environment.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/epilogue.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/error.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/error_handler.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/forward.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/forward_detail.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_result.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_core.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_overloaded.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_stateful.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_stateless.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_templated.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/in_place.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/inheritance.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/load_result.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/lua_table.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/lua_value.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/make_reference.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/metatable.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/object.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/object_base.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/optional.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/optional_implementation.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/overload.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/pairs_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/pointer_like.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/policies.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/prologue.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/property.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/protect.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/protected_function.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/protected_function_result.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/protected_handler.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/proxy_base.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/raii.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/reference.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/resolve.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/sol.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack/detail/pairs.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_get.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_get_qualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_get_unqualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_qualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_unqualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_core.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_field.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_get.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_get_qualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_get_unqualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_guard.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_pop.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_probe.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_proxy_base.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_push.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_reference.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/state.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/state_handling.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/state_view.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/string_view.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/table.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/table_core.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/table_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/table_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/thread.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/tie.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/trampoline.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/tuple.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/types.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/unicode.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/unique_usertype_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/unsafe_function.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/unsafe_function_result.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/userdata.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_container.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_container_launch.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_core.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_storage.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/variadic_args.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/variadic_results.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/version.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/wrapper.hpp
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level1.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level2.h
@@ -1092,6 +974,123 @@ CMakeFiles/KitsuneEngine.dir/src/KitsuneEngine.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/lua/lauxlib.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/lua/lua.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/lua/luaconf.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/lua/lualib.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raygui/src/raygui.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/abort.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/as_args.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/as_returns.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/assert.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/base_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/bind_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/bytecode.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/call.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility/compat-5.3.c.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility/compat-5.3.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility/compat-5.4.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility/lua_version.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/config.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/coroutine.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/demangle.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/deprecate.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/detail/build_version.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/dump_handler.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/ebco.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/environment.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/epilogue.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/error.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/error_handler.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/forward.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/forward_detail.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_result.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_core.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_overloaded.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_stateful.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_stateless.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_templated.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/in_place.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/inheritance.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/load_result.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/lua_table.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/lua_value.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/make_reference.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/metatable.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/object.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/object_base.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/optional.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/optional_implementation.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/overload.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/pairs_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/pointer_like.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/policies.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/prologue.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/property.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/protect.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/protected_function.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/protected_function_result.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/protected_handler.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/proxy_base.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/raii.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/reference.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/resolve.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/sol.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack/detail/pairs.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_get.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_get_qualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_get_unqualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_qualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_unqualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_core.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_field.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_get.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_get_qualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_get_unqualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_guard.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_pop.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_probe.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_proxy_base.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_push.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_reference.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/state.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/state_handling.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/state_view.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/string_view.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/table.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/table_core.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/table_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/table_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/thread.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/tie.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/trampoline.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/tuple.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/types.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/unicode.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/unique_usertype_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/unsafe_function.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/unsafe_function_result.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/userdata.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_container.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_container_launch.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_core.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_storage.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/variadic_args.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/variadic_results.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/version.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/wrapper.hpp
 
 CMakeFiles/KitsuneEngine.dir/src/game/assets/MyResources/Ball.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/assets/MyResources/Ball.cpp
@@ -1541,7 +1540,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/assets/MyResources/Ball.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/object/Object.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/assets/MyResources/Ball.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -1556,6 +1554,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/assets/MyResources/Ball.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/physics_system/PhysicsComponent.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/save_data/SaveData.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/save_data/SaveData.cpp
@@ -2575,53 +2574,54 @@ CMakeFiles/KitsuneEngine.dir/src/game/save_data/SaveData.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/adl_serializer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/byte_container_with_subtype.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/abi_macros.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/from_json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/to_chars.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/to_json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/exceptions.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/hash.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/binary_reader.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/input_adapters.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/json_sax.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/lexer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/parser.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/position_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/internal_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iter_impl.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iteration_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iterator_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/json_reverse_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/primitive_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_custom_base_class.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_pointer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_ref.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/macro_scope.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/macro_unscope.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/call_std/begin.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/call_std/end.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/cpp_future.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/detected.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/identity_tag.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/is_sax.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/std_fs.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/type_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/void_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/binary_writer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/output_adapters.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/serializer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_concat.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_escape.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_utils.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/value_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/json_fwd.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/ordered_map.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/thirdparty/hedley/hedley.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/save_data/SaveData.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/adl_serializer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/byte_container_with_subtype.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/abi_macros.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/from_json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/to_chars.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/to_json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/exceptions.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/hash.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/binary_reader.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/input_adapters.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/json_sax.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/lexer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/parser.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/position_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/internal_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iter_impl.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iteration_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iterator_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/json_reverse_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/primitive_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_custom_base_class.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_pointer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_ref.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/macro_scope.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/macro_unscope.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/call_std/begin.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/call_std/end.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/cpp_future.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/detected.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/identity_tag.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/is_sax.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/logic.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/std_fs.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/type_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/void_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/binary_writer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/output_adapters.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/serializer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_concat.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_escape.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_utils.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/value_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/json_fwd.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/ordered_map.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/thirdparty/hedley/hedley.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls.cpp
@@ -3483,8 +3483,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raygui.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/save_data/SaveData.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_LevelBase.h
@@ -3502,6 +3500,8 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raygui/src/raygui.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level1.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level1.cpp
@@ -4102,7 +4102,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level1.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level1.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -4118,6 +4117,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level1.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level2.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level2.cpp
@@ -4718,7 +4718,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level2.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level2.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -4734,6 +4733,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level2.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level3.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level3.cpp
@@ -5334,7 +5334,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level3.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level3.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -5350,6 +5349,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level3.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level4.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level4.cpp
@@ -5950,7 +5950,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level4.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_Level4.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -5966,6 +5965,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_Level4.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_LevelBase.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_LevelBase.cpp
@@ -6986,54 +6986,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_LevelBase.cpp.
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/adl_serializer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/byte_container_with_subtype.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/abi_macros.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/from_json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/to_chars.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/to_json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/exceptions.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/hash.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/binary_reader.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/input_adapters.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/json_sax.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/lexer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/parser.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/position_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/internal_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iter_impl.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iteration_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iterator_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/json_reverse_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/primitive_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_custom_base_class.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_pointer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_ref.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/macro_scope.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/macro_unscope.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/call_std/begin.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/call_std/end.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/cpp_future.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/detected.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/identity_tag.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/is_sax.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/std_fs.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/type_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/void_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/binary_writer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/output_adapters.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/serializer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_concat.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_escape.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_utils.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/value_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/json_fwd.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/ordered_map.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/thirdparty/hedley/hedley.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raygui.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/save_data/SaveData.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/AngryBalls/AngryBalls_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -7060,6 +7012,55 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/AngryBalls/AngryBalls_LevelBase.cpp.
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/adl_serializer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/byte_container_with_subtype.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/abi_macros.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/from_json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/to_chars.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/to_json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/exceptions.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/hash.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/binary_reader.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/input_adapters.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/json_sax.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/lexer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/parser.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/position_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/internal_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iter_impl.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iteration_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iterator_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/json_reverse_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/primitive_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_custom_base_class.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_pointer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_ref.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/macro_scope.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/macro_unscope.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/call_std/begin.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/call_std/end.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/cpp_future.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/detected.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/identity_tag.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/is_sax.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/logic.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/std_fs.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/type_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/void_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/binary_writer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/output_adapters.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/serializer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_concat.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_escape.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_utils.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/value_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/json_fwd.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/ordered_map.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/thirdparty/hedley/hedley.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raygui/src/raygui.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/DinoJump/DinoJump.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/DinoJump/DinoJump.cpp
@@ -7921,8 +7922,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/DinoJump/DinoJump.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raygui.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/save_data/SaveData.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/DinoJump/DinoJump.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -7939,6 +7938,8 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/DinoJump/DinoJump.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raygui/src/raygui.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/GameLoadingScene.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/GameLoadingScene.cpp
@@ -8700,7 +8701,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/GameLoadingScene.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/GameLoadingScene.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
@@ -8715,6 +8715,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/GameLoadingScene.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/SceneMain.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/SceneMain.cpp
@@ -9739,170 +9740,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/SceneMain.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/lauxlib.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/lua.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/lua.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/luaconf.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/lualib.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/adl_serializer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/byte_container_with_subtype.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/abi_macros.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/from_json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/to_chars.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/to_json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/exceptions.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/hash.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/binary_reader.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/input_adapters.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/json_sax.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/lexer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/parser.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/position_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/internal_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iter_impl.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iteration_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iterator_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/json_reverse_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/primitive_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_custom_base_class.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_pointer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_ref.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/macro_scope.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/macro_unscope.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/call_std/begin.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/call_std/end.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/cpp_future.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/detected.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/identity_tag.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/is_sax.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/std_fs.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/type_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/void_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/binary_writer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/output_adapters.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/serializer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_concat.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_escape.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_utils.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/value_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/json_fwd.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/ordered_map.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/thirdparty/hedley/hedley.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raygui.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/abort.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/as_args.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/as_returns.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/assert.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/base_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/bind_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/bytecode.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/call.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility/compat-5.3.c.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility/compat-5.3.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility/compat-5.4.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/compatibility/lua_version.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/config.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/coroutine.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/demangle.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/deprecate.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/detail/build_version.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/dump_handler.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/ebco.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/environment.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/epilogue.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/error.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/error_handler.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/forward.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/forward_detail.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_result.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_core.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_overloaded.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_stateful.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_stateless.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/function_types_templated.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/in_place.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/inheritance.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/load_result.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/lua_table.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/lua_value.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/make_reference.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/metatable.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/object.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/object_base.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/optional.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/optional_implementation.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/overload.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/pairs_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/pointer_like.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/policies.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/prologue.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/property.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/protect.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/protected_function.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/protected_function_result.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/protected_handler.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/proxy_base.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/raii.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/reference.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/resolve.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/sol.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack/detail/pairs.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_get.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_get_qualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_get_unqualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_qualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_check_unqualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_core.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_field.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_get.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_get_qualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_get_unqualified.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_guard.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_pop.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_probe.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_proxy_base.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_push.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/stack_reference.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/state.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/state_handling.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/state_view.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/string_view.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/table.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/table_core.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/table_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/table_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/thread.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/tie.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/trampoline.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/tuple.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/types.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/unicode.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/unique_usertype_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/unsafe_function.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/unsafe_function_result.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/userdata.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_container.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_container_launch.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_core.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_storage.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/usertype_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/variadic_args.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/variadic_results.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/version.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/sol/wrapper.hpp
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/SceneMain.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
@@ -9921,6 +9758,170 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/SceneMain.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/lua/lauxlib.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/lua/lua.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/lua/luaconf.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/lua/lualib.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/adl_serializer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/byte_container_with_subtype.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/abi_macros.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/from_json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/to_chars.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/to_json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/exceptions.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/hash.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/binary_reader.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/input_adapters.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/json_sax.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/lexer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/parser.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/position_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/internal_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iter_impl.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iteration_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iterator_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/json_reverse_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/primitive_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_custom_base_class.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_pointer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_ref.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/macro_scope.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/macro_unscope.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/call_std/begin.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/call_std/end.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/cpp_future.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/detected.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/identity_tag.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/is_sax.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/logic.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/std_fs.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/type_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/void_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/binary_writer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/output_adapters.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/serializer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_concat.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_escape.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_utils.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/value_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/json_fwd.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/ordered_map.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/thirdparty/hedley/hedley.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raygui/src/raygui.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/abort.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/as_args.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/as_returns.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/assert.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/base_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/bind_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/bytecode.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/call.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility/compat-5.3.c.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility/compat-5.3.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility/compat-5.4.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/compatibility/lua_version.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/config.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/coroutine.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/demangle.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/deprecate.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/detail/build_version.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/dump_handler.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/ebco.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/environment.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/epilogue.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/error.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/error_handler.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/forward.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/forward_detail.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_result.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_core.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_overloaded.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_stateful.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_stateless.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/function_types_templated.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/in_place.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/inheritance.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/load_result.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/lua_table.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/lua_value.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/make_reference.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/metatable.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/object.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/object_base.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/optional.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/optional_implementation.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/overload.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/pairs_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/pointer_like.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/policies.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/prologue.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/property.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/protect.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/protected_function.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/protected_function_result.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/protected_handler.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/proxy_base.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/raii.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/reference.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/resolve.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/sol.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack/detail/pairs.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_get.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_get_qualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_get_unqualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_qualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_check_unqualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_core.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_field.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_get.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_get_qualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_get_unqualified.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_guard.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_pop.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_probe.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_proxy_base.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_push.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/stack_reference.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/state.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/state_handling.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/state_view.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/string_view.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/table.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/table_core.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/table_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/table_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/thread.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/tie.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/trampoline.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/tuple.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/types.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/unicode.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/unique_usertype_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/unsafe_function.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/unsafe_function_result.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/userdata.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_container.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_container_launch.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_core.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_storage.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/usertype_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/variadic_args.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/variadic_results.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/version.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/sol2/include/sol/wrapper.hpp
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/SpaceInvaders/SpaceInvaders.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/SpaceInvaders/SpaceInvaders.cpp
@@ -10698,8 +10699,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/SpaceInvaders/SpaceInvaders.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raygui.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/SpaceInvaders/SpaceInvaders.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
@@ -10717,6 +10716,8 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/SpaceInvaders/SpaceInvaders.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raygui/src/raygui.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater.cpp
@@ -11540,8 +11541,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raygui.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/save_data/SaveData.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -11557,6 +11556,8 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raygui/src/raygui.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level1.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level1.cpp
@@ -12157,7 +12158,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level1
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level1.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -12172,6 +12172,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level1
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level2.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level2.cpp
@@ -12772,7 +12773,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level2
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level2.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -12787,6 +12787,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level2
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level3.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level3.cpp
@@ -13387,7 +13388,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level3
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level3.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -13402,6 +13402,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level3
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level4.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level4.cpp
@@ -14002,7 +14003,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level4
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level4.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -14017,6 +14017,7 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_Level4
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelBase.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelBase.cpp
@@ -15036,54 +15037,6 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelB
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/adl_serializer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/byte_container_with_subtype.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/abi_macros.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/from_json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/to_chars.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/conversions/to_json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/exceptions.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/hash.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/binary_reader.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/input_adapters.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/json_sax.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/lexer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/parser.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/input/position_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/internal_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iter_impl.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iteration_proxy.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/iterator_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/json_reverse_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/iterators/primitive_iterator.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_custom_base_class.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_pointer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/json_ref.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/macro_scope.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/macro_unscope.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/call_std/begin.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/call_std/end.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/cpp_future.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/detected.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/identity_tag.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/is_sax.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/std_fs.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/type_traits.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/meta/void_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/binary_writer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/output_adapters.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/output/serializer.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_concat.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_escape.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/string_utils.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/detail/value_t.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/json.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/json_fwd.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/ordered_map.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/thirdparty/hedley/hedley.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raygui.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/save_data/SaveData.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
@@ -15102,6 +15055,55 @@ CMakeFiles/KitsuneEngine.dir/src/game/scene/WhereIsMyWater/WhereIsMyWater_LevelB
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/adl_serializer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/byte_container_with_subtype.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/abi_macros.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/from_json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/to_chars.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/conversions/to_json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/exceptions.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/hash.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/binary_reader.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/input_adapters.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/json_sax.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/lexer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/parser.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/input/position_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/internal_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iter_impl.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iteration_proxy.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/iterator_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/json_reverse_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/iterators/primitive_iterator.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_custom_base_class.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_pointer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/json_ref.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/macro_scope.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/macro_unscope.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/call_std/begin.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/call_std/end.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/cpp_future.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/detected.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/identity_tag.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/is_sax.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/logic.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/std_fs.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/type_traits.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/meta/void_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/binary_writer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/output_adapters.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/output/serializer.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_concat.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_escape.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/string_utils.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/detail/value_t.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/json.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/json_fwd.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/ordered_map.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/thirdparty/hedley/hedley.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raygui/src/raygui.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/collider/CircleCollider2D.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/CircleCollider2D.cpp
@@ -15231,12 +15233,12 @@ CMakeFiles/KitsuneEngine.dir/src/lib/collider/CircleCollider2D.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/ptrcheck.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/CircleCollider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/collider/Collider2D.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.cpp
@@ -15366,11 +15368,11 @@ CMakeFiles/KitsuneEngine.dir/src/lib/collider/Collider2D.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/ptrcheck.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/collider/ColliderComponent2D.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderComponent2D.cpp
@@ -15765,7 +15767,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/collider/ColliderComponent2D.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderComponent2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
@@ -15780,6 +15781,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/collider/ColliderComponent2D.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/render/RenderComponent2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/collider/CollisionSystem2D.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/CollisionSystem2D.cpp
@@ -16424,13 +16426,13 @@ CMakeFiles/KitsuneEngine.dir/src/lib/collider/CollisionSystem2D.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/CollisionManifold2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/CollisionSystem2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/collider/SquareCollider2D.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/SquareCollider2D.cpp
@@ -16560,12 +16562,12 @@ CMakeFiles/KitsuneEngine.dir/src/lib/collider/SquareCollider2D.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/ptrcheck.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/SquareCollider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/component/Component.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/component/Component.cpp
@@ -16757,7 +16759,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/events/Events.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/component/Component.h
@@ -16768,6 +16769,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/events/Events.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/object/Object.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/events/Subscription.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/events/Subscription.cpp
@@ -17335,7 +17337,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/input/InputComponent.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/component/Component.h
@@ -17348,6 +17349,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/input/InputComponent.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/object/Object.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/input/InputSystem.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/input/InputSystem.cpp
@@ -18103,7 +18105,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/input/InputSystem.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/component/Component.h
@@ -18117,6 +18118,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/input/InputSystem.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/object/Object.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/object/Object.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/object/Object.cpp
@@ -18511,7 +18513,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/object/Object.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderComponent2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
@@ -18526,6 +18527,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/object/Object.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/render/RenderComponent2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/physics_system/PhysicsComponent.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/physics_system/PhysicsComponent.cpp
@@ -19172,7 +19174,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/physics_system/PhysicsComponent.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/component/Component.h
@@ -19184,6 +19185,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/physics_system/PhysicsComponent.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/physics_system/PhysicsComponent.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/physics_system/PhysicsSystem.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/physics_system/PhysicsSystem.cpp
@@ -19830,7 +19832,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/physics_system/PhysicsSystem.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/component/Component.h
@@ -19843,6 +19844,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/physics_system/PhysicsSystem.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/physics_system/PhysicsSystem.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/render/CircleRenderComponent.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/render/CircleRenderComponent.cpp
@@ -19991,7 +19993,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/render/CircleRenderComponent.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/component/Component.h
@@ -20004,6 +20005,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/render/CircleRenderComponent.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/render/RenderComponent2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/render/RenderComponent2D.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/render/RenderComponent2D.cpp
@@ -20491,8 +20493,8 @@ CMakeFiles/KitsuneEngine.dir/src/lib/resource_manager/ResourceManager.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/resource_manager/ResourceManager.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/scene/SceneBase.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.cpp
@@ -21077,7 +21079,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/scene/SceneBase.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderComponent2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
@@ -21094,6 +21095,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/scene/SceneBase.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneBase.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/scene/SceneManager.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.cpp
@@ -21543,7 +21545,6 @@ CMakeFiles/KitsuneEngine.dir/src/lib/scene/SceneManager.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
- /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/include/raylib.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/Collider2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/collider/ColliderTypes2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/component/Component.h
@@ -21556,6 +21557,7 @@ CMakeFiles/KitsuneEngine.dir/src/lib/scene/SceneManager.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/scene/SceneManager.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.h
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/vector/Vector2D.h
+ /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/raylib.h
 
 CMakeFiles/KitsuneEngine.dir/src/lib/transform/Transform2D.cpp.o
  /Users/kasairaito/Documents/GitHub/KitsuneEngine/src/lib/transform/Transform2D.cpp

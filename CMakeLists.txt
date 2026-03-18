@@ -1,19 +1,92 @@
-cmake_minimum_required(VERSION 4.1)
-project(KitsuneEngine LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.25)
+project(KitsuneEngine LANGUAGES C CXX)
 
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+option(KITSUNE_USE_SYSTEM_DEPS "Use find_package() dependencies instead of vendored third_party libraries." OFF)
 
-# -----------------------------
-# Dependencies
-# -----------------------------
-find_package(raylib CONFIG REQUIRED)
-find_package(glfw3 CONFIG REQUIRED)
-find_package(box2d CONFIG REQUIRED)
-find_package(nlohmann_json CONFIG REQUIRED)
-find_package(unofficial-lua CONFIG REQUIRED)
-find_package(sol2 CONFIG REQUIRED)
+function(kitsune_require_file path description)
+    if (NOT EXISTS "${path}")
+        message(FATAL_ERROR
+                "Missing ${description} at: ${path}\n"
+                "Run:\n"
+                "  git submodule update --init --recursive\n"
+                "or clone with:\n"
+                "  git clone --recurse-submodules <repo-url>")
+    endif ()
+endfunction()
+
+set(KITSUNE_THIRD_PARTY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third_party")
+kitsune_require_file("${KITSUNE_THIRD_PARTY_DIR}/raygui/src/raygui.h" "raygui submodule")
+
+add_library(raygui INTERFACE)
+target_include_directories(raygui INTERFACE
+        "${KITSUNE_THIRD_PARTY_DIR}/raygui/src")
+add_library(raygui::raygui ALIAS raygui)
+
+if (KITSUNE_USE_SYSTEM_DEPS)
+    find_package(raylib CONFIG REQUIRED)
+    find_package(nlohmann_json CONFIG REQUIRED)
+    find_package(unofficial-lua CONFIG REQUIRED)
+    find_package(sol2 CONFIG REQUIRED)
+
+    set(KITSUNE_RAYLIB_TARGET raylib)
+    set(KITSUNE_JSON_TARGET nlohmann_json::nlohmann_json)
+    set(KITSUNE_LUA_TARGET unofficial::lua::lua)
+    set(KITSUNE_SOL_TARGET sol2::sol2)
+else ()
+    kitsune_require_file("${KITSUNE_THIRD_PARTY_DIR}/raylib/CMakeLists.txt" "raylib submodule")
+    kitsune_require_file("${KITSUNE_THIRD_PARTY_DIR}/nlohmann_json/include/nlohmann/json.hpp" "nlohmann/json submodule")
+    kitsune_require_file("${KITSUNE_THIRD_PARTY_DIR}/sol2/include/sol/sol.hpp" "sol2 submodule")
+    kitsune_require_file("${KITSUNE_THIRD_PARTY_DIR}/lua/lua.h" "lua submodule")
+
+    set(BUILD_EXAMPLES OFF CACHE BOOL "Build raylib examples" FORCE)
+    set(BUILD_GAMES OFF CACHE BOOL "Build raylib games" FORCE)
+    add_subdirectory("${KITSUNE_THIRD_PARTY_DIR}/raylib" "${CMAKE_BINARY_DIR}/third_party/raylib" EXCLUDE_FROM_ALL)
+
+    file(GLOB LUA_SOURCES CONFIGURE_DEPENDS
+            "${KITSUNE_THIRD_PARTY_DIR}/lua/*.c")
+    list(REMOVE_ITEM LUA_SOURCES
+            "${KITSUNE_THIRD_PARTY_DIR}/lua/lua.c"
+            "${KITSUNE_THIRD_PARTY_DIR}/lua/luac.c"
+            "${KITSUNE_THIRD_PARTY_DIR}/lua/onelua.c"
+            "${KITSUNE_THIRD_PARTY_DIR}/lua/ltests.c")
+
+    add_library(lua STATIC ${LUA_SOURCES})
+    target_include_directories(lua PUBLIC
+            "${KITSUNE_THIRD_PARTY_DIR}/lua")
+    if (WIN32)
+        target_compile_definitions(lua PRIVATE LUA_USE_WINDOWS)
+    elseif (APPLE)
+        target_compile_definitions(lua PRIVATE LUA_USE_MACOSX)
+    elseif (UNIX)
+        target_compile_definitions(lua PRIVATE LUA_USE_LINUX)
+    endif ()
+
+    target_link_libraries(lua PUBLIC ${CMAKE_DL_LIBS})
+    if (UNIX AND NOT APPLE)
+        target_link_libraries(lua PUBLIC m)
+    endif ()
+    add_library(lua::lua ALIAS lua)
+
+    add_library(nlohmann_json INTERFACE)
+    target_include_directories(nlohmann_json INTERFACE
+            "${KITSUNE_THIRD_PARTY_DIR}/nlohmann_json/include")
+    add_library(nlohmann_json::nlohmann_json ALIAS nlohmann_json)
+
+    add_library(sol2 INTERFACE)
+    target_include_directories(sol2 INTERFACE
+            "${KITSUNE_THIRD_PARTY_DIR}/sol2/include")
+    add_library(sol2::sol2 ALIAS sol2)
+
+    set(KITSUNE_RAYLIB_TARGET raylib)
+    set(KITSUNE_JSON_TARGET nlohmann_json::nlohmann_json)
+    set(KITSUNE_LUA_TARGET lua::lua)
+    set(KITSUNE_SOL_TARGET sol2::sol2)
+endif ()
 
 # -----------------------------
 # Sources
@@ -104,12 +177,13 @@ target_include_directories(KitsuneEngine PRIVATE
 # -----------------------------
 # Link libraries
 # -----------------------------
-target_link_libraries(KitsuneEngine PRIVATE raylib)
-target_link_libraries(KitsuneEngine PRIVATE glfw)
-target_link_libraries(KitsuneEngine PRIVATE box2d::box2d)
-target_link_libraries(KitsuneEngine PRIVATE nlohmann_json::nlohmann_json)
-target_link_libraries(KitsuneEngine PRIVATE unofficial::lua::lua)
-target_link_libraries(KitsuneEngine PRIVATE sol2::sol2)
+target_link_libraries(KitsuneEngine PRIVATE
+        ${KITSUNE_RAYLIB_TARGET}
+        ${KITSUNE_JSON_TARGET}
+        ${KITSUNE_LUA_TARGET}
+        ${KITSUNE_SOL_TARGET}
+        raygui::raygui
+)
 
 # -----------------------------
 # macOS frameworks (raylib)

@@ -1,4 +1,21 @@
-/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=/Users/kasairaito/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Unix Makefiles" -S /Users/kasairaito/Documents/GitHub/KitsuneEngine -B /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug
+/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/kasairaito/Documents/GitHub/KitsuneEngine -B /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug
+-- Testing if -Werror=pointer-arith can be used -- compiles
+-- Testing if -Werror=implicit-function-declaration can be used -- compiles
+-- Testing if -fno-strict-aliasing can be used -- compiles
+-- Using raylib's GLFW
+-- Including Cocoa support
+CMake Warning (dev) at third_party/raylib/cmake/LibraryConfigurations.cmake:24 (MESSAGE):
+  OpenGL is deprecated starting with macOS 10.14 (Mojave)!
+Call Stack (most recent call first):
+  third_party/raylib/src/CMakeLists.txt:49 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Audio Backend: miniaudio
+-- Building raylib static library
+-- Generated build type: Debug
+-- Compiling with the flags:
+--   PLATFORM=PLATFORM_DESKTOP
+--   GRAPHICS=GRAPHICS_API_OPENGL_33
 -- Configuring done (0.1s)
--- Generating done (0.0s)
+-- Generating done (0.1s)
 -- Build files have been written to: /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug
