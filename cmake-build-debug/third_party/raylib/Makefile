@@ -182,20 +182,6 @@ depend:
 	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-third_party/raylib/CMakeFiles/uninstall.dir/rule:
-	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 third_party/raylib/CMakeFiles/uninstall.dir/rule
-.PHONY : third_party/raylib/CMakeFiles/uninstall.dir/rule
-
-# Convenience name for target.
-uninstall: third_party/raylib/CMakeFiles/uninstall.dir/rule
-.PHONY : uninstall
-
-# fast build rule for target.
-uninstall/fast:
-	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f third_party/raylib/CMakeFiles/uninstall.dir/build.make third_party/raylib/CMakeFiles/uninstall.dir/build
-.PHONY : uninstall/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -210,7 +196,6 @@ help:
 	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
-	@echo "... uninstall"
 .PHONY : help
 
 

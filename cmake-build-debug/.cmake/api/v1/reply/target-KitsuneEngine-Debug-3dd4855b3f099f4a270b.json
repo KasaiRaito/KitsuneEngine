@@ -167,10 +167,6 @@
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/external/glfw/include"
-				},
-				{
-					"backtrace" : 2,
 					"path" : "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/nlohmann_json/include"
 				},
 				{

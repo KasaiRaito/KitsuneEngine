@@ -300,9 +300,6 @@
 			"path" : "third_party/raylib/cmake/ParseConfigHeader.cmake"
 		},
 		{
-			"path" : "third_party/raylib/cmake/Uninstall.cmake"
-		},
-		{
 			"path" : "third_party/raylib/src/CMakeLists.txt"
 		},
 		{
@@ -333,6 +330,9 @@
 		},
 		{
 			"path" : "third_party/raylib/cmake/raylib-config-version.cmake"
+		},
+		{
+			"path" : "third_party/raylib/cmake/raylib-config.cmake"
 		},
 		{
 			"path" : "third_party/raylib/cmake/PopulateConfigVariablesLocally.cmake"

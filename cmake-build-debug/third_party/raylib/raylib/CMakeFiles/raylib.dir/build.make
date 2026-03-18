@@ -156,20 +156,6 @@ third_party/raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/raylib.dir/rtextures.c.s"
 	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/raylib && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/rtextures.c -o CMakeFiles/raylib.dir/rtextures.c.s
 
-third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.o: third_party/raylib/raylib/CMakeFiles/raylib.dir/flags.make
-third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.o: /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/utils.c
-third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.o: third_party/raylib/raylib/CMakeFiles/raylib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.o"
-	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/raylib && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.o -MF CMakeFiles/raylib.dir/utils.c.o.d -o CMakeFiles/raylib.dir/utils.c.o -c /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/utils.c
-
-third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/raylib.dir/utils.c.i"
-	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/raylib && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/utils.c > CMakeFiles/raylib.dir/utils.c.i
-
-third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/raylib.dir/utils.c.s"
-	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/raylib && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/utils.c -o CMakeFiles/raylib.dir/utils.c.s
-
 # Object files for target raylib
 raylib_OBJECTS = \
 "CMakeFiles/raylib.dir/raudio.c.o" \
@@ -177,8 +163,7 @@ raylib_OBJECTS = \
 "CMakeFiles/raylib.dir/rmodels.c.o" \
 "CMakeFiles/raylib.dir/rshapes.c.o" \
 "CMakeFiles/raylib.dir/rtext.c.o" \
-"CMakeFiles/raylib.dir/rtextures.c.o" \
-"CMakeFiles/raylib.dir/utils.c.o"
+"CMakeFiles/raylib.dir/rtextures.c.o"
 
 # External object files for target raylib
 raylib_EXTERNAL_OBJECTS = \
@@ -210,7 +195,6 @@ third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/CMakeFiles/rayl
 third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/CMakeFiles/raylib.dir/rshapes.c.o
 third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/CMakeFiles/raylib.dir/rtext.c.o
 third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.o
-third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.o
 third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o
 third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o
 third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o
@@ -234,7 +218,7 @@ third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/external/glfw/s
 third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o
 third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/CMakeFiles/raylib.dir/build.make
 third_party/raylib/raylib/libraylib.a: third_party/raylib/raylib/CMakeFiles/raylib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C static library libraylib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C static library libraylib.a"
 	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/raylib && $(CMAKE_COMMAND) -P CMakeFiles/raylib.dir/cmake_clean_target.cmake
 	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/raylib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/raylib.dir/link.txt --verbose=$(VERBOSE)
 

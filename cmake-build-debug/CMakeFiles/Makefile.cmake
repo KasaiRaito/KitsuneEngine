@@ -75,8 +75,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/cmake/PackConfigurations.cmake"
   "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/cmake/ParseConfigHeader.cmake"
   "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/cmake/PopulateConfigVariablesLocally.cmake"
-  "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/cmake/Uninstall.cmake"
   "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/cmake/raylib-config-version.cmake"
+  "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/cmake/raylib-config.cmake"
   "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/raylib.pc.in"
   "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/CMakeLists.txt"
   "/Users/kasairaito/Documents/GitHub/KitsuneEngine/third_party/raylib/src/external/glfw/CMake/glfw3.pc.in"
@@ -94,10 +94,10 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "third_party/raylib/cmake_uninstall.cmake"
   "third_party/raylib/CMakeFiles/CMakeDirectoryInformation.cmake"
   "third_party/raylib/raylib/raylib.pc"
   "third_party/raylib/raylib/raylib-config-version.cmake"
+  "third_party/raylib/raylib/raylib-config.cmake"
   "CPackConfig.cmake"
   "CPackSourceConfig.cmake"
   "third_party/raylib/raylib/CMakeFiles/CMakeDirectoryInformation.cmake"
@@ -112,7 +112,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/lua.dir/DependInfo.cmake"
   "CMakeFiles/KitsuneEngine.dir/DependInfo.cmake"
-  "third_party/raylib/CMakeFiles/uninstall.dir/DependInfo.cmake"
   "third_party/raylib/raylib/CMakeFiles/raylib.dir/DependInfo.cmake"
   "third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   "third_party/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/DependInfo.cmake"

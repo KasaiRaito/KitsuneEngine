@@ -1,19 +1,10 @@
 /Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/kasairaito/Documents/GitHub/KitsuneEngine -B /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug
-CMake Deprecation Warning at third_party/raylib/CMakeLists.txt:1 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-
-
 -- Testing if -Werror=pointer-arith can be used -- compiles
 -- Testing if -Werror=implicit-function-declaration can be used -- compiles
 -- Testing if -fno-strict-aliasing can be used -- compiles
 -- Using raylib's GLFW
 -- Including Cocoa support
-CMake Warning (dev) at third_party/raylib/cmake/LibraryConfigurations.cmake:22 (MESSAGE):
+CMake Warning (dev) at third_party/raylib/cmake/LibraryConfigurations.cmake:24 (MESSAGE):
   OpenGL is deprecated starting with macOS 10.14 (Mojave)!
 Call Stack (most recent call first):
   third_party/raylib/src/CMakeLists.txt:49 (include)

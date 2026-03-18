@@ -98,7 +98,6 @@ third_party/raylib/preinstall: third_party/raylib/raylib/preinstall
 .PHONY : third_party/raylib/preinstall
 
 # Recursive "clean" directory target.
-third_party/raylib/clean: third_party/raylib/CMakeFiles/uninstall.dir/clean
 third_party/raylib/clean: third_party/raylib/raylib/clean
 .PHONY : third_party/raylib/clean
 
@@ -170,7 +169,7 @@ third_party/raylib/raylib/external/glfw/src/clean: third_party/raylib/raylib/ext
 CMakeFiles/lua.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91 "Built target lua"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92 "Built target lua"
 .PHONY : CMakeFiles/lua.dir/all
 
 # Build rule for subdir invocation for target.
@@ -187,7 +186,7 @@ lua: CMakeFiles/lua.dir/rule
 # codegen rule for target.
 CMakeFiles/lua.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91 "Finished codegen for target lua"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92 "Finished codegen for target lua"
 .PHONY : CMakeFiles/lua.dir/codegen
 
 # clean rule for target.
@@ -230,45 +229,13 @@ CMakeFiles/KitsuneEngine.dir/clean:
 .PHONY : CMakeFiles/KitsuneEngine.dir/clean
 
 #=============================================================================
-# Target rules for target third_party/raylib/CMakeFiles/uninstall.dir
-
-# All Build rule for target.
-third_party/raylib/CMakeFiles/uninstall.dir/all:
-	$(MAKE) $(MAKESILENT) -f third_party/raylib/CMakeFiles/uninstall.dir/build.make third_party/raylib/CMakeFiles/uninstall.dir/depend
-	$(MAKE) $(MAKESILENT) -f third_party/raylib/CMakeFiles/uninstall.dir/build.make third_party/raylib/CMakeFiles/uninstall.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num= "Built target uninstall"
-.PHONY : third_party/raylib/CMakeFiles/uninstall.dir/all
-
-# Build rule for subdir invocation for target.
-third_party/raylib/CMakeFiles/uninstall.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 third_party/raylib/CMakeFiles/uninstall.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles 0
-.PHONY : third_party/raylib/CMakeFiles/uninstall.dir/rule
-
-# Convenience name for target.
-uninstall: third_party/raylib/CMakeFiles/uninstall.dir/rule
-.PHONY : uninstall
-
-# codegen rule for target.
-third_party/raylib/CMakeFiles/uninstall.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f third_party/raylib/CMakeFiles/uninstall.dir/build.make third_party/raylib/CMakeFiles/uninstall.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num= "Finished codegen for target uninstall"
-.PHONY : third_party/raylib/CMakeFiles/uninstall.dir/codegen
-
-# clean rule for target.
-third_party/raylib/CMakeFiles/uninstall.dir/clean:
-	$(MAKE) $(MAKESILENT) -f third_party/raylib/CMakeFiles/uninstall.dir/build.make third_party/raylib/CMakeFiles/uninstall.dir/clean
-.PHONY : third_party/raylib/CMakeFiles/uninstall.dir/clean
-
-#=============================================================================
 # Target rules for target third_party/raylib/raylib/CMakeFiles/raylib.dir
 
 # All Build rule for target.
 third_party/raylib/raylib/CMakeFiles/raylib.dir/all: third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/all
 	$(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/CMakeFiles/raylib.dir/build.make third_party/raylib/raylib/CMakeFiles/raylib.dir/depend
 	$(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/CMakeFiles/raylib.dir/build.make third_party/raylib/raylib/CMakeFiles/raylib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=92,93,94,95,96,97,98,99 "Built target raylib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=93,94,95,96,97,98,99 "Built target raylib"
 .PHONY : third_party/raylib/raylib/CMakeFiles/raylib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -285,7 +252,7 @@ raylib: third_party/raylib/raylib/CMakeFiles/raylib.dir/rule
 # codegen rule for target.
 third_party/raylib/raylib/CMakeFiles/raylib.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/CMakeFiles/raylib.dir/build.make third_party/raylib/raylib/CMakeFiles/raylib.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=92,93,94,95,96,97,98,99 "Finished codegen for target raylib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=93,94,95,96,97,98,99 "Finished codegen for target raylib"
 .PHONY : third_party/raylib/raylib/CMakeFiles/raylib.dir/codegen
 
 # clean rule for target.
@@ -300,12 +267,12 @@ third_party/raylib/raylib/CMakeFiles/raylib.dir/clean:
 third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/all:
 	$(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/depend
 	$(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60 "Built target glfw"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61 "Built target glfw"
 .PHONY : third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/all
 
 # Build rule for subdir invocation for target.
 third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles 20
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles 0
 .PHONY : third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/rule
@@ -317,7 +284,7 @@ glfw: third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/rule
 # codegen rule for target.
 third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60 "Finished codegen for target glfw"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61 "Finished codegen for target glfw"
 .PHONY : third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/codegen
 
 # clean rule for target.

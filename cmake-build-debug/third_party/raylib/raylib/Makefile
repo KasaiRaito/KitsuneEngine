@@ -340,30 +340,6 @@ rtextures.c.s:
 	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/CMakeFiles/raylib.dir/build.make third_party/raylib/raylib/CMakeFiles/raylib.dir/rtextures.c.s
 .PHONY : rtextures.c.s
 
-utils.o: utils.c.o
-.PHONY : utils.o
-
-# target to build an object file
-utils.c.o:
-	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/CMakeFiles/raylib.dir/build.make third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.o
-.PHONY : utils.c.o
-
-utils.i: utils.c.i
-.PHONY : utils.i
-
-# target to preprocess a source file
-utils.c.i:
-	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/CMakeFiles/raylib.dir/build.make third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.i
-.PHONY : utils.c.i
-
-utils.s: utils.c.s
-.PHONY : utils.s
-
-# target to generate assembly for a file
-utils.c.s:
-	cd /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/CMakeFiles/raylib.dir/build.make third_party/raylib/raylib/CMakeFiles/raylib.dir/utils.c.s
-.PHONY : utils.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -397,9 +373,6 @@ help:
 	@echo "... rtextures.o"
 	@echo "... rtextures.i"
 	@echo "... rtextures.s"
-	@echo "... utils.o"
-	@echo "... utils.i"
-	@echo "... utils.s"
 .PHONY : help
 
 

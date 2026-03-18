@@ -19,7 +19,7 @@
 			{
 				"command" : 1,
 				"file" : 1,
-				"line" : 116,
+				"line" : 138,
 				"parent" : 0
 			},
 			{
@@ -35,12 +35,6 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 22,
-				"parent" : 2
-			},
-			{
-				"command" : 0,
-				"file" : 0,
 				"line" : 23,
 				"parent" : 2
 			},
@@ -48,6 +42,18 @@
 				"command" : 0,
 				"file" : 0,
 				"line" : 24,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 25,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 30,
 				"parent" : 2
 			}
 		]
@@ -73,6 +79,7 @@
 			"paths" : 
 			[
 				"third_party/raylib/src/raylib.h",
+				"third_party/raylib/src/rcamera.h",
 				"third_party/raylib/src/rlgl.h",
 				"third_party/raylib/src/raymath.h"
 			],
@@ -104,9 +111,28 @@
 			"destination" : "lib/cmake/raylib",
 			"paths" : 
 			[
-				"third_party/raylib/src/../cmake/raylib-config.cmake"
+				"cmake-build-debug/third_party/raylib/raylib/raylib-config-version.cmake",
+				"cmake-build-debug/third_party/raylib/raylib/raylib-config.cmake"
 			],
 			"type" : "file"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/raylib",
+			"exportName" : "raylib-targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "raylib::@4a485e771b3f92854b17",
+					"index" : 3
+				}
+			],
+			"paths" : 
+			[
+				"third_party/raylib/raylib/CMakeFiles/Export/3f9a69e8808e76b29b64bee1688b3b35/raylib-targets.cmake"
+			],
+			"type" : "export"
 		}
 	],
 	"paths" : 

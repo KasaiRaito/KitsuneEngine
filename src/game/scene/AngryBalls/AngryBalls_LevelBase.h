@@ -84,7 +84,7 @@ private:
     float slingMaxStretch = 90.0f;
     float launchPower = 7.5f;
     float pigImpactThreshold = 200.0f;
-    float blockMaxHealth = 200.0f;
+    float blockMaxHealth = 200.0f * (2.0f / 3.0f);
     float blockDamageThreshold = 80.0f;
     float blockDamageScale = 0.65f;
     float startLockDurationSeconds = 1.0f;

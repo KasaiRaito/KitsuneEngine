@@ -209,19 +209,6 @@ KitsuneEngine/fast:
 .PHONY : KitsuneEngine/fast
 
 #=============================================================================
-# Target rules for targets named uninstall
-
-# Build rule for target.
-uninstall: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
-.PHONY : uninstall
-
-# fast build rule for target.
-uninstall/fast:
-	$(MAKE) $(MAKESILENT) -f third_party/raylib/CMakeFiles/uninstall.dir/build.make third_party/raylib/CMakeFiles/uninstall.dir/build
-.PHONY : uninstall/fast
-
-#=============================================================================
 # Target rules for targets named raylib
 
 # Build rule for target.
@@ -2074,7 +2061,6 @@ help:
 	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
-	@echo "... uninstall"
 	@echo "... update_mappings"
 	@echo "... KitsuneEngine"
 	@echo "... glfw"

@@ -1839,7 +1839,7 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "Include everything disabled by default (for CI usage"
+					"value" : "Include everything disabled by default (for CI usage)"
 				}
 			],
 			"type" : "BOOL",
@@ -1927,7 +1927,7 @@
 				},
 				{
 					"name" : "STRINGS",
-					"value" : "OFF;4.3;3.3;2.1;1.1;ES 2.0;ES 3.0"
+					"value" : "OFF;4.3;3.3;2.1;1.1;ES 2.0;ES 3.0;Software"
 				}
 			],
 			"type" : "STRING",
@@ -1943,7 +1943,7 @@
 				},
 				{
 					"name" : "STRINGS",
-					"value" : "Desktop;Web;Android;Raspberry Pi;DRM;SDL"
+					"value" : "Desktop;Web;WebRGFW;Android;Raspberry Pi;DRM;SDL;RGFW"
 				}
 			],
 			"type" : "STRING",
@@ -2060,18 +2060,6 @@
 			],
 			"type" : "STATIC",
 			"value" : "OFF"
-		},
-		{
-			"name" : "raylib_LIB_DEPENDS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Dependencies for the target"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "general;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework;general;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework;glfw;"
 		},
 		{
 			"name" : "raylib_SOURCE_DIR",

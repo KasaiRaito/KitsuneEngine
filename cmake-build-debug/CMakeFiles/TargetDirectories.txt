@@ -8,7 +8,6 @@
 /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles/install.dir
 /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles/install/local.dir
 /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles/install/strip.dir
-/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/CMakeFiles/uninstall.dir
 /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/CMakeFiles/package.dir
 /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/CMakeFiles/package_source.dir
 /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/third_party/raylib/CMakeFiles/edit_cache.dir

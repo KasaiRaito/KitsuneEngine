@@ -34,15 +34,11 @@
 					"jsonFile" : "directory-third_party.raylib-Debug-e6f7cb18b74fdafcf9a4.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.5"
+						"string" : "3.25"
 					},
 					"parentIndex" : 0,
 					"projectIndex" : 1,
-					"source" : "third_party/raylib",
-					"targetIndexes" : 
-					[
-						4
-					]
+					"source" : "third_party/raylib"
 				},
 				{
 					"build" : "third_party/raylib/raylib",
@@ -51,10 +47,10 @@
 						3
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-third_party.raylib.raylib-Debug-8e4534f3cad7d3cadfe3.json",
+					"jsonFile" : "directory-third_party.raylib.raylib-Debug-8cd65c988593484baa85.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.5"
+						"string" : "3.25"
 					},
 					"parentIndex" : 1,
 					"projectIndex" : 1,
@@ -92,7 +88,7 @@
 					"targetIndexes" : 
 					[
 						1,
-						5
+						4
 					]
 				}
 			],
@@ -129,8 +125,7 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						3,
-						4
+						3
 					]
 				},
 				{
@@ -144,7 +139,7 @@
 					"targetIndexes" : 
 					[
 						1,
-						5
+						4
 					]
 				}
 			],
@@ -153,7 +148,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "KitsuneEngine::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-KitsuneEngine-Debug-680854ba9a6384677adf.json",
+					"jsonFile" : "target-KitsuneEngine-Debug-3dd4855b3f099f4a270b.json",
 					"name" : "KitsuneEngine",
 					"projectIndex" : 0
 				},
@@ -174,15 +169,8 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "raylib::@4a485e771b3f92854b17",
-					"jsonFile" : "target-raylib-Debug-97008e7d08ea35bd51c1.json",
+					"jsonFile" : "target-raylib-Debug-b500aa7d0eefcd4a6d0b.json",
 					"name" : "raylib",
-					"projectIndex" : 1
-				},
-				{
-					"directoryIndex" : 1,
-					"id" : "uninstall::@ddd7ef05e7317752c1d3",
-					"jsonFile" : "target-uninstall-Debug-0598c36997dc507ecc50.json",
-					"name" : "uninstall",
 					"projectIndex" : 1
 				},
 				{
