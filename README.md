@@ -12,8 +12,8 @@ Dependencies are committed as git submodules in `third_party/`:
 - `nlohmann_json`
 
 Pinned versions:
-- `raylib` `5.5`
-- `raygui` `4.0`
+- `raylib` `6.0`
+- `raygui` `5.0`
 - `lua` `5.4.8`
 - `sol2` `3.5.0`
 - `nlohmann_json` `3.12.0`
@@ -43,8 +43,10 @@ Open in IDEs:
 
 ## Optional: use system/package-manager dependencies
 
-You can still use package-managed deps by enabling:
+You can use package-managed dependencies for `raylib`, `nlohmann_json`, `lua`, and `sol2` by enabling:
 
 ```bash
 cmake -S . -B build -DKITSUNE_USE_SYSTEM_DEPS=ON
 ```
+
+Note: `raygui` is still used from `third_party/raygui`, so submodules are still required.

@@ -17,5 +17,5 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 --   PLATFORM=PLATFORM_DESKTOP
 --   GRAPHICS=GRAPHICS_API_OPENGL_33
 -- Configuring done (0.1s)
--- Generating done (0.1s)
+-- Generating done (0.0s)
 -- Build files have been written to: /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug
