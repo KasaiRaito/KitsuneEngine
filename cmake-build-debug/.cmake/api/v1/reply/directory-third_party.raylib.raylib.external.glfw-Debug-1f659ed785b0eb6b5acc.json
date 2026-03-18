@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "third_party/raylib/raylib/external/glfw",
+		"source" : "third_party/raylib/src/external/glfw"
+	}
+}

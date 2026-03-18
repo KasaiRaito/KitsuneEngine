@@ -65,10 +65,30 @@ CMAKE_BINARY_DIR = /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
+	/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cpack --config ./CPackConfig.cmake
+.PHONY : package
+
+# Special rule for the target package
+package/fast: package
+.PHONY : package/fast
+
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
+	/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cpack --config ./CPackSourceConfig.cmake /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CPackSourceConfig.cmake
+.PHONY : package_source
+
+# Special rule for the target package_source
+package_source/fast: package_source
+.PHONY : package_source/fast
+
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/opt/homebrew/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
+	/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -85,19 +105,57 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/Users/kasairaito/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles 0
 .PHONY : all
-
-# The main codegen target
-codegen: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 codegen
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles 0
-.PHONY : codegen
 
 # The main clean target
 clean:
@@ -120,8 +178,22 @@ preinstall/fast:
 
 # clear depends
 depend:
+	$(CMAKE_COMMAND) -P /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named lua
+
+# Build rule for target.
+lua: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lua
+.PHONY : lua
+
+# fast build rule for target.
+lua/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/build
+.PHONY : lua/fast
 
 #=============================================================================
 # Target rules for targets named KitsuneEngine
@@ -135,6 +207,58 @@ KitsuneEngine: cmake_check_build_system
 KitsuneEngine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/KitsuneEngine.dir/build.make CMakeFiles/KitsuneEngine.dir/build
 .PHONY : KitsuneEngine/fast
+
+#=============================================================================
+# Target rules for targets named uninstall
+
+# Build rule for target.
+uninstall: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
+.PHONY : uninstall
+
+# fast build rule for target.
+uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f third_party/raylib/CMakeFiles/uninstall.dir/build.make third_party/raylib/CMakeFiles/uninstall.dir/build
+.PHONY : uninstall/fast
+
+#=============================================================================
+# Target rules for targets named raylib
+
+# Build rule for target.
+raylib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raylib
+.PHONY : raylib
+
+# fast build rule for target.
+raylib/fast:
+	$(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/CMakeFiles/raylib.dir/build.make third_party/raylib/raylib/CMakeFiles/raylib.dir/build
+.PHONY : raylib/fast
+
+#=============================================================================
+# Target rules for targets named glfw
+
+# Build rule for target.
+glfw: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glfw
+.PHONY : glfw
+
+# fast build rule for target.
+glfw/fast:
+	$(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make third_party/raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build
+.PHONY : glfw/fast
+
+#=============================================================================
+# Target rules for targets named update_mappings
+
+# Build rule for target.
+update_mappings: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 update_mappings
+.PHONY : update_mappings
+
+# fast build rule for target.
+update_mappings/fast:
+	$(MAKE) $(MAKESILENT) -f third_party/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build.make third_party/raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
+.PHONY : update_mappings/fast
 
 src/KitsuneEngine.o: src/KitsuneEngine.cpp.o
 .PHONY : src/KitsuneEngine.o
@@ -1168,16 +1292,794 @@ src/lib/vector/Vector3D.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/KitsuneEngine.dir/build.make CMakeFiles/KitsuneEngine.dir/src/lib/vector/Vector3D.cpp.s
 .PHONY : src/lib/vector/Vector3D.cpp.s
 
+third_party/lua/lapi.o: third_party/lua/lapi.c.o
+.PHONY : third_party/lua/lapi.o
+
+# target to build an object file
+third_party/lua/lapi.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lapi.c.o
+.PHONY : third_party/lua/lapi.c.o
+
+third_party/lua/lapi.i: third_party/lua/lapi.c.i
+.PHONY : third_party/lua/lapi.i
+
+# target to preprocess a source file
+third_party/lua/lapi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lapi.c.i
+.PHONY : third_party/lua/lapi.c.i
+
+third_party/lua/lapi.s: third_party/lua/lapi.c.s
+.PHONY : third_party/lua/lapi.s
+
+# target to generate assembly for a file
+third_party/lua/lapi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lapi.c.s
+.PHONY : third_party/lua/lapi.c.s
+
+third_party/lua/lauxlib.o: third_party/lua/lauxlib.c.o
+.PHONY : third_party/lua/lauxlib.o
+
+# target to build an object file
+third_party/lua/lauxlib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lauxlib.c.o
+.PHONY : third_party/lua/lauxlib.c.o
+
+third_party/lua/lauxlib.i: third_party/lua/lauxlib.c.i
+.PHONY : third_party/lua/lauxlib.i
+
+# target to preprocess a source file
+third_party/lua/lauxlib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lauxlib.c.i
+.PHONY : third_party/lua/lauxlib.c.i
+
+third_party/lua/lauxlib.s: third_party/lua/lauxlib.c.s
+.PHONY : third_party/lua/lauxlib.s
+
+# target to generate assembly for a file
+third_party/lua/lauxlib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lauxlib.c.s
+.PHONY : third_party/lua/lauxlib.c.s
+
+third_party/lua/lbaselib.o: third_party/lua/lbaselib.c.o
+.PHONY : third_party/lua/lbaselib.o
+
+# target to build an object file
+third_party/lua/lbaselib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lbaselib.c.o
+.PHONY : third_party/lua/lbaselib.c.o
+
+third_party/lua/lbaselib.i: third_party/lua/lbaselib.c.i
+.PHONY : third_party/lua/lbaselib.i
+
+# target to preprocess a source file
+third_party/lua/lbaselib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lbaselib.c.i
+.PHONY : third_party/lua/lbaselib.c.i
+
+third_party/lua/lbaselib.s: third_party/lua/lbaselib.c.s
+.PHONY : third_party/lua/lbaselib.s
+
+# target to generate assembly for a file
+third_party/lua/lbaselib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lbaselib.c.s
+.PHONY : third_party/lua/lbaselib.c.s
+
+third_party/lua/lcode.o: third_party/lua/lcode.c.o
+.PHONY : third_party/lua/lcode.o
+
+# target to build an object file
+third_party/lua/lcode.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lcode.c.o
+.PHONY : third_party/lua/lcode.c.o
+
+third_party/lua/lcode.i: third_party/lua/lcode.c.i
+.PHONY : third_party/lua/lcode.i
+
+# target to preprocess a source file
+third_party/lua/lcode.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lcode.c.i
+.PHONY : third_party/lua/lcode.c.i
+
+third_party/lua/lcode.s: third_party/lua/lcode.c.s
+.PHONY : third_party/lua/lcode.s
+
+# target to generate assembly for a file
+third_party/lua/lcode.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lcode.c.s
+.PHONY : third_party/lua/lcode.c.s
+
+third_party/lua/lcorolib.o: third_party/lua/lcorolib.c.o
+.PHONY : third_party/lua/lcorolib.o
+
+# target to build an object file
+third_party/lua/lcorolib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lcorolib.c.o
+.PHONY : third_party/lua/lcorolib.c.o
+
+third_party/lua/lcorolib.i: third_party/lua/lcorolib.c.i
+.PHONY : third_party/lua/lcorolib.i
+
+# target to preprocess a source file
+third_party/lua/lcorolib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lcorolib.c.i
+.PHONY : third_party/lua/lcorolib.c.i
+
+third_party/lua/lcorolib.s: third_party/lua/lcorolib.c.s
+.PHONY : third_party/lua/lcorolib.s
+
+# target to generate assembly for a file
+third_party/lua/lcorolib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lcorolib.c.s
+.PHONY : third_party/lua/lcorolib.c.s
+
+third_party/lua/lctype.o: third_party/lua/lctype.c.o
+.PHONY : third_party/lua/lctype.o
+
+# target to build an object file
+third_party/lua/lctype.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lctype.c.o
+.PHONY : third_party/lua/lctype.c.o
+
+third_party/lua/lctype.i: third_party/lua/lctype.c.i
+.PHONY : third_party/lua/lctype.i
+
+# target to preprocess a source file
+third_party/lua/lctype.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lctype.c.i
+.PHONY : third_party/lua/lctype.c.i
+
+third_party/lua/lctype.s: third_party/lua/lctype.c.s
+.PHONY : third_party/lua/lctype.s
+
+# target to generate assembly for a file
+third_party/lua/lctype.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lctype.c.s
+.PHONY : third_party/lua/lctype.c.s
+
+third_party/lua/ldblib.o: third_party/lua/ldblib.c.o
+.PHONY : third_party/lua/ldblib.o
+
+# target to build an object file
+third_party/lua/ldblib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldblib.c.o
+.PHONY : third_party/lua/ldblib.c.o
+
+third_party/lua/ldblib.i: third_party/lua/ldblib.c.i
+.PHONY : third_party/lua/ldblib.i
+
+# target to preprocess a source file
+third_party/lua/ldblib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldblib.c.i
+.PHONY : third_party/lua/ldblib.c.i
+
+third_party/lua/ldblib.s: third_party/lua/ldblib.c.s
+.PHONY : third_party/lua/ldblib.s
+
+# target to generate assembly for a file
+third_party/lua/ldblib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldblib.c.s
+.PHONY : third_party/lua/ldblib.c.s
+
+third_party/lua/ldebug.o: third_party/lua/ldebug.c.o
+.PHONY : third_party/lua/ldebug.o
+
+# target to build an object file
+third_party/lua/ldebug.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldebug.c.o
+.PHONY : third_party/lua/ldebug.c.o
+
+third_party/lua/ldebug.i: third_party/lua/ldebug.c.i
+.PHONY : third_party/lua/ldebug.i
+
+# target to preprocess a source file
+third_party/lua/ldebug.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldebug.c.i
+.PHONY : third_party/lua/ldebug.c.i
+
+third_party/lua/ldebug.s: third_party/lua/ldebug.c.s
+.PHONY : third_party/lua/ldebug.s
+
+# target to generate assembly for a file
+third_party/lua/ldebug.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldebug.c.s
+.PHONY : third_party/lua/ldebug.c.s
+
+third_party/lua/ldo.o: third_party/lua/ldo.c.o
+.PHONY : third_party/lua/ldo.o
+
+# target to build an object file
+third_party/lua/ldo.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldo.c.o
+.PHONY : third_party/lua/ldo.c.o
+
+third_party/lua/ldo.i: third_party/lua/ldo.c.i
+.PHONY : third_party/lua/ldo.i
+
+# target to preprocess a source file
+third_party/lua/ldo.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldo.c.i
+.PHONY : third_party/lua/ldo.c.i
+
+third_party/lua/ldo.s: third_party/lua/ldo.c.s
+.PHONY : third_party/lua/ldo.s
+
+# target to generate assembly for a file
+third_party/lua/ldo.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldo.c.s
+.PHONY : third_party/lua/ldo.c.s
+
+third_party/lua/ldump.o: third_party/lua/ldump.c.o
+.PHONY : third_party/lua/ldump.o
+
+# target to build an object file
+third_party/lua/ldump.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldump.c.o
+.PHONY : third_party/lua/ldump.c.o
+
+third_party/lua/ldump.i: third_party/lua/ldump.c.i
+.PHONY : third_party/lua/ldump.i
+
+# target to preprocess a source file
+third_party/lua/ldump.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldump.c.i
+.PHONY : third_party/lua/ldump.c.i
+
+third_party/lua/ldump.s: third_party/lua/ldump.c.s
+.PHONY : third_party/lua/ldump.s
+
+# target to generate assembly for a file
+third_party/lua/ldump.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ldump.c.s
+.PHONY : third_party/lua/ldump.c.s
+
+third_party/lua/lfunc.o: third_party/lua/lfunc.c.o
+.PHONY : third_party/lua/lfunc.o
+
+# target to build an object file
+third_party/lua/lfunc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lfunc.c.o
+.PHONY : third_party/lua/lfunc.c.o
+
+third_party/lua/lfunc.i: third_party/lua/lfunc.c.i
+.PHONY : third_party/lua/lfunc.i
+
+# target to preprocess a source file
+third_party/lua/lfunc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lfunc.c.i
+.PHONY : third_party/lua/lfunc.c.i
+
+third_party/lua/lfunc.s: third_party/lua/lfunc.c.s
+.PHONY : third_party/lua/lfunc.s
+
+# target to generate assembly for a file
+third_party/lua/lfunc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lfunc.c.s
+.PHONY : third_party/lua/lfunc.c.s
+
+third_party/lua/lgc.o: third_party/lua/lgc.c.o
+.PHONY : third_party/lua/lgc.o
+
+# target to build an object file
+third_party/lua/lgc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lgc.c.o
+.PHONY : third_party/lua/lgc.c.o
+
+third_party/lua/lgc.i: third_party/lua/lgc.c.i
+.PHONY : third_party/lua/lgc.i
+
+# target to preprocess a source file
+third_party/lua/lgc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lgc.c.i
+.PHONY : third_party/lua/lgc.c.i
+
+third_party/lua/lgc.s: third_party/lua/lgc.c.s
+.PHONY : third_party/lua/lgc.s
+
+# target to generate assembly for a file
+third_party/lua/lgc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lgc.c.s
+.PHONY : third_party/lua/lgc.c.s
+
+third_party/lua/linit.o: third_party/lua/linit.c.o
+.PHONY : third_party/lua/linit.o
+
+# target to build an object file
+third_party/lua/linit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/linit.c.o
+.PHONY : third_party/lua/linit.c.o
+
+third_party/lua/linit.i: third_party/lua/linit.c.i
+.PHONY : third_party/lua/linit.i
+
+# target to preprocess a source file
+third_party/lua/linit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/linit.c.i
+.PHONY : third_party/lua/linit.c.i
+
+third_party/lua/linit.s: third_party/lua/linit.c.s
+.PHONY : third_party/lua/linit.s
+
+# target to generate assembly for a file
+third_party/lua/linit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/linit.c.s
+.PHONY : third_party/lua/linit.c.s
+
+third_party/lua/liolib.o: third_party/lua/liolib.c.o
+.PHONY : third_party/lua/liolib.o
+
+# target to build an object file
+third_party/lua/liolib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/liolib.c.o
+.PHONY : third_party/lua/liolib.c.o
+
+third_party/lua/liolib.i: third_party/lua/liolib.c.i
+.PHONY : third_party/lua/liolib.i
+
+# target to preprocess a source file
+third_party/lua/liolib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/liolib.c.i
+.PHONY : third_party/lua/liolib.c.i
+
+third_party/lua/liolib.s: third_party/lua/liolib.c.s
+.PHONY : third_party/lua/liolib.s
+
+# target to generate assembly for a file
+third_party/lua/liolib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/liolib.c.s
+.PHONY : third_party/lua/liolib.c.s
+
+third_party/lua/llex.o: third_party/lua/llex.c.o
+.PHONY : third_party/lua/llex.o
+
+# target to build an object file
+third_party/lua/llex.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/llex.c.o
+.PHONY : third_party/lua/llex.c.o
+
+third_party/lua/llex.i: third_party/lua/llex.c.i
+.PHONY : third_party/lua/llex.i
+
+# target to preprocess a source file
+third_party/lua/llex.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/llex.c.i
+.PHONY : third_party/lua/llex.c.i
+
+third_party/lua/llex.s: third_party/lua/llex.c.s
+.PHONY : third_party/lua/llex.s
+
+# target to generate assembly for a file
+third_party/lua/llex.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/llex.c.s
+.PHONY : third_party/lua/llex.c.s
+
+third_party/lua/lmathlib.o: third_party/lua/lmathlib.c.o
+.PHONY : third_party/lua/lmathlib.o
+
+# target to build an object file
+third_party/lua/lmathlib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lmathlib.c.o
+.PHONY : third_party/lua/lmathlib.c.o
+
+third_party/lua/lmathlib.i: third_party/lua/lmathlib.c.i
+.PHONY : third_party/lua/lmathlib.i
+
+# target to preprocess a source file
+third_party/lua/lmathlib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lmathlib.c.i
+.PHONY : third_party/lua/lmathlib.c.i
+
+third_party/lua/lmathlib.s: third_party/lua/lmathlib.c.s
+.PHONY : third_party/lua/lmathlib.s
+
+# target to generate assembly for a file
+third_party/lua/lmathlib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lmathlib.c.s
+.PHONY : third_party/lua/lmathlib.c.s
+
+third_party/lua/lmem.o: third_party/lua/lmem.c.o
+.PHONY : third_party/lua/lmem.o
+
+# target to build an object file
+third_party/lua/lmem.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lmem.c.o
+.PHONY : third_party/lua/lmem.c.o
+
+third_party/lua/lmem.i: third_party/lua/lmem.c.i
+.PHONY : third_party/lua/lmem.i
+
+# target to preprocess a source file
+third_party/lua/lmem.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lmem.c.i
+.PHONY : third_party/lua/lmem.c.i
+
+third_party/lua/lmem.s: third_party/lua/lmem.c.s
+.PHONY : third_party/lua/lmem.s
+
+# target to generate assembly for a file
+third_party/lua/lmem.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lmem.c.s
+.PHONY : third_party/lua/lmem.c.s
+
+third_party/lua/loadlib.o: third_party/lua/loadlib.c.o
+.PHONY : third_party/lua/loadlib.o
+
+# target to build an object file
+third_party/lua/loadlib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/loadlib.c.o
+.PHONY : third_party/lua/loadlib.c.o
+
+third_party/lua/loadlib.i: third_party/lua/loadlib.c.i
+.PHONY : third_party/lua/loadlib.i
+
+# target to preprocess a source file
+third_party/lua/loadlib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/loadlib.c.i
+.PHONY : third_party/lua/loadlib.c.i
+
+third_party/lua/loadlib.s: third_party/lua/loadlib.c.s
+.PHONY : third_party/lua/loadlib.s
+
+# target to generate assembly for a file
+third_party/lua/loadlib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/loadlib.c.s
+.PHONY : third_party/lua/loadlib.c.s
+
+third_party/lua/lobject.o: third_party/lua/lobject.c.o
+.PHONY : third_party/lua/lobject.o
+
+# target to build an object file
+third_party/lua/lobject.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lobject.c.o
+.PHONY : third_party/lua/lobject.c.o
+
+third_party/lua/lobject.i: third_party/lua/lobject.c.i
+.PHONY : third_party/lua/lobject.i
+
+# target to preprocess a source file
+third_party/lua/lobject.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lobject.c.i
+.PHONY : third_party/lua/lobject.c.i
+
+third_party/lua/lobject.s: third_party/lua/lobject.c.s
+.PHONY : third_party/lua/lobject.s
+
+# target to generate assembly for a file
+third_party/lua/lobject.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lobject.c.s
+.PHONY : third_party/lua/lobject.c.s
+
+third_party/lua/lopcodes.o: third_party/lua/lopcodes.c.o
+.PHONY : third_party/lua/lopcodes.o
+
+# target to build an object file
+third_party/lua/lopcodes.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lopcodes.c.o
+.PHONY : third_party/lua/lopcodes.c.o
+
+third_party/lua/lopcodes.i: third_party/lua/lopcodes.c.i
+.PHONY : third_party/lua/lopcodes.i
+
+# target to preprocess a source file
+third_party/lua/lopcodes.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lopcodes.c.i
+.PHONY : third_party/lua/lopcodes.c.i
+
+third_party/lua/lopcodes.s: third_party/lua/lopcodes.c.s
+.PHONY : third_party/lua/lopcodes.s
+
+# target to generate assembly for a file
+third_party/lua/lopcodes.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lopcodes.c.s
+.PHONY : third_party/lua/lopcodes.c.s
+
+third_party/lua/loslib.o: third_party/lua/loslib.c.o
+.PHONY : third_party/lua/loslib.o
+
+# target to build an object file
+third_party/lua/loslib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/loslib.c.o
+.PHONY : third_party/lua/loslib.c.o
+
+third_party/lua/loslib.i: third_party/lua/loslib.c.i
+.PHONY : third_party/lua/loslib.i
+
+# target to preprocess a source file
+third_party/lua/loslib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/loslib.c.i
+.PHONY : third_party/lua/loslib.c.i
+
+third_party/lua/loslib.s: third_party/lua/loslib.c.s
+.PHONY : third_party/lua/loslib.s
+
+# target to generate assembly for a file
+third_party/lua/loslib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/loslib.c.s
+.PHONY : third_party/lua/loslib.c.s
+
+third_party/lua/lparser.o: third_party/lua/lparser.c.o
+.PHONY : third_party/lua/lparser.o
+
+# target to build an object file
+third_party/lua/lparser.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lparser.c.o
+.PHONY : third_party/lua/lparser.c.o
+
+third_party/lua/lparser.i: third_party/lua/lparser.c.i
+.PHONY : third_party/lua/lparser.i
+
+# target to preprocess a source file
+third_party/lua/lparser.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lparser.c.i
+.PHONY : third_party/lua/lparser.c.i
+
+third_party/lua/lparser.s: third_party/lua/lparser.c.s
+.PHONY : third_party/lua/lparser.s
+
+# target to generate assembly for a file
+third_party/lua/lparser.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lparser.c.s
+.PHONY : third_party/lua/lparser.c.s
+
+third_party/lua/lstate.o: third_party/lua/lstate.c.o
+.PHONY : third_party/lua/lstate.o
+
+# target to build an object file
+third_party/lua/lstate.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lstate.c.o
+.PHONY : third_party/lua/lstate.c.o
+
+third_party/lua/lstate.i: third_party/lua/lstate.c.i
+.PHONY : third_party/lua/lstate.i
+
+# target to preprocess a source file
+third_party/lua/lstate.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lstate.c.i
+.PHONY : third_party/lua/lstate.c.i
+
+third_party/lua/lstate.s: third_party/lua/lstate.c.s
+.PHONY : third_party/lua/lstate.s
+
+# target to generate assembly for a file
+third_party/lua/lstate.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lstate.c.s
+.PHONY : third_party/lua/lstate.c.s
+
+third_party/lua/lstring.o: third_party/lua/lstring.c.o
+.PHONY : third_party/lua/lstring.o
+
+# target to build an object file
+third_party/lua/lstring.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lstring.c.o
+.PHONY : third_party/lua/lstring.c.o
+
+third_party/lua/lstring.i: third_party/lua/lstring.c.i
+.PHONY : third_party/lua/lstring.i
+
+# target to preprocess a source file
+third_party/lua/lstring.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lstring.c.i
+.PHONY : third_party/lua/lstring.c.i
+
+third_party/lua/lstring.s: third_party/lua/lstring.c.s
+.PHONY : third_party/lua/lstring.s
+
+# target to generate assembly for a file
+third_party/lua/lstring.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lstring.c.s
+.PHONY : third_party/lua/lstring.c.s
+
+third_party/lua/lstrlib.o: third_party/lua/lstrlib.c.o
+.PHONY : third_party/lua/lstrlib.o
+
+# target to build an object file
+third_party/lua/lstrlib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lstrlib.c.o
+.PHONY : third_party/lua/lstrlib.c.o
+
+third_party/lua/lstrlib.i: third_party/lua/lstrlib.c.i
+.PHONY : third_party/lua/lstrlib.i
+
+# target to preprocess a source file
+third_party/lua/lstrlib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lstrlib.c.i
+.PHONY : third_party/lua/lstrlib.c.i
+
+third_party/lua/lstrlib.s: third_party/lua/lstrlib.c.s
+.PHONY : third_party/lua/lstrlib.s
+
+# target to generate assembly for a file
+third_party/lua/lstrlib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lstrlib.c.s
+.PHONY : third_party/lua/lstrlib.c.s
+
+third_party/lua/ltable.o: third_party/lua/ltable.c.o
+.PHONY : third_party/lua/ltable.o
+
+# target to build an object file
+third_party/lua/ltable.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ltable.c.o
+.PHONY : third_party/lua/ltable.c.o
+
+third_party/lua/ltable.i: third_party/lua/ltable.c.i
+.PHONY : third_party/lua/ltable.i
+
+# target to preprocess a source file
+third_party/lua/ltable.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ltable.c.i
+.PHONY : third_party/lua/ltable.c.i
+
+third_party/lua/ltable.s: third_party/lua/ltable.c.s
+.PHONY : third_party/lua/ltable.s
+
+# target to generate assembly for a file
+third_party/lua/ltable.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ltable.c.s
+.PHONY : third_party/lua/ltable.c.s
+
+third_party/lua/ltablib.o: third_party/lua/ltablib.c.o
+.PHONY : third_party/lua/ltablib.o
+
+# target to build an object file
+third_party/lua/ltablib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ltablib.c.o
+.PHONY : third_party/lua/ltablib.c.o
+
+third_party/lua/ltablib.i: third_party/lua/ltablib.c.i
+.PHONY : third_party/lua/ltablib.i
+
+# target to preprocess a source file
+third_party/lua/ltablib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ltablib.c.i
+.PHONY : third_party/lua/ltablib.c.i
+
+third_party/lua/ltablib.s: third_party/lua/ltablib.c.s
+.PHONY : third_party/lua/ltablib.s
+
+# target to generate assembly for a file
+third_party/lua/ltablib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ltablib.c.s
+.PHONY : third_party/lua/ltablib.c.s
+
+third_party/lua/ltm.o: third_party/lua/ltm.c.o
+.PHONY : third_party/lua/ltm.o
+
+# target to build an object file
+third_party/lua/ltm.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ltm.c.o
+.PHONY : third_party/lua/ltm.c.o
+
+third_party/lua/ltm.i: third_party/lua/ltm.c.i
+.PHONY : third_party/lua/ltm.i
+
+# target to preprocess a source file
+third_party/lua/ltm.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ltm.c.i
+.PHONY : third_party/lua/ltm.c.i
+
+third_party/lua/ltm.s: third_party/lua/ltm.c.s
+.PHONY : third_party/lua/ltm.s
+
+# target to generate assembly for a file
+third_party/lua/ltm.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/ltm.c.s
+.PHONY : third_party/lua/ltm.c.s
+
+third_party/lua/lundump.o: third_party/lua/lundump.c.o
+.PHONY : third_party/lua/lundump.o
+
+# target to build an object file
+third_party/lua/lundump.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lundump.c.o
+.PHONY : third_party/lua/lundump.c.o
+
+third_party/lua/lundump.i: third_party/lua/lundump.c.i
+.PHONY : third_party/lua/lundump.i
+
+# target to preprocess a source file
+third_party/lua/lundump.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lundump.c.i
+.PHONY : third_party/lua/lundump.c.i
+
+third_party/lua/lundump.s: third_party/lua/lundump.c.s
+.PHONY : third_party/lua/lundump.s
+
+# target to generate assembly for a file
+third_party/lua/lundump.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lundump.c.s
+.PHONY : third_party/lua/lundump.c.s
+
+third_party/lua/lutf8lib.o: third_party/lua/lutf8lib.c.o
+.PHONY : third_party/lua/lutf8lib.o
+
+# target to build an object file
+third_party/lua/lutf8lib.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lutf8lib.c.o
+.PHONY : third_party/lua/lutf8lib.c.o
+
+third_party/lua/lutf8lib.i: third_party/lua/lutf8lib.c.i
+.PHONY : third_party/lua/lutf8lib.i
+
+# target to preprocess a source file
+third_party/lua/lutf8lib.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lutf8lib.c.i
+.PHONY : third_party/lua/lutf8lib.c.i
+
+third_party/lua/lutf8lib.s: third_party/lua/lutf8lib.c.s
+.PHONY : third_party/lua/lutf8lib.s
+
+# target to generate assembly for a file
+third_party/lua/lutf8lib.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lutf8lib.c.s
+.PHONY : third_party/lua/lutf8lib.c.s
+
+third_party/lua/lvm.o: third_party/lua/lvm.c.o
+.PHONY : third_party/lua/lvm.o
+
+# target to build an object file
+third_party/lua/lvm.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lvm.c.o
+.PHONY : third_party/lua/lvm.c.o
+
+third_party/lua/lvm.i: third_party/lua/lvm.c.i
+.PHONY : third_party/lua/lvm.i
+
+# target to preprocess a source file
+third_party/lua/lvm.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lvm.c.i
+.PHONY : third_party/lua/lvm.c.i
+
+third_party/lua/lvm.s: third_party/lua/lvm.c.s
+.PHONY : third_party/lua/lvm.s
+
+# target to generate assembly for a file
+third_party/lua/lvm.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lvm.c.s
+.PHONY : third_party/lua/lvm.c.s
+
+third_party/lua/lzio.o: third_party/lua/lzio.c.o
+.PHONY : third_party/lua/lzio.o
+
+# target to build an object file
+third_party/lua/lzio.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lzio.c.o
+.PHONY : third_party/lua/lzio.c.o
+
+third_party/lua/lzio.i: third_party/lua/lzio.c.i
+.PHONY : third_party/lua/lzio.i
+
+# target to preprocess a source file
+third_party/lua/lzio.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lzio.c.i
+.PHONY : third_party/lua/lzio.c.i
+
+third_party/lua/lzio.s: third_party/lua/lzio.c.s
+.PHONY : third_party/lua/lzio.s
+
+# target to generate assembly for a file
+third_party/lua/lzio.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/third_party/lua/lzio.c.s
+.PHONY : third_party/lua/lzio.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... codegen"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
+	@echo "... package"
+	@echo "... package_source"
 	@echo "... rebuild_cache"
+	@echo "... uninstall"
+	@echo "... update_mappings"
 	@echo "... KitsuneEngine"
+	@echo "... glfw"
+	@echo "... lua"
+	@echo "... raylib"
 	@echo "... src/KitsuneEngine.o"
 	@echo "... src/KitsuneEngine.i"
 	@echo "... src/KitsuneEngine.s"
@@ -1307,6 +2209,102 @@ help:
 	@echo "... src/lib/vector/Vector3D.o"
 	@echo "... src/lib/vector/Vector3D.i"
 	@echo "... src/lib/vector/Vector3D.s"
+	@echo "... third_party/lua/lapi.o"
+	@echo "... third_party/lua/lapi.i"
+	@echo "... third_party/lua/lapi.s"
+	@echo "... third_party/lua/lauxlib.o"
+	@echo "... third_party/lua/lauxlib.i"
+	@echo "... third_party/lua/lauxlib.s"
+	@echo "... third_party/lua/lbaselib.o"
+	@echo "... third_party/lua/lbaselib.i"
+	@echo "... third_party/lua/lbaselib.s"
+	@echo "... third_party/lua/lcode.o"
+	@echo "... third_party/lua/lcode.i"
+	@echo "... third_party/lua/lcode.s"
+	@echo "... third_party/lua/lcorolib.o"
+	@echo "... third_party/lua/lcorolib.i"
+	@echo "... third_party/lua/lcorolib.s"
+	@echo "... third_party/lua/lctype.o"
+	@echo "... third_party/lua/lctype.i"
+	@echo "... third_party/lua/lctype.s"
+	@echo "... third_party/lua/ldblib.o"
+	@echo "... third_party/lua/ldblib.i"
+	@echo "... third_party/lua/ldblib.s"
+	@echo "... third_party/lua/ldebug.o"
+	@echo "... third_party/lua/ldebug.i"
+	@echo "... third_party/lua/ldebug.s"
+	@echo "... third_party/lua/ldo.o"
+	@echo "... third_party/lua/ldo.i"
+	@echo "... third_party/lua/ldo.s"
+	@echo "... third_party/lua/ldump.o"
+	@echo "... third_party/lua/ldump.i"
+	@echo "... third_party/lua/ldump.s"
+	@echo "... third_party/lua/lfunc.o"
+	@echo "... third_party/lua/lfunc.i"
+	@echo "... third_party/lua/lfunc.s"
+	@echo "... third_party/lua/lgc.o"
+	@echo "... third_party/lua/lgc.i"
+	@echo "... third_party/lua/lgc.s"
+	@echo "... third_party/lua/linit.o"
+	@echo "... third_party/lua/linit.i"
+	@echo "... third_party/lua/linit.s"
+	@echo "... third_party/lua/liolib.o"
+	@echo "... third_party/lua/liolib.i"
+	@echo "... third_party/lua/liolib.s"
+	@echo "... third_party/lua/llex.o"
+	@echo "... third_party/lua/llex.i"
+	@echo "... third_party/lua/llex.s"
+	@echo "... third_party/lua/lmathlib.o"
+	@echo "... third_party/lua/lmathlib.i"
+	@echo "... third_party/lua/lmathlib.s"
+	@echo "... third_party/lua/lmem.o"
+	@echo "... third_party/lua/lmem.i"
+	@echo "... third_party/lua/lmem.s"
+	@echo "... third_party/lua/loadlib.o"
+	@echo "... third_party/lua/loadlib.i"
+	@echo "... third_party/lua/loadlib.s"
+	@echo "... third_party/lua/lobject.o"
+	@echo "... third_party/lua/lobject.i"
+	@echo "... third_party/lua/lobject.s"
+	@echo "... third_party/lua/lopcodes.o"
+	@echo "... third_party/lua/lopcodes.i"
+	@echo "... third_party/lua/lopcodes.s"
+	@echo "... third_party/lua/loslib.o"
+	@echo "... third_party/lua/loslib.i"
+	@echo "... third_party/lua/loslib.s"
+	@echo "... third_party/lua/lparser.o"
+	@echo "... third_party/lua/lparser.i"
+	@echo "... third_party/lua/lparser.s"
+	@echo "... third_party/lua/lstate.o"
+	@echo "... third_party/lua/lstate.i"
+	@echo "... third_party/lua/lstate.s"
+	@echo "... third_party/lua/lstring.o"
+	@echo "... third_party/lua/lstring.i"
+	@echo "... third_party/lua/lstring.s"
+	@echo "... third_party/lua/lstrlib.o"
+	@echo "... third_party/lua/lstrlib.i"
+	@echo "... third_party/lua/lstrlib.s"
+	@echo "... third_party/lua/ltable.o"
+	@echo "... third_party/lua/ltable.i"
+	@echo "... third_party/lua/ltable.s"
+	@echo "... third_party/lua/ltablib.o"
+	@echo "... third_party/lua/ltablib.i"
+	@echo "... third_party/lua/ltablib.s"
+	@echo "... third_party/lua/ltm.o"
+	@echo "... third_party/lua/ltm.i"
+	@echo "... third_party/lua/ltm.s"
+	@echo "... third_party/lua/lundump.o"
+	@echo "... third_party/lua/lundump.i"
+	@echo "... third_party/lua/lundump.s"
+	@echo "... third_party/lua/lutf8lib.o"
+	@echo "... third_party/lua/lutf8lib.i"
+	@echo "... third_party/lua/lutf8lib.s"
+	@echo "... third_party/lua/lvm.o"
+	@echo "... third_party/lua/lvm.i"
+	@echo "... third_party/lua/lvm.s"
+	@echo "... third_party/lua/lzio.o"
+	@echo "... third_party/lua/lzio.i"
+	@echo "... third_party/lua/lzio.s"
 .PHONY : help
 
 
@@ -1318,6 +2316,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P /Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

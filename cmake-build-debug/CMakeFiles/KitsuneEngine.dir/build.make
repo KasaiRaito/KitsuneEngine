@@ -767,11 +767,8 @@ KitsuneEngine: CMakeFiles/KitsuneEngine.dir/src/lib/vector/Vector.cpp.o
 KitsuneEngine: CMakeFiles/KitsuneEngine.dir/src/lib/vector/Vector2D.cpp.o
 KitsuneEngine: CMakeFiles/KitsuneEngine.dir/src/lib/vector/Vector3D.cpp.o
 KitsuneEngine: CMakeFiles/KitsuneEngine.dir/build.make
-KitsuneEngine: /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/debug/lib/libraylib.a
-KitsuneEngine: /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/debug/lib/libglfw3.a
-KitsuneEngine: /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/debug/lib/libbox2dd.a
-KitsuneEngine: /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/debug/lib/liblua.a
-KitsuneEngine: /Users/kasairaito/.vcpkg-clion/vcpkg/installed/arm64-osx/debug/lib/libraylib.a
+KitsuneEngine: third_party/raylib/raylib/libraylib.a
+KitsuneEngine: liblua.a
 KitsuneEngine: CMakeFiles/KitsuneEngine.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kasairaito/Documents/GitHub/KitsuneEngine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Linking CXX executable KitsuneEngine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/KitsuneEngine.dir/link.txt --verbose=$(VERBOSE)
